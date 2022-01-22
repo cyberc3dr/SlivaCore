@@ -1,4 +1,4 @@
-From 556d9ad475a0279c8dd3a62d3e1e94cdfdd14c36 Mon Sep 17 00:00:00 2001
+From 473c8a75c4619b69c53ae01900596a0085af3aac Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 15 May 2017 15:16:15 +1000
 Subject: [PATCH] Skeleton API Implementations
@@ -37,10 +37,10 @@ index 8a6a3867..1a9541e6 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 20e8e212..ada1876b 100644
+index 53c3cdac..8b3bb6c0 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2426,6 +2426,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2451,6 +2451,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      @Nullable
      public Location locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
  
@@ -120,10 +120,10 @@ index 76aad05f..4d308c5a 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 73f9118d..2ef438b0 100644
+index c5d88d5c..d6bd9a3c 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1506,4 +1506,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1539,4 +1539,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       * @return whether the player allows server listings
       */
      public boolean isAllowingServerListings();

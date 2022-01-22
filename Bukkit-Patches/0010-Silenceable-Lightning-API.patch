@@ -1,14 +1,14 @@
-From 3ca02f10173d3b127a83896ca7f0a07d975eb0bb Mon Sep 17 00:00:00 2001
+From 4f0f21dc6ccb6a59e9ec934d22986bde52966289 Mon Sep 17 00:00:00 2001
 From: drXor <mcyoungsota@gmail.com>
 Date: Sun, 23 Feb 2014 16:16:29 -0400
 Subject: [PATCH] Silenceable Lightning API
 
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index ada1876b..0d6be1ca 100644
+index 8b3bb6c0..8f4250b5 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2429,6 +2429,29 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2454,6 +2454,29 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      // Spigot start
      public class Spigot {
  

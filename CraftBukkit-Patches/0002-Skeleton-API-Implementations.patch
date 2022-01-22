@@ -1,4 +1,4 @@
-From 3f2e2a6c3abc8d9d2330cd83f5179103aec2c468 Mon Sep 17 00:00:00 2001
+From 7162f30c964710a82b6fa50cb52282b9c29787ea Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 2 Jun 2013 15:10:56 +1000
 Subject: [PATCH] Skeleton API Implementations
@@ -27,10 +27,10 @@ index f977efb6a..1d6fa1e3a 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index f98312b64..c510e29d2 100644
+index b4e765936..308a4d642 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -1740,4 +1740,15 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -1758,4 +1758,15 @@ public class CraftWorld extends CraftRegionAccessor implements World {
      public DragonBattle getEnderDragonBattle() {
          return (getHandle().dragonFight() == null) ? null : new CraftDragonBattle(getHandle().dragonFight());
      }
@@ -124,10 +124,10 @@ index 9ab9f0a31..e63833dcd 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 44fcc736f..0c32c9f46 100644
+index cec64f29a..d151d2f10 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1777,4 +1777,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1798,4 +1798,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
      public boolean isAllowingServerListings() {
          return getHandle().allowsListing();
      }

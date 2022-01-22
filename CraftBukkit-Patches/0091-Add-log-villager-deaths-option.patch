@@ -1,14 +1,14 @@
-From 2c15008d435ffb9720b267736b3eecd87a986dac Mon Sep 17 00:00:00 2001
+From 66d69fd404ef47f5d3478acd7d82e93520f07a3b Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 14 Dec 2019 10:26:52 +1100
 Subject: [PATCH] Add log-villager-deaths option
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/EntityLiving.java b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-index 6e69da933..64cebda62 100644
+index 7a035803e..ffaea1a0f 100644
 --- a/src/main/java/net/minecraft/world/entity/EntityLiving.java
 +++ b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-@@ -1586,7 +1586,7 @@ public abstract class EntityLiving extends Entity {
+@@ -1585,7 +1585,7 @@ public abstract class EntityLiving extends Entity {
              }
  
              if (!this.level.isClientSide && this.hasCustomName()) {

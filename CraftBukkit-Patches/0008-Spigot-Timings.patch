@@ -1,4 +1,4 @@
-From 20b4f5ae8dd064887f59599a39cc9f3e794d9e65 Mon Sep 17 00:00:00 2001
+From 367e1e133d91d392f84952a1d2c56f9f77c38d07 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 10 Jan 2013 00:18:11 -0500
 Subject: [PATCH] Spigot Timings
@@ -320,7 +320,7 @@ index 30df74afd..a6297a8cd 100644
          // this.server.getCommands().performCommand(this.player.createCommandSourceStack(), s);
          // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index fe406f8c4..9544417e2 100644
+index 3822e1010..c11e50c18 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -127,6 +127,7 @@ import org.bukkit.craftbukkit.event.CraftPortalEvent;
@@ -331,7 +331,7 @@ index fe406f8c4..9544417e2 100644
  import org.bukkit.event.entity.EntityCombustByEntityEvent;
  import org.bukkit.event.hanging.HangingBreakByEntityEvent;
  import org.bukkit.event.vehicle.VehicleBlockCollisionEvent;
-@@ -287,6 +288,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -293,6 +294,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
      public boolean lastDamageCancelled; // SPIGOT-5339, SPIGOT-6252, SPIGOT-6777: Keep track if the event was canceled
      public boolean persistentInvisibility = false;
      public BlockPosition lastLavaContact;
@@ -339,7 +339,7 @@ index fe406f8c4..9544417e2 100644
  
      public float getBukkitYaw() {
          return this.yRot;
-@@ -715,6 +717,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -721,6 +723,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
      }
  
      public void move(EnumMoveType enummovetype, Vec3D vec3d) {
@@ -347,7 +347,7 @@ index fe406f8c4..9544417e2 100644
          if (this.noPhysics) {
              this.setPos(this.getX() + vec3d.x, this.getY() + vec3d.y, this.getZ() + vec3d.z);
          } else {
-@@ -867,6 +870,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -873,6 +876,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
                  this.level.getProfiler().pop();
              }
          }
@@ -356,7 +356,7 @@ index fe406f8c4..9544417e2 100644
  
      protected boolean isHorizontalCollisionMinor(Vec3D vec3d) {
 diff --git a/src/main/java/net/minecraft/world/entity/EntityLiving.java b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-index 3b6024a6c..2b1720c80 100644
+index b156dd910..02ac35f97 100644
 --- a/src/main/java/net/minecraft/world/entity/EntityLiving.java
 +++ b/src/main/java/net/minecraft/world/entity/EntityLiving.java
 @@ -140,6 +140,8 @@ import org.bukkit.event.entity.EntityTeleportEvent;
@@ -368,7 +368,7 @@ index 3b6024a6c..2b1720c80 100644
  public abstract class EntityLiving extends Entity {
  
      private static final UUID SPEED_MODIFIER_SPRINTING_UUID = UUID.fromString("662A6B8D-DA3E-4C1C-8813-96EA6097278D");
-@@ -2753,6 +2755,7 @@ public abstract class EntityLiving extends Entity {
+@@ -2752,6 +2754,7 @@ public abstract class EntityLiving extends Entity {
  
      @Override
      public void tick() {
@@ -376,7 +376,7 @@ index 3b6024a6c..2b1720c80 100644
          super.tick();
          this.updatingUsingItem();
          this.updateSwimAmount();
-@@ -2793,7 +2796,9 @@ public abstract class EntityLiving extends Entity {
+@@ -2792,7 +2795,9 @@ public abstract class EntityLiving extends Entity {
              }
          }
  
@@ -386,7 +386,7 @@ index 3b6024a6c..2b1720c80 100644
          double d0 = this.getX() - this.xo;
          double d1 = this.getZ() - this.zo;
          float f = (float) (d0 * d0 + d1 * d1);
-@@ -2874,6 +2879,7 @@ public abstract class EntityLiving extends Entity {
+@@ -2873,6 +2878,7 @@ public abstract class EntityLiving extends Entity {
              this.setXRot(0.0F);
          }
  
@@ -394,7 +394,7 @@ index 3b6024a6c..2b1720c80 100644
      }
  
      public void detectEquipmentUpdates() {
-@@ -3055,6 +3061,7 @@ public abstract class EntityLiving extends Entity {
+@@ -3054,6 +3060,7 @@ public abstract class EntityLiving extends Entity {
  
          this.setDeltaMovement(d4, d5, d6);
          this.level.getProfiler().push("ai");
@@ -402,7 +402,7 @@ index 3b6024a6c..2b1720c80 100644
          if (this.isImmobile()) {
              this.jumping = false;
              this.xxa = 0.0F;
-@@ -3064,6 +3071,7 @@ public abstract class EntityLiving extends Entity {
+@@ -3063,6 +3070,7 @@ public abstract class EntityLiving extends Entity {
              this.serverAiStep();
              this.level.getProfiler().pop();
          }
@@ -410,7 +410,7 @@ index 3b6024a6c..2b1720c80 100644
  
          this.level.getProfiler().pop();
          this.level.getProfiler().push("jump");
-@@ -3098,7 +3106,9 @@ public abstract class EntityLiving extends Entity {
+@@ -3097,7 +3105,9 @@ public abstract class EntityLiving extends Entity {
          this.updateFallFlying();
          AxisAlignedBB axisalignedbb = this.getBoundingBox();
  
@@ -420,7 +420,7 @@ index 3b6024a6c..2b1720c80 100644
          this.level.getProfiler().pop();
          this.level.getProfiler().push("freezing");
          boolean flag1 = this.getType().is(TagsEntity.FREEZE_HURTS_EXTRA_TYPES);
-@@ -3127,7 +3137,9 @@ public abstract class EntityLiving extends Entity {
+@@ -3126,7 +3136,9 @@ public abstract class EntityLiving extends Entity {
              this.checkAutoSpinAttack(axisalignedbb, this.getBoundingBox());
          }
  

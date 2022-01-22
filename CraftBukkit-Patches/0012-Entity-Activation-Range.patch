@@ -1,4 +1,4 @@
-From 55c6d7ca8524c22466a088fc13d45e36b478ae82 Mon Sep 17 00:00:00 2001
+From 1c73e0f729b73b45d044f743aa94d9bdb5d79269 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 3 Feb 2013 05:10:21 -0500
 Subject: [PATCH] Entity Activation Range
@@ -35,10 +35,10 @@ index 1b68ca2fe..889e9a488 100644
          entity.setOldPosAndRot();
          GameProfilerFiller gameprofilerfiller = this.getProfiler();
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index bacc9f852..c3e77dd7f 100644
+index c11e50c18..ab6904b6f 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -289,6 +289,12 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -295,6 +295,12 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
      public boolean persistentInvisibility = false;
      public BlockPosition lastLavaContact;
      public CustomTimingsHandler tickTimer = org.bukkit.craftbukkit.SpigotTimings.getEntityTimings(this); // Spigot
@@ -51,7 +51,7 @@ index bacc9f852..c3e77dd7f 100644
  
      public float getBukkitYaw() {
          return this.yRot;
-@@ -323,6 +329,13 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -329,6 +335,13 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
          this.blockPosition = BlockPosition.ZERO;
          this.chunkPosition = ChunkCoordIntPair.ZERO;
          this.packetCoordinates = Vec3D.ZERO;
@@ -125,10 +125,10 @@ index fb29c994c..af7c159d9 100644
      public void tick() {
          super.tick();
 diff --git a/src/main/java/net/minecraft/world/entity/EntityLiving.java b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-index 69b035f9f..8e6670abf 100644
+index 02ac35f97..7a035803e 100644
 --- a/src/main/java/net/minecraft/world/entity/EntityLiving.java
 +++ b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-@@ -265,6 +265,13 @@ public abstract class EntityLiving extends Entity {
+@@ -264,6 +264,13 @@ public abstract class EntityLiving extends Entity {
          return getYHeadRot();
      }
      // CraftBukkit end

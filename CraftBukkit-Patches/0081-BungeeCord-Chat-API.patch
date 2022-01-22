@@ -1,4 +1,4 @@
-From b7770068eb41eafefff4f5cd09d262a008bd394d Mon Sep 17 00:00:00 2001
+From 380d3ccf65aec4b9610faca412daed95b41601db Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 03:06:05 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -139,10 +139,10 @@ index ed7b6e9ea..f2f0591d5 100644
  
      public org.bukkit.entity.Entity.Spigot spigot()
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 05537df25..6a2083a9b 100644
+index 4d12e6389..403d0a4a0 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -138,6 +138,8 @@ import org.bukkit.plugin.Plugin;
+@@ -139,6 +139,8 @@ import org.bukkit.plugin.Plugin;
  import org.bukkit.plugin.messaging.StandardMessenger;
  import org.bukkit.scoreboard.Scoreboard;
  
@@ -151,7 +151,7 @@ index 05537df25..6a2083a9b 100644
  @DelegateDeserialization(CraftOfflinePlayer.class)
  public class CraftPlayer extends CraftHumanEntity implements Player {
      private long firstPlayed = 0;
-@@ -1831,6 +1833,58 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1852,6 +1854,58 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
  
              return java.util.Collections.unmodifiableSet( ret );
          }

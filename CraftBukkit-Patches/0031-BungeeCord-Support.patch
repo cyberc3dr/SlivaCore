@@ -1,4 +1,4 @@
-From a70f78439e3fbf1e1c0bea521c14bb14e4987d2c Mon Sep 17 00:00:00 2001
+From 3b381bd66249611535c0785d6de9c32351687439 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 1 Dec 2013 18:18:41 +1100
 Subject: [PATCH] BungeeCord Support
@@ -157,10 +157,10 @@ index 2fa5b96a9..a2deb1c87 100644
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 896c7b309..f4cbcfbc0 100644
+index 59c2e602b..c2e025013 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1783,6 +1783,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1804,6 +1804,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
      private final Player.Spigot spigot = new Player.Spigot()
      {
  
@@ -174,7 +174,7 @@ index 896c7b309..f4cbcfbc0 100644
          public boolean getCollidesWithEntities() {
              return CraftPlayer.this.isCollidable();
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 37bf0cec0..642f3a39a 100644
+index 130016282..3bb51f452 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -214,4 +214,14 @@ public class SpigotConfig
