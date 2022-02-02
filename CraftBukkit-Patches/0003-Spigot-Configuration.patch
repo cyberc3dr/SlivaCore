@@ -1,4 +1,4 @@
-From ce07d508a493226312b49913f8d3f2f70235caaa Mon Sep 17 00:00:00 2001
+From bdf3cfc3fee8853cc966cef905943590b7ccedc9 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 7 Jul 2013 09:32:53 +1000
 Subject: [PATCH] Spigot Configuration
@@ -51,10 +51,10 @@ index d6b3d42ad..845482f24 100644
          this.world = new CraftWorld((WorldServer) this, gen, biomeProvider, env);
          this.ticksPerAnimalSpawns = this.getCraftServer().getTicksPerAnimalSpawns(); // CraftBukkit
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 1d6fa1e3a..f82200fd9 100644
+index e1fe48a66..a0d37f312 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -846,6 +846,7 @@ public final class CraftServer implements Server {
+@@ -849,6 +849,7 @@ public final class CraftServer implements Server {
              logger.log(Level.WARNING, "Failed to load banned-players.json, " + ex.getMessage());
          }
  
@@ -62,7 +62,7 @@ index 1d6fa1e3a..f82200fd9 100644
          for (WorldServer world : console.getAllLevels()) {
              world.serverLevelData.setDifficulty(config.difficulty);
              world.setSpawnSettings(config.spawnMonsters, config.spawnAnimals);
-@@ -884,11 +885,13 @@ public final class CraftServer implements Server {
+@@ -887,11 +888,13 @@ public final class CraftServer implements Server {
              } else {
                  world.ticksPerAmbientSpawns = this.getTicksPerAmbientSpawns();
              }
@@ -77,7 +77,7 @@ index 1d6fa1e3a..f82200fd9 100644
          ignoreVanillaPermissions = commandsConfiguration.getBoolean("ignore-vanilla-permissions");
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/Main.java b/src/main/java/org/bukkit/craftbukkit/Main.java
-index e94706500..63d2d381c 100644
+index f50ca3bae..258c84698 100644
 --- a/src/main/java/org/bukkit/craftbukkit/Main.java
 +++ b/src/main/java/org/bukkit/craftbukkit/Main.java
 @@ -121,6 +121,14 @@ public class Main {

@@ -1,4 +1,4 @@
-From ff3e215156598f11973968d23cd0a8e4521854cd Mon Sep 17 00:00:00 2001
+From ab9b5e7379f514dcd26bc1276970aa93cc84a249 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 19:21:58 +1000
 Subject: [PATCH] Configurable Messages
@@ -43,10 +43,10 @@ index d5f7290ac..1d53d3077 100644
          }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 1f48abeba..268bde915 100644
+index 43d6da440..aecc77588 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -802,11 +802,11 @@ public final class CraftServer implements Server {
+@@ -805,11 +805,11 @@ public final class CraftServer implements Server {
              return true;
          }
  
@@ -63,7 +63,7 @@ index 1f48abeba..268bde915 100644
          return false;
      }
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index fed02c9b1..60d14fa25 100644
+index fc352ecf1..8ad8b2589 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -12,6 +12,7 @@ import java.util.Map;

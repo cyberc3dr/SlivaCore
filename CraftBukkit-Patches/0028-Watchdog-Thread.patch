@@ -1,11 +1,11 @@
-From 98419c637d219cfbc26b709f457b084a2b6b6977 Mon Sep 17 00:00:00 2001
+From a0dc1fe6a60876e8f874dd06322f154da371bad4 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Tue, 5 Aug 2014 17:20:19 +0100
 Subject: [PATCH] Watchdog Thread.
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 322942c9e..6d64408e8 100644
+index 32b1e6727..ee94d92bf 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -1044,6 +1044,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
@@ -38,10 +38,10 @@ index 1a2b1ee86..12889533b 100644
  
                  thread1.setUncaughtExceptionHandler(new ThreadNamedUncaughtExceptionHandler(DedicatedServer.LOGGER));
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 268bde915..2fa5b96a9 100644
+index aecc77588..89163768f 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -1890,7 +1890,7 @@ public final class CraftServer implements Server {
+@@ -1908,7 +1908,7 @@ public final class CraftServer implements Server {
  
      @Override
      public boolean isPrimaryThread() {
@@ -50,7 +50,7 @@ index 268bde915..2fa5b96a9 100644
      }
  
      @Override
-@@ -2261,6 +2261,11 @@ public final class CraftServer implements Server {
+@@ -2279,6 +2279,11 @@ public final class CraftServer implements Server {
          {
              return org.spigotmc.SpigotConfig.config;
          }
@@ -199,7 +199,7 @@ index 000000000..3f739e80e
 +    }
 +}
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 60d14fa25..37bf0cec0 100644
+index 8ad8b2589..130016282 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -200,4 +200,18 @@ public class SpigotConfig

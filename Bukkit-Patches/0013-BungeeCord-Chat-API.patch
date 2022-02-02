@@ -1,4 +1,4 @@
-From 45f9a68f3df3ac7f40f5a228e008eb76bb7b4f20 Mon Sep 17 00:00:00 2001
+From 2fb3083a10740a115a894099ce154646804ca438 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 02:59:14 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -293,10 +293,10 @@ index 427368a7..44d597d7 100644
       * Gets the char value associated with this color
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 3867f013..598eb878 100644
+index e5485dd0..f7b3044a 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1499,6 +1499,24 @@ public interface Server extends PluginMessageRecipient {
+@@ -1533,6 +1533,24 @@ public interface Server extends PluginMessageRecipient {
          public org.bukkit.configuration.file.YamlConfiguration getConfig() {
              throw new UnsupportedOperationException("Not supported yet.");
          }
