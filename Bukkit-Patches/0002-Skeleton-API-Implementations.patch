@@ -1,14 +1,14 @@
-From 9a90c4fcd0375eb71e972d952aa4662887a3a0db Mon Sep 17 00:00:00 2001
+From 6a75f654d1260108750df68549dd6dcc8eb7616a Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 15 May 2017 15:16:15 +1000
 Subject: [PATCH] Skeleton API Implementations
 
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index c328d2fd..7135cf6a 100644
+index 31576f9a..f8001caf 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1804,4 +1804,9 @@ public final class Bukkit {
+@@ -1869,4 +1869,9 @@ public final class Bukkit {
      public static UnsafeValues getUnsafe() {
          return server.getUnsafe();
      }
@@ -19,10 +19,10 @@ index c328d2fd..7135cf6a 100644
 +    }
  }
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 1997dfd7..6813c38f 100644
+index 9e52461b..839a1833 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1525,4 +1525,13 @@ public interface Server extends PluginMessageRecipient {
+@@ -1584,4 +1584,13 @@ public interface Server extends PluginMessageRecipient {
      @Deprecated
      @NotNull
      UnsafeValues getUnsafe();
@@ -37,10 +37,10 @@ index 1997dfd7..6813c38f 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 53c3cdac..8b3bb6c0 100644
+index 34ee8c05..fdb994a8 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2451,6 +2451,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2572,6 +2572,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      @Nullable
      public Location locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
  
@@ -75,13 +75,13 @@ index a7a2587b..4b6b9540 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 4ac66f71..25a6f931 100644
+index 046cf816..922d33ff 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -638,4 +638,14 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -646,4 +646,14 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
       */
      @NotNull
-     Pose getPose();
+     SpawnCategory getSpawnCategory();
 +
 +    // Spigot start
 +    public class Spigot extends CommandSender.Spigot {

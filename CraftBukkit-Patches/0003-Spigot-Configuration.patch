@@ -1,4 +1,4 @@
-From bdf3cfc3fee8853cc966cef905943590b7ccedc9 Mon Sep 17 00:00:00 2001
+From 2a941761718297ac7e6a4fb6cb7ca7ee39c7721f Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 7 Jul 2013 09:32:53 +1000
 Subject: [PATCH] Spigot Configuration
@@ -31,27 +31,27 @@ index a04d6c440..ef3802c47 100644
          server.enablePlugins(org.bukkit.plugin.PluginLoadOrder.STARTUP);
          // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/world/level/World.java b/src/main/java/net/minecraft/world/level/World.java
-index d6b3d42ad..845482f24 100644
+index 02cd57ed0..a8dcc3841 100644
 --- a/src/main/java/net/minecraft/world/level/World.java
 +++ b/src/main/java/net/minecraft/world/level/World.java
-@@ -146,6 +146,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
-     public long ticksPerWaterUndergroundCreatureSpawns;
-     public long ticksPerAmbientSpawns;
+@@ -143,6 +143,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+     public List<EntityItem> captureDrops;
+     public final it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap<SpawnCategory> ticksPerSpawnCategory = new it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap<>();
      public boolean populating;
 +    public final org.spigotmc.SpigotWorldConfig spigotConfig; // Spigot
  
      public CraftWorld getWorld() {
          return this.world;
-@@ -158,6 +159,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -155,6 +156,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
      public abstract ResourceKey<WorldDimension> getTypeKey();
  
      protected World(WorldDataMutable worlddatamutable, ResourceKey<World> resourcekey, final DimensionManager dimensionmanager, Supplier<GameProfilerFiller> supplier, boolean flag, boolean flag1, long i, org.bukkit.generator.ChunkGenerator gen, org.bukkit.generator.BiomeProvider biomeProvider, org.bukkit.World.Environment env) {
 +        this.spigotConfig = new org.spigotmc.SpigotWorldConfig(((net.minecraft.world.level.storage.WorldDataServer) worlddatamutable).getLevelName()); // Spigot
          this.generator = gen;
          this.world = new CraftWorld((WorldServer) this, gen, biomeProvider, env);
-         this.ticksPerAnimalSpawns = this.getCraftServer().getTicksPerAnimalSpawns(); // CraftBukkit
+ 
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index e1fe48a66..a0d37f312 100644
+index 299628b37..85a11aa5f 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -849,6 +849,7 @@ public final class CraftServer implements Server {
@@ -62,9 +62,9 @@ index e1fe48a66..a0d37f312 100644
          for (WorldServer world : console.getAllLevels()) {
              world.serverLevelData.setDifficulty(config.difficulty);
              world.setSpawnSettings(config.spawnMonsters, config.spawnAnimals);
-@@ -887,11 +888,13 @@ public final class CraftServer implements Server {
-             } else {
-                 world.ticksPerAmbientSpawns = this.getTicksPerAmbientSpawns();
+@@ -863,11 +864,13 @@ public final class CraftServer implements Server {
+                     }
+                 }
              }
 +            world.spigotConfig.init(); // Spigot
          }

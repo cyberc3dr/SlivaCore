@@ -1,4 +1,4 @@
-From f2220102ebcc44bcf9255569aa4ef7a9b0cfb8b7 Mon Sep 17 00:00:00 2001
+From dffa29c8de538454e1ac2ad8d4fd7f6f11490bed Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Tue, 25 Mar 2014 16:10:01 +1100
 Subject: [PATCH] Async Operation Catching
@@ -122,10 +122,10 @@ index 053df6c4d..7f15e7bd6 100644
              world.removeBlockEntity(blockposition);
          }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index a0d37f312..824e182af 100644
+index 85a11aa5f..0a8572e62 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -799,6 +799,7 @@ public final class CraftServer implements Server {
+@@ -804,6 +804,7 @@ public final class CraftServer implements Server {
      public boolean dispatchCommand(CommandSender sender, String commandLine) {
          Validate.notNull(sender, "Sender cannot be null");
          Validate.notNull(commandLine, "CommandLine cannot be null");
@@ -134,10 +134,10 @@ index a0d37f312..824e182af 100644
          if (commandMap.dispatch(sender, commandLine)) {
              return true;
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 308a4d642..8241b8e22 100644
+index 8f9c56ca6..272ed6ffb 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -249,6 +249,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -246,6 +246,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public boolean unloadChunkRequest(int x, int z) {
@@ -145,7 +145,7 @@ index 308a4d642..8241b8e22 100644
          if (isChunkLoaded(x, z)) {
              world.getChunkSource().removeRegionTicket(TicketType.PLUGIN, new ChunkCoordIntPair(x, z), 1, Unit.INSTANCE);
          }
-@@ -257,6 +258,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -254,6 +255,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
      }
  
      private boolean unloadChunk0(int x, int z, boolean save) {
@@ -153,7 +153,7 @@ index 308a4d642..8241b8e22 100644
          if (!isChunkLoaded(x, z)) {
              return true;
          }
-@@ -271,6 +273,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -268,6 +270,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public boolean regenerateChunk(int x, int z) {
@@ -161,7 +161,7 @@ index 308a4d642..8241b8e22 100644
          throw new UnsupportedOperationException("Not supported in this Minecraft version! Unless you can fix it, this is not a bug :)");
          /*
          if (!unloadChunk0(x, z, false)) {
-@@ -323,6 +326,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -320,6 +323,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public boolean loadChunk(int x, int z, boolean generate) {
@@ -169,7 +169,7 @@ index 308a4d642..8241b8e22 100644
          IChunkAccess chunk = world.getChunkSource().getChunk(x, z, generate ? ChunkStatus.FULL : ChunkStatus.EMPTY, true);
  
          // If generate = false, but the chunk already exists, we will get this back.
-@@ -817,6 +821,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -814,6 +818,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public Collection<Entity> getNearbyEntities(BoundingBox boundingBox, Predicate<Entity> filter) {
@@ -177,7 +177,7 @@ index 308a4d642..8241b8e22 100644
          Validate.notNull(boundingBox, "Bounding box is null!");
  
          AxisAlignedBB bb = new AxisAlignedBB(boundingBox.getMinX(), boundingBox.getMinY(), boundingBox.getMinZ(), boundingBox.getMaxX(), boundingBox.getMaxY(), boundingBox.getMaxZ());
-@@ -971,6 +976,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -968,6 +973,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public void save() {
@@ -186,10 +186,10 @@ index 308a4d642..8241b8e22 100644
          boolean oldSave = world.noSave;
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
-index 6aaa6e944..ed7b6e9ea 100644
+index 04c85cf43..b679deee7 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
-@@ -533,6 +533,7 @@ public abstract class CraftEntity implements org.bukkit.entity.Entity {
+@@ -535,6 +535,7 @@ public abstract class CraftEntity implements org.bukkit.entity.Entity {
      @Override
      public List<org.bukkit.entity.Entity> getNearbyEntities(double x, double y, double z) {
          Preconditions.checkState(!entity.generation, "Cannot get nearby entities during world generation");

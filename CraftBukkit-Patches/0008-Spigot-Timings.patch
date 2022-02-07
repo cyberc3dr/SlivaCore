@@ -1,4 +1,4 @@
-From 054af34b1f71579c2ecfc62d2e091bc31505576b Mon Sep 17 00:00:00 2001
+From 65d3597d855053a758eded482950d2abdc8a3364 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 10 Jan 2013 00:18:11 -0500
 Subject: [PATCH] Spigot Timings
@@ -143,7 +143,7 @@ index ef3802c47..1a2b1ee86 100644
  
      @Override
 diff --git a/src/main/java/net/minecraft/server/level/ChunkProviderServer.java b/src/main/java/net/minecraft/server/level/ChunkProviderServer.java
-index d56cd2b33..c90cede56 100644
+index fe25fcacb..663a30784 100644
 --- a/src/main/java/net/minecraft/server/level/ChunkProviderServer.java
 +++ b/src/main/java/net/minecraft/server/level/ChunkProviderServer.java
 @@ -155,11 +155,13 @@ public class ChunkProviderServer extends IChunkProvider {
@@ -275,10 +275,10 @@ index 4c8da0281..1b68ca2fe 100644
      }
  
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 803a36667..9a00234d1 100644
+index 09945495a..21d0116b7 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -290,6 +290,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -287,6 +287,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
      // CraftBukkit end
  
      public void tick() {
@@ -286,7 +286,7 @@ index 803a36667..9a00234d1 100644
          this.resetPosition();
          this.player.xo = this.player.getX();
          this.player.yo = this.player.getY();
-@@ -365,6 +366,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -362,6 +363,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
              this.player.resetLastActionTime(); // CraftBukkit - SPIGOT-854
              this.disconnect(new ChatMessage("multiplayer.disconnect.idling"));
          }
@@ -294,7 +294,7 @@ index 803a36667..9a00234d1 100644
  
      }
  
-@@ -1879,6 +1881,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -1875,6 +1877,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
      // CraftBukkit end
  
      private void handleCommand(String s) {
@@ -302,7 +302,7 @@ index 803a36667..9a00234d1 100644
          // CraftBukkit start - whole method
          this.LOGGER.info(this.player.getScoreboardName() + " issued server command: " + s);
  
-@@ -1888,6 +1891,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -1884,6 +1887,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
          this.cserver.getPluginManager().callEvent(event);
  
          if (event.isCancelled()) {
@@ -310,7 +310,7 @@ index 803a36667..9a00234d1 100644
              return;
          }
  
-@@ -1899,6 +1903,8 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -1895,6 +1899,8 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
              player.sendMessage(org.bukkit.ChatColor.RED + "An internal error occurred while attempting to perform this command");
              java.util.logging.Logger.getLogger(PlayerConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
              return;
@@ -320,7 +320,7 @@ index 803a36667..9a00234d1 100644
          // this.server.getCommands().performCommand(this.player.createCommandSourceStack(), s);
          // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 3822e1010..c11e50c18 100644
+index 1a7d2e270..ca90b3a65 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -127,6 +127,7 @@ import org.bukkit.craftbukkit.event.CraftPortalEvent;
@@ -431,10 +431,10 @@ index b156dd910..02ac35f97 100644
          if (!this.level.isClientSide && this.isSensitiveToWater() && this.isInWaterRainOrBubble()) {
              this.hurt(DamageSource.DROWN, 1.0F);
 diff --git a/src/main/java/net/minecraft/world/level/SpawnerCreature.java b/src/main/java/net/minecraft/world/level/SpawnerCreature.java
-index 7fd76a59f..dbc67d220 100644
+index 752c1e313..d2fbb3269 100644
 --- a/src/main/java/net/minecraft/world/level/SpawnerCreature.java
 +++ b/src/main/java/net/minecraft/world/level/SpawnerCreature.java
-@@ -114,6 +114,7 @@ public final class SpawnerCreature {
+@@ -116,6 +116,7 @@ public final class SpawnerCreature {
  
      public static void spawnForChunk(WorldServer worldserver, Chunk chunk, SpawnerCreature.d spawnercreature_d, boolean flag, boolean flag1, boolean flag2) {
          worldserver.getProfiler().push("spawner");
@@ -442,7 +442,7 @@ index 7fd76a59f..dbc67d220 100644
          EnumCreatureType[] aenumcreaturetype = SpawnerCreature.SPAWNING_CATEGORIES;
          int i = aenumcreaturetype.length;
  
-@@ -173,6 +174,7 @@ public final class SpawnerCreature {
+@@ -146,6 +147,7 @@ public final class SpawnerCreature {
              }
          }
  
@@ -451,7 +451,7 @@ index 7fd76a59f..dbc67d220 100644
      }
  
 diff --git a/src/main/java/net/minecraft/world/level/World.java b/src/main/java/net/minecraft/world/level/World.java
-index 845482f24..6131721fa 100644
+index a8dcc3841..9f469cf52 100644
 --- a/src/main/java/net/minecraft/world/level/World.java
 +++ b/src/main/java/net/minecraft/world/level/World.java
 @@ -83,6 +83,7 @@ import org.bukkit.Bukkit;
@@ -461,8 +461,8 @@ index 845482f24..6131721fa 100644
 +import org.bukkit.craftbukkit.SpigotTimings; // Spigot
  import org.bukkit.craftbukkit.block.CapturedBlockState;
  import org.bukkit.craftbukkit.block.data.CraftBlockData;
- import org.bukkit.craftbukkit.util.CraftNamespacedKey;
-@@ -148,6 +149,8 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+ import org.bukkit.craftbukkit.util.CraftSpawnCategory;
+@@ -145,6 +146,8 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
      public boolean populating;
      public final org.spigotmc.SpigotWorldConfig spigotConfig; // Spigot
  
@@ -471,7 +471,7 @@ index 845482f24..6131721fa 100644
      public CraftWorld getWorld() {
          return this.world;
      }
-@@ -229,6 +232,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -228,6 +231,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
              public void onBorderSetDamageSafeZOne(WorldBorder worldborder, double d0) {}
          });
          // CraftBukkit end
@@ -479,7 +479,7 @@ index 845482f24..6131721fa 100644
      }
  
      @Override
-@@ -634,12 +638,15 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -633,12 +637,15 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
          GameProfilerFiller gameprofilerfiller = this.getProfiler();
  
          gameprofilerfiller.push("blockEntities");
@@ -495,7 +495,7 @@ index 845482f24..6131721fa 100644
          Iterator iterator = this.blockEntityTickers.iterator();
  
          while (iterator.hasNext()) {
-@@ -652,13 +659,16 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -651,13 +658,16 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
              }
          }
  
@@ -578,10 +578,10 @@ index 173f07ebc..438f65c50 100644
          };
      }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 824e182af..242a40e35 100644
+index 0a8572e62..266dde3ab 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -2267,6 +2267,11 @@ public final class CraftServer implements Server {
+@@ -2254,6 +2254,11 @@ public final class CraftServer implements Server {
      private final org.bukkit.Server.Spigot spigot = new org.bukkit.Server.Spigot()
      {
  
