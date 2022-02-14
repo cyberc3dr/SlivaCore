@@ -1,4 +1,4 @@
-From 97e30ccd47679d650e6ced1cd801a00551831737 Mon Sep 17 00:00:00 2001
+From a24dc686000394715cda50bb7b35c5dbe1780e0f Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 2 Jun 2013 15:10:56 +1000
 Subject: [PATCH] Skeleton API Implementations
@@ -27,12 +27,12 @@ index 0eb444280..299628b37 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 902b92cc3..8f9c56ca6 100644
+index d5a328df4..2b0cc65a2 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -1791,4 +1791,15 @@ public class CraftWorld extends CraftRegionAccessor implements World {
-     public DragonBattle getEnderDragonBattle() {
-         return (getHandle().dragonFight() == null) ? null : new CraftDragonBattle(getHandle().dragonFight());
+@@ -1815,4 +1815,15 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+             this.persistentDataContainer.putAll((NBTTagCompound) c);
+         }
      }
 +
 +    // Spigot start
