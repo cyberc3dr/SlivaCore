@@ -1,4 +1,4 @@
-From 39ba961190224787dc8a7305d87bbdee028f3c3d Mon Sep 17 00:00:00 2001
+From 8c2d364873f09a658239dc712daa7bb8eefa7136 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 20 Aug 2014 18:12:32 -0400
 Subject: [PATCH] Limit TNT Detonations per tick
@@ -19,10 +19,10 @@ index dce854ccc..a3ced6037 100644
              this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
          }
 diff --git a/src/main/java/net/minecraft/world/level/World.java b/src/main/java/net/minecraft/world/level/World.java
-index f9a1c86af..56af5444b 100644
+index c57e2d40b..825bb3868 100644
 --- a/src/main/java/net/minecraft/world/level/World.java
 +++ b/src/main/java/net/minecraft/world/level/World.java
-@@ -679,6 +679,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -678,6 +678,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
          timings.tileEntityTick.stopTiming(); // Spigot
          this.tickingBlockEntities = false;
          gameprofilerfiller.pop();
@@ -31,10 +31,10 @@ index f9a1c86af..56af5444b 100644
  
      public <T extends Entity> void guardEntityTick(Consumer<T> consumer, T t0) {
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 984045831..c4c1fe9ca 100644
+index b100c99bb..6a7d30fee 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -348,4 +348,15 @@ public class SpigotWorldConfig
+@@ -346,4 +346,15 @@ public class SpigotWorldConfig
          sprintMultiplier = (float) getDouble( "hunger.sprint-multiplier", 0.1 );
          otherMultiplier = (float) getDouble( "hunger.other-multiplier", 0.0 );
      }

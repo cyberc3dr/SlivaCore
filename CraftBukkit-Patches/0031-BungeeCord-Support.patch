@@ -1,4 +1,4 @@
-From e18f8d7c2cd87fa6c695437aa76365e7518bbc5d Mon Sep 17 00:00:00 2001
+From 8423099bbdf0700898e8c7d5982edc75ab35753f Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 1 Dec 2013 18:18:41 +1100
 Subject: [PATCH] BungeeCord Support
@@ -6,10 +6,10 @@ Subject: [PATCH] BungeeCord Support
 Provides support for IP forwarding via BungeeCord.
 
 diff --git a/src/main/java/net/minecraft/network/NetworkManager.java b/src/main/java/net/minecraft/network/NetworkManager.java
-index 05baccd09..e8d4ede8d 100644
+index 3fb814e6e..d111deea1 100644
 --- a/src/main/java/net/minecraft/network/NetworkManager.java
 +++ b/src/main/java/net/minecraft/network/NetworkManager.java
-@@ -68,6 +68,10 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -78,6 +78,10 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
      private final Queue<NetworkManager.QueuedPacket> queue = Queues.newConcurrentLinkedQueue();
      public Channel channel;
      public SocketAddress address;
@@ -20,7 +20,7 @@ index 05baccd09..e8d4ede8d 100644
      private PacketListener packetListener;
      private IChatBaseComponent disconnectedReason;
      private boolean encrypted;
-@@ -415,4 +419,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -427,4 +431,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
              this.listener = genericfuturelistener;
          }
      }
@@ -94,7 +94,7 @@ index ddbb24958..5214f23f5 100644
                  }
                  break;
 diff --git a/src/main/java/net/minecraft/server/network/LoginListener.java b/src/main/java/net/minecraft/server/network/LoginListener.java
-index eb38aecee..85291b4fd 100644
+index 73482f63c..126ce2003 100644
 --- a/src/main/java/net/minecraft/server/network/LoginListener.java
 +++ b/src/main/java/net/minecraft/server/network/LoginListener.java
 @@ -121,9 +121,25 @@ public class LoginListener implements PacketLoginInListener {
@@ -125,7 +125,7 @@ index eb38aecee..85291b4fd 100644
      // Spigot end
  
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index a9f11a9c1..49a3becb5 100644
+index 28831547c..d7685e96d 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
 @@ -565,7 +565,7 @@ public abstract class PlayerList {
@@ -138,10 +138,10 @@ index a9f11a9c1..49a3becb5 100644
          if (getBans().isBanned(gameprofile) && !getBans().get(gameprofile).hasExpired()) {
              GameProfileBanEntry gameprofilebanentry = (GameProfileBanEntry) this.bans.get(gameprofile);
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index f8767292c..545d8e5d8 100644
+index 4d42b189d..732182586 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -709,7 +709,13 @@ public final class CraftServer implements Server {
+@@ -705,7 +705,13 @@ public final class CraftServer implements Server {
  
      @Override
      public long getConnectionThrottle() {

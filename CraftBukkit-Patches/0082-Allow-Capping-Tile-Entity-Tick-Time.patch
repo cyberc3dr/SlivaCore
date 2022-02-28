@@ -1,4 +1,4 @@
-From cfe81538d204d332d514e55c443eeb1f75d2f655 Mon Sep 17 00:00:00 2001
+From c46cd78b58c07f665b74f6f47ae98254908063c1 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 20 Feb 2015 21:39:31 +1100
 Subject: [PATCH] Allow Capping (Tile)Entity Tick Time.
@@ -10,10 +10,10 @@ For tiles there is very little tradeoff for this option, as tile ticks are based
 This feature was commisioned by Chunkr.
 
 diff --git a/src/main/java/net/minecraft/world/level/World.java b/src/main/java/net/minecraft/world/level/World.java
-index 56af5444b..b60120574 100644
+index 825bb3868..6345b3cf0 100644
 --- a/src/main/java/net/minecraft/world/level/World.java
 +++ b/src/main/java/net/minecraft/world/level/World.java
-@@ -148,6 +148,9 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -146,6 +146,9 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
  
      public final SpigotTimings.WorldTimingsHandler timings; // Spigot
      public static BlockPosition lastPhysicsProblem; // Spigot
@@ -23,7 +23,7 @@ index 56af5444b..b60120574 100644
  
      public CraftWorld getWorld() {
          return this.world;
-@@ -233,6 +236,8 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -232,6 +235,8 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
          });
          // CraftBukkit end
          timings = new SpigotTimings.WorldTimingsHandler(this); // Spigot - code below can generate new world and access timings
@@ -32,7 +32,7 @@ index 56af5444b..b60120574 100644
      }
  
      @Override
-@@ -657,20 +662,28 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -656,20 +661,28 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
          timings.tileEntityPending.stopTiming(); // Spigot
  
          timings.tileEntityTick.startTiming(); // Spigot
@@ -68,10 +68,10 @@ index 56af5444b..b60120574 100644
                  tickingblockentity.tick();
              }
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 8e265b5f6..682408c1f 100644
+index 035da1752..bef32cce9 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -365,4 +365,13 @@ public class SpigotWorldConfig
+@@ -363,4 +363,13 @@ public class SpigotWorldConfig
      {
          hangingTickFrequency = getInt( "hanging-tick-frequency", 100 );
      }

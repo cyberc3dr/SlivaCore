@@ -1,4 +1,4 @@
-From aa2b4ef7d2a401263ffb150230c6f06751f58f5d Mon Sep 17 00:00:00 2001
+From 52823cdaea842f23cc9d276ec5fa05db7517dadf Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Tue, 25 Mar 2014 16:10:01 +1100
 Subject: [PATCH] Async Operation Catching
@@ -6,10 +6,10 @@ Subject: [PATCH] Async Operation Catching
 Catch and throw an exception when a potentially unsafe operation occurs on a thread other than the main server thread.
 
 diff --git a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-index ffe81f657..c8197fa86 100644
+index a1f7dd777..1681b9771 100644
 --- a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-@@ -1177,6 +1177,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1231,6 +1231,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
      }
  
      protected void addEntity(Entity entity) {
@@ -17,7 +17,7 @@ index ffe81f657..c8197fa86 100644
          if (!(entity instanceof EntityComplexPart)) {
              EntityTypes<?> entitytypes = entity.getType();
              int i = entitytypes.clientTrackingRange() * 16;
-@@ -1212,6 +1213,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1266,6 +1267,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
      }
  
      protected void removeEntity(Entity entity) {
@@ -25,7 +25,7 @@ index ffe81f657..c8197fa86 100644
          if (entity instanceof EntityPlayer) {
              EntityPlayer entityplayer = (EntityPlayer) entity;
  
-@@ -1431,6 +1433,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1485,6 +1487,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
          }
  
          public void removePlayer(EntityPlayer entityplayer) {
@@ -33,7 +33,7 @@ index ffe81f657..c8197fa86 100644
              if (this.seenBy.remove(entityplayer.connection)) {
                  this.serverEntity.removePairing(entityplayer);
              }
-@@ -1438,6 +1441,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1492,6 +1495,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
          }
  
          public void updatePlayer(EntityPlayer entityplayer) {
@@ -42,10 +42,10 @@ index ffe81f657..c8197fa86 100644
                  Vec3D vec3d = entityplayer.position().subtract(this.entity.position()); // MC-155077, SPIGOT-5113
                  double d0 = (double) Math.min(this.getEffectiveRange(), (PlayerChunkMap.this.viewDistance - 1) * 16);
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 634dbaa3c..241fd8f2d 100644
+index 2742ac401..d54ee1848 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -966,6 +966,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -968,6 +968,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
      // CraftBukkit start
      private boolean addEntity(Entity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
@@ -53,7 +53,7 @@ index 634dbaa3c..241fd8f2d 100644
          if (entity.isRemoved()) {
              // WorldServer.LOGGER.warn("Tried to add entity {} but it was marked as removed already", EntityTypes.getKey(entity.getType())); // CraftBukkit
              return false;
-@@ -1777,6 +1778,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1779,6 +1780,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
      @Override
      public LevelEntityGetter<Entity> getEntities() {
@@ -61,7 +61,7 @@ index 634dbaa3c..241fd8f2d 100644
          return this.entityManager.getEntityGetter();
      }
  
-@@ -1846,6 +1848,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1852,6 +1854,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
          }
  
          public void onTrackingStart(Entity entity) {
@@ -69,7 +69,7 @@ index 634dbaa3c..241fd8f2d 100644
              WorldServer.this.getChunkSource().addEntity(entity);
              if (entity instanceof EntityPlayer) {
                  EntityPlayer entityplayer = (EntityPlayer) entity;
-@@ -1882,6 +1885,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1888,6 +1891,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
          }
  
          public void onTrackingEnd(Entity entity) {
@@ -78,10 +78,10 @@ index 634dbaa3c..241fd8f2d 100644
              if (entity instanceof EntityPlayer) {
                  EntityPlayer entityplayer = (EntityPlayer) entity;
 diff --git a/src/main/java/net/minecraft/world/entity/EntityLiving.java b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-index 0147e6f1c..b156dd910 100644
+index 0b1283018..f656694af 100644
 --- a/src/main/java/net/minecraft/world/entity/EntityLiving.java
 +++ b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-@@ -1066,6 +1066,7 @@ public abstract class EntityLiving extends Entity {
+@@ -1068,6 +1068,7 @@ public abstract class EntityLiving extends Entity {
      }
  
      public boolean addEffect(MobEffect mobeffect, @Nullable Entity entity, EntityPotionEffectEvent.Cause cause) {
@@ -90,10 +90,10 @@ index 0147e6f1c..b156dd910 100644
              effectsToProcess.add(new ProcessableEffect(mobeffect, cause));
              return true;
 diff --git a/src/main/java/net/minecraft/world/item/crafting/CraftingManager.java b/src/main/java/net/minecraft/world/item/crafting/CraftingManager.java
-index 1e499a582..3e527101f 100644
+index 5339ad41f..60759aa77 100644
 --- a/src/main/java/net/minecraft/world/item/crafting/CraftingManager.java
 +++ b/src/main/java/net/minecraft/world/item/crafting/CraftingManager.java
-@@ -85,6 +85,7 @@ public class CraftingManager extends ResourceDataJson {
+@@ -84,6 +84,7 @@ public class CraftingManager extends ResourceDataJson {
  
      // CraftBukkit start
      public void addRecipe(IRecipe<?> irecipe) {
@@ -102,10 +102,10 @@ index 1e499a582..3e527101f 100644
  
          if (byName.containsKey(irecipe.getId()) || map.containsKey(irecipe.getId())) {
 diff --git a/src/main/java/net/minecraft/world/level/block/state/BlockBase.java b/src/main/java/net/minecraft/world/level/block/state/BlockBase.java
-index 053df6c4d..7f15e7bd6 100644
+index 44402dc13..7e1529ec9 100644
 --- a/src/main/java/net/minecraft/world/level/block/state/BlockBase.java
 +++ b/src/main/java/net/minecraft/world/level/block/state/BlockBase.java
-@@ -134,11 +134,14 @@ public abstract class BlockBase {
+@@ -136,11 +136,14 @@ public abstract class BlockBase {
  
      /** @deprecated */
      @Deprecated
@@ -122,10 +122,10 @@ index 053df6c4d..7f15e7bd6 100644
              world.removeBlockEntity(blockposition);
          }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 85a11aa5f..0a8572e62 100644
+index 87d03fa02..afceb9667 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -804,6 +804,7 @@ public final class CraftServer implements Server {
+@@ -800,6 +800,7 @@ public final class CraftServer implements Server {
      public boolean dispatchCommand(CommandSender sender, String commandLine) {
          Validate.notNull(sender, "Sender cannot be null");
          Validate.notNull(commandLine, "CommandLine cannot be null");
@@ -134,10 +134,10 @@ index 85a11aa5f..0a8572e62 100644
          if (commandMap.dispatch(sender, commandLine)) {
              return true;
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 872db116c..e3d501c45 100644
+index 5baa2234e..7c19dcebf 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -253,6 +253,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -256,6 +256,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public boolean unloadChunkRequest(int x, int z) {
@@ -145,7 +145,7 @@ index 872db116c..e3d501c45 100644
          if (isChunkLoaded(x, z)) {
              world.getChunkSource().removeRegionTicket(TicketType.PLUGIN, new ChunkCoordIntPair(x, z), 1, Unit.INSTANCE);
          }
-@@ -261,6 +262,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -264,6 +265,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
      }
  
      private boolean unloadChunk0(int x, int z, boolean save) {
@@ -153,7 +153,7 @@ index 872db116c..e3d501c45 100644
          if (!isChunkLoaded(x, z)) {
              return true;
          }
-@@ -275,6 +277,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -278,6 +280,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public boolean regenerateChunk(int x, int z) {
@@ -161,7 +161,7 @@ index 872db116c..e3d501c45 100644
          throw new UnsupportedOperationException("Not supported in this Minecraft version! Unless you can fix it, this is not a bug :)");
          /*
          if (!unloadChunk0(x, z, false)) {
-@@ -327,6 +330,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -330,6 +333,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public boolean loadChunk(int x, int z, boolean generate) {
@@ -169,7 +169,7 @@ index 872db116c..e3d501c45 100644
          IChunkAccess chunk = world.getChunkSource().getChunk(x, z, generate ? ChunkStatus.FULL : ChunkStatus.EMPTY, true);
  
          // If generate = false, but the chunk already exists, we will get this back.
-@@ -821,6 +825,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -824,6 +828,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public Collection<Entity> getNearbyEntities(BoundingBox boundingBox, Predicate<Entity> filter) {
@@ -177,7 +177,7 @@ index 872db116c..e3d501c45 100644
          Validate.notNull(boundingBox, "Bounding box is null!");
  
          AxisAlignedBB bb = new AxisAlignedBB(boundingBox.getMinX(), boundingBox.getMinY(), boundingBox.getMinZ(), boundingBox.getMaxX(), boundingBox.getMaxY(), boundingBox.getMaxZ());
-@@ -975,6 +980,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -978,6 +983,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
  
      @Override
      public void save() {

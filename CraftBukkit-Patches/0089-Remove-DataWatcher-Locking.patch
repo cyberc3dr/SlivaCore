@@ -1,4 +1,4 @@
-From 90fc525d2d925f649d1b96186446e0ceb41c09b9 Mon Sep 17 00:00:00 2001
+From 0fa1553587c1cc86739c67763520c1d472509d3e Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Tue, 9 Jul 2019 02:18:54 -0700
 Subject: [PATCH] Remove DataWatcher Locking
@@ -17,7 +17,7 @@ This patch also changes the entries map to be fastutil
 int2objectopenhashmap for performance.
 
 diff --git a/src/main/java/net/minecraft/network/syncher/DataWatcher.java b/src/main/java/net/minecraft/network/syncher/DataWatcher.java
-index a5bbed294..b9a5d7301 100644
+index b7e7fd98a..879300777 100644
 --- a/src/main/java/net/minecraft/network/syncher/DataWatcher.java
 +++ b/src/main/java/net/minecraft/network/syncher/DataWatcher.java
 @@ -32,7 +32,7 @@ public class DataWatcher {
@@ -140,10 +140,10 @@ index a5bbed294..b9a5d7301 100644
  
      public static class Item<T> {
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 3b88929fe..8b1eadb9b 100644
+index d05e439b6..a05b4c937 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -352,6 +352,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -356,6 +356,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
          this.entityData.define(Entity.DATA_POSE, EntityPose.STANDING);
          this.entityData.define(Entity.DATA_TICKS_FROZEN, 0);
          this.defineSynchedData();

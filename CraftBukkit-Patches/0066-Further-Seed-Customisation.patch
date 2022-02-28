@@ -1,15 +1,27 @@
-From 0cabf20f09e35db8e49192890bec79392882bd62 Mon Sep 17 00:00:00 2001
+From 54ec0486f0f9b9bbad2c76d68e3482fe400bf01a Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
 
 Allow server admins that really want to to customise the seeds used in world generation even further.
 
+diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
+index d63911c30..c96abb6c4 100644
+--- a/src/main/java/net/minecraft/server/level/WorldServer.java
++++ b/src/main/java/net/minecraft/server/level/WorldServer.java
+@@ -245,6 +245,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+         if (gen != null) {
+             chunkgenerator = new org.bukkit.craftbukkit.generator.CustomChunkGenerator(this, chunkgenerator, gen);
+         }
++        chunkgenerator.conf = spigotConfig; // Spigot
+         // CraftBukkit end
+         chunkgenerator.ensureStructuresGenerated();
+         boolean flag2 = minecraftserver.forceSynchronousWrites();
 diff --git a/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java b/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
-index cf5d0f605..30b07ca72 100644
+index 8f6baef3c..0b8b10f88 100644
 --- a/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
 +++ b/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
-@@ -324,7 +324,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
+@@ -322,7 +322,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
              }
  
              ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(blockposition);
@@ -18,143 +30,83 @@ index cf5d0f605..30b07ca72 100644
  
              if (random.nextInt(10) == 0 && flag && blockposition.getY() < 40) {
                  return checkMobSpawnRules(entitytypes, generatoraccess, enummobspawn, blockposition, random);
-diff --git a/src/main/java/net/minecraft/world/level/StructureManager.java b/src/main/java/net/minecraft/world/level/StructureManager.java
-index 06a92066e..c2639decf 100644
---- a/src/main/java/net/minecraft/world/level/StructureManager.java
-+++ b/src/main/java/net/minecraft/world/level/StructureManager.java
-@@ -127,4 +127,10 @@ public class StructureManager {
-         structurestart.addReference();
-         this.structureCheck.incrementReference(structurestart.getChunkPos(), structurestart.getFeature());
-     }
-+
-+    // Spigot start
-+    public World getWorld() {
-+        return this.level.getMinecraftWorld();
-+    }
-+    // Spigot end
- }
 diff --git a/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java b/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
-index e9b4c0460..efbc51137 100644
+index 4613925b6..13059fa95 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
-@@ -207,6 +207,7 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
+@@ -101,6 +101,7 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
+     /** @deprecated */
+     @Deprecated
+     public final long ringPlacementSeed;
++    public org.spigotmc.SpigotWorldConfig conf; // Spigot
  
-             return blockposition1;
-         } else {
-+            updateStructureSettings(worldserver, settings); // Spigot
-             StructureSettingsFeature structuresettingsfeature = this.settings.getConfig(structuregenerator);
-             ImmutableMultimap<StructureFeature<?, ?>, ResourceKey<BiomeBase>> immutablemultimap = this.settings.structures(structuregenerator);
+     protected static final <T extends ChunkGenerator> P1<Mu<T>, IRegistry<StructureSet>> commonCodec(Instance<T> instance) {
+         return instance.group(RegistryOps.retrieveRegistry(IRegistry.STRUCTURE_SET_REGISTRY).forGetter((chunkgenerator) -> {
+@@ -131,6 +132,59 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
  
-@@ -426,6 +427,7 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
-     public void createStructures(IRegistryCustom iregistrycustom, StructureManager structuremanager, IChunkAccess ichunkaccess, DefinedStructureManager definedstructuremanager, long i) {
-         ChunkCoordIntPair chunkcoordintpair = ichunkaccess.getPos();
-         SectionPosition sectionposition = SectionPosition.bottomOf(ichunkaccess);
-+        updateStructureSettings(structuremanager.getWorld(), settings); // Spigot
-         StructureSettingsFeature structuresettingsfeature = this.settings.getConfig(StructureGenerator.STRONGHOLD);
- 
-         if (structuresettingsfeature != null) {
-@@ -491,6 +493,83 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
-         return iregistry.getResourceKey(biomebase).filter(predicate).isPresent();
-     }
- 
-+    // Spigot start
-+    private volatile boolean injected;
-+    private void updateStructureSettings(net.minecraft.world.level.World world, StructureSettings settings) {
-+        if (injected) {
-+            return;
-+        }
-+        synchronized (settings) {
-+            if (injected) {
-+                return;
-+            }
-+            java.util.Map<StructureGenerator<?>, StructureSettingsFeature> original = settings.structureConfig();
-+            java.util.Map<StructureGenerator<?>, StructureSettingsFeature> updated = new java.util.HashMap<>();
-+            org.spigotmc.SpigotWorldConfig conf = world.spigotConfig;
-+
-+            for (java.util.Map.Entry<StructureGenerator<?>, StructureSettingsFeature> entry : original.entrySet()) {
-+                String name = IRegistry.STRUCTURE_FEATURE.getKey(entry.getKey()).getPath();
-+                StructureSettingsFeature feature = entry.getValue();
-+                int seed = feature.salt();
+         this.possibleStructureSets().forEach((holder) -> {
+             StructureSet structureset = (StructureSet) holder.value();
++            // Spigot start
++            if (structureset.placement() instanceof RandomSpreadStructurePlacement randomConfig) {
++                String name = structureSets.getKey(structureset).getPath();
++                int seed = randomConfig.salt();
 +
 +                switch (name) {
-+                    case "bastion_remnant":
-+                        seed = conf.bastionSeed;
-+                        break;
-+                    case "desert_pyramid":
++                    case "desert_pyramids":
 +                        seed = conf.desertSeed;
 +                        break;
-+                    case "endcity":
++                    case "end_cities":
 +                        seed = conf.endCitySeed;
 +                        break;
-+                    case "fortress":
-+                        seed = conf.fortressSeed;
++                    case "nether_complexes":
++                        seed = conf.netherSeed;
 +                        break;
-+                    case "igloo":
++                    case "igloos":
 +                        seed = conf.iglooSeed;
 +                        break;
-+                    case "jungle_pyramid":
++                    case "jungle_temples":
 +                        seed = conf.jungleSeed;
 +                        break;
-+                    case "mansion":
++                    case "woodland_mansions":
 +                        seed = conf.mansionSeed;
 +                        break;
-+                    case "monument":
++                    case "ocean_monuments":
 +                        seed = conf.monumentSeed;
 +                        break;
-+                    case "nether_fossil":
++                    case "nether_fossils":
 +                        seed = conf.fossilSeed;
 +                        break;
-+                    case "ocean_ruin":
++                    case "ocean_ruins":
 +                        seed = conf.oceanSeed;
 +                        break;
-+                    case "pillager_outpost":
++                    case "pillager_outposts":
 +                        seed = conf.outpostSeed;
 +                        break;
-+                    case "ruined_portal":
++                    case "ruined_portals":
 +                        seed = conf.portalSeed;
 +                        break;
-+                    case "shipwreck":
++                    case "shipwrecks":
 +                        seed = conf.shipwreckSeed;
 +                        break;
-+                    case "swamp_hut":
++                    case "swamp_huts":
 +                        seed = conf.swampSeed;
 +                        break;
-+                    case "village":
++                    case "villages":
 +                        seed = conf.villageSeed;
 +                        break;
 +                }
 +
-+                updated.put(entry.getKey(), new StructureSettingsFeature(feature.spacing(), feature.separation(), seed));
++                structureset = new StructureSet(structureset.structures(), new RandomSpreadStructurePlacement(randomConfig.spacing(), randomConfig.separation(), randomConfig.spreadType(), seed, randomConfig.locateOffset()));
 +            }
-+
-+            original.clear();
-+            original.putAll(updated);
-+            injected = true;
-+        }
-+    }
-+    // Spigot end
-+
-     public void createReferences(GeneratorAccessSeed generatoraccessseed, StructureManager structuremanager, IChunkAccess ichunkaccess) {
-         boolean flag = true;
-         ChunkCoordIntPair chunkcoordintpair = ichunkaccess.getPos();
-diff --git a/src/main/java/net/minecraft/world/level/levelgen/StructureSettings.java b/src/main/java/net/minecraft/world/level/levelgen/StructureSettings.java
-index 5d2cf2476..8c1b841a2 100644
---- a/src/main/java/net/minecraft/world/level/levelgen/StructureSettings.java
-+++ b/src/main/java/net/minecraft/world/level/levelgen/StructureSettings.java
-@@ -42,7 +42,7 @@ public class StructureSettings {
++            // Spigot end
+             Iterator iterator = structureset.structures().iterator();
  
-     private StructureSettings(Map<StructureGenerator<?>, StructureSettingsFeature> map, @Nullable StructureSettingsStronghold structuresettingsstronghold) {
-         this.stronghold = structuresettingsstronghold;
--        this.structureConfig = map;
-+        this.structureConfig = Maps.newHashMap(map); // Spigot
-         HashMap<StructureGenerator<?>, Builder<StructureFeature<?, ?>, ResourceKey<BiomeBase>>> hashmap = new HashMap();
- 
-         StructureFeatures.registerStructures((structurefeature, resourcekey) -> {
+             while (iterator.hasNext()) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
-index 1008a62e4..41899df00 100644
+index 0fc38f7f1..8d68f0567 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
-@@ -219,7 +219,7 @@ public class CraftChunk implements Chunk {
+@@ -220,7 +220,7 @@ public class CraftChunk implements Chunk {
      @Override
      public boolean isSlimeChunk() {
          // 987234911L is deterimined in EntitySlime when seeing if a slime can spawn in a chunk
@@ -164,10 +116,10 @@ index 1008a62e4..41899df00 100644
  
      @Override
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 0b76be971..4a03e5b25 100644
+index 0b76be971..012a1e187 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -284,4 +284,42 @@ public class SpigotWorldConfig
+@@ -284,4 +284,40 @@ public class SpigotWorldConfig
      {
          endPortalSoundRadius = getInt( "end-portal-sound-radius", 0 );
      }
@@ -183,8 +135,7 @@ index 0b76be971..4a03e5b25 100644
 +    public int shipwreckSeed;
 +    public int slimeSeed;
 +    public int endCitySeed;
-+    public int bastionSeed;
-+    public int fortressSeed;
++    public int netherSeed;
 +    public int mansionSeed;
 +    public int fossilSeed;
 +    public int portalSeed;
@@ -201,13 +152,12 @@ index 0b76be971..4a03e5b25 100644
 +        outpostSeed = getInt( "seed-outpost", 165745296 );
 +        endCitySeed = getInt( "seed-endcity", 10387313 );
 +        slimeSeed = getInt( "seed-slime", 987234911 );
-+        bastionSeed = getInt( "seed-bastion", 30084232 );
-+        fortressSeed = getInt( "seed-fortress", 30084232 );
++        netherSeed = getInt( "seed-nether", 30084232 );
 +        mansionSeed = getInt( "seed-mansion", 10387319 );
 +        fossilSeed = getInt( "seed-fossil", 14357921 );
 +        portalSeed = getInt( "seed-portal", 34222645 );
 +        log( "Custom Map Seeds:  Village: " + villageSeed + " Desert: " + desertSeed + " Igloo: " + iglooSeed + " Jungle: " + jungleSeed + " Swamp: " + swampSeed + " Monument: " + monumentSeed
-+                + " Ocean: " + oceanSeed + " Shipwreck: " + shipwreckSeed + " End City: " + endCitySeed + " Slime: " + slimeSeed + " Bastion: " + bastionSeed + " Fortress: " + fortressSeed + " Mansion: " + mansionSeed + " Fossil: " + fossilSeed + " Portal: " + portalSeed );
++                + " Ocean: " + oceanSeed + " Shipwreck: " + shipwreckSeed + " End City: " + endCitySeed + " Slime: " + slimeSeed + " Nether: " + netherSeed + " Mansion: " + mansionSeed + " Fossil: " + fossilSeed + " Portal: " + portalSeed );
 +    }
  }
 -- 

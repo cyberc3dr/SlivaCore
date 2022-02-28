@@ -1,4 +1,4 @@
-From 0a70e2e7dd2d6921b600a120eb93676bc10aed06 Mon Sep 17 00:00:00 2001
+From 928bae0e5ebcf23397a8696095c5a52387d44a06 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 28 Jul 2014 16:55:51 +1000
 Subject: [PATCH] Allow Attribute Capping.
@@ -39,7 +39,7 @@ index 0d1c6e497..18bb28ad1 100644
      public static final AttributeBase ATTACK_SPEED = register("generic.attack_speed", (new AttributeRanged("attribute.name.generic.attack_speed", 4.0D, 0.0D, 1024.0D)).setSyncable(true));
      public static final AttributeBase ARMOR = register("generic.armor", (new AttributeRanged("attribute.name.generic.armor", 0.0D, 0.0D, 30.0D)).setSyncable(true));
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 1c156ab24..cdc8f0242 100644
+index 50cab0a48..8263dad22 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -16,6 +16,8 @@ import java.util.logging.Level;

@@ -1,29 +1,29 @@
-From e4fa342fb26877b3ea4162be9717c72329cfb4aa Mon Sep 17 00:00:00 2001
+From eaeb8fd2e36dd013f676ccd66245f4c530b627b4 Mon Sep 17 00:00:00 2001
 From: Jonas Konrad <me@yawk.at>
 Date: Fri, 4 Jul 2014 23:03:13 +0200
 Subject: [PATCH] Make "moved wrongly" limit configurable
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 377626f45..f6392eaea 100644
+index 361d5d98f..87cdc4919 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -543,7 +543,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -550,7 +550,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
                  d10 = d6 * d6 + d7 * d7 + d8 * d8;
-                 boolean flag1 = false;
+                 boolean flag2 = false;
  
 -                if (d10 > 0.0625D) {
 +                if (d10 > org.spigotmc.SpigotConfig.movedWronglyThreshold) { // Spigot
-                     flag1 = true;
-                     PlayerConnection.LOGGER.warn("{} (vehicle of {}) moved wrongly! {}", entity.getName().getString(), this.player.getName().getString(), Math.sqrt(d10));
+                     flag2 = true;
+                     PlayerConnection.LOGGER.warn("{} (vehicle of {}) moved wrongly! {}", new Object[]{entity.getName().getString(), this.player.getName().getString(), Math.sqrt(d10)});
                  }
-@@ -1195,7 +1195,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -1204,7 +1204,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
                              d11 = d7 * d7 + d8 * d8 + d9 * d9;
-                             boolean flag1 = false;
+                             boolean flag2 = false;
  
 -                            if (!this.player.isChangingDimension() && d11 > 0.0625D && !this.player.isSleeping() && !this.player.gameMode.isCreative() && this.player.gameMode.getGameModeForPlayer() != EnumGamemode.SPECTATOR) {
 +                            if (!this.player.isChangingDimension() && d11 > org.spigotmc.SpigotConfig.movedWronglyThreshold && !this.player.isSleeping() && !this.player.gameMode.isCreative() && this.player.gameMode.getGameModeForPlayer() != EnumGamemode.SPECTATOR) { // Spigot
-                                 flag1 = true;
+                                 flag2 = true;
                                  PlayerConnection.LOGGER.warn("{} moved wrongly!", this.player.getName().getString());
                              }
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java

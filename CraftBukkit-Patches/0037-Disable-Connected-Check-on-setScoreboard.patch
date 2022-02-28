@@ -1,4 +1,4 @@
-From b2f697e226018ee24c03e33071313ff63915349b Mon Sep 17 00:00:00 2001
+From 4ab2c1c60b00c48e30b944bdeb9c06f80f2bc020 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 23 Dec 2013 15:57:57 +1100
 Subject: [PATCH] Disable Connected Check on setScoreboard

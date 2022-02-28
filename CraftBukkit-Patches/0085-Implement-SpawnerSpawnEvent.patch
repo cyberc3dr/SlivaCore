@@ -1,11 +1,11 @@
-From ff22970527571504559808784f24b0b9f6dcc7a6 Mon Sep 17 00:00:00 2001
+From 35aee1f2211cf507e863b86fb46837d382a9eb7c Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 3 Mar 2016 19:45:46 +1100
 Subject: [PATCH] Implement SpawnerSpawnEvent.
 
 
 diff --git a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
-index e4e42ae6a..8398cf955 100644
+index 452de2c89..bd0a49124 100644
 --- a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
 +++ b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
 @@ -152,6 +152,18 @@ public abstract class MobSpawnerAbstract {

@@ -1,4 +1,4 @@
-From b746701adc2e47597cf955fa91ead214423dc00f Mon Sep 17 00:00:00 2001
+From 71127cb2a0ba8117f6d8146afe79ac5c77a073ad Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 26 Jan 2014 21:48:34 +1100
 Subject: [PATCH] Configurable Ping Sample Size
@@ -23,7 +23,7 @@ index d8cbae670..868237a37 100644
              }
  
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 2e80766f8..00f929700 100644
+index 123512de6..1569b0bdd 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -271,4 +271,11 @@ public class SpigotConfig

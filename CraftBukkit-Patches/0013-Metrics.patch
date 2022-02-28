@@ -1,4 +1,4 @@
-From ece311e2c352bd8e56495733bc54a8fd23945a58 Mon Sep 17 00:00:00 2001
+From da08e13f5cc6dfe878c6536518847242c1b3bd0b Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sat, 23 Feb 2013 08:58:35 +1100
 Subject: [PATCH] Metrics
@@ -652,7 +652,7 @@ index 000000000..c25cbfa7a
 +    }
 +}
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 7b14d3164..2a585d004 100644
+index 9ee0b4a1e..7f14cbc63 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -36,6 +36,7 @@ public class SpigotConfig

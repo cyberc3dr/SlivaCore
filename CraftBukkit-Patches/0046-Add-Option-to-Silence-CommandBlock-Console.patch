@@ -1,11 +1,11 @@
-From a1f5ef08398d13c6b80b415178711d544f080441 Mon Sep 17 00:00:00 2001
+From a9a6f0e8299fc61d884aa9f9ac5b2c72f377223b Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 9 Feb 2014 14:39:01 +1100
 Subject: [PATCH] Add Option to Silence CommandBlock Console
 
 
 diff --git a/src/main/java/net/minecraft/commands/CommandListenerWrapper.java b/src/main/java/net/minecraft/commands/CommandListenerWrapper.java
-index a2f8e37c8..10c23e857 100644
+index f3d0e0fdf..84c7500df 100644
 --- a/src/main/java/net/minecraft/commands/CommandListenerWrapper.java
 +++ b/src/main/java/net/minecraft/commands/CommandListenerWrapper.java
 @@ -242,7 +242,7 @@ public class CommandListenerWrapper implements ICompletionProvider {
@@ -18,7 +18,7 @@ index a2f8e37c8..10c23e857 100644
          }
  
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index e17e857e9..f18def5c2 100644
+index 5f0b27ad2..6ed26b5de 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -294,4 +294,10 @@ public class SpigotConfig

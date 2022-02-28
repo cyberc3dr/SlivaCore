@@ -1,4 +1,4 @@
-From b5de9fc4bed2da01c123544014eb6dbc5477cd81 Mon Sep 17 00:00:00 2001
+From b873f68d4e2123b49bf2a26140b39820b33fd355 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Thu, 5 Dec 2013 13:55:53 +1100
 Subject: [PATCH] Fix Broken Async Chat

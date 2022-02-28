@@ -1,4 +1,4 @@
-From 213d531aab1534d82454fb530dfb0119e884c560 Mon Sep 17 00:00:00 2001
+From ce2194b21c75e7120e406eae1f9c7a363c3c2cd7 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 19:21:58 +1000
 Subject: [PATCH] Configurable Messages
@@ -21,7 +21,7 @@ index f421d6902..ddbb24958 100644
  
                      this.connection.send(new PacketLoginOutDisconnect(chatmessage));
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index d5f7290ac..1d53d3077 100644
+index d477ae034..091ec3f14 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
 @@ -579,7 +579,7 @@ public abstract class PlayerList {
@@ -43,10 +43,10 @@ index d5f7290ac..1d53d3077 100644
          }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index a231c9a8e..66545ce1a 100644
+index 148421151..b22b2f2c5 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -810,11 +810,11 @@ public final class CraftServer implements Server {
+@@ -806,11 +806,11 @@ public final class CraftServer implements Server {
              return true;
          }
  

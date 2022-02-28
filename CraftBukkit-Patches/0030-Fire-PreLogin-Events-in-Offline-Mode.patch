@@ -1,11 +1,11 @@
-From bf8f553bb30e1d2b9154b3dbf3d9fe9f4d84b4ce Mon Sep 17 00:00:00 2001
+From 8d5eed428a6894b4ec1f4714f93fd9f2a0208df7 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Wed, 18 Dec 2013 13:32:10 +1100
 Subject: [PATCH] Fire PreLogin Events in Offline Mode
 
 
 diff --git a/src/main/java/net/minecraft/server/network/LoginListener.java b/src/main/java/net/minecraft/server/network/LoginListener.java
-index ab9bbdd0f..eb38aecee 100644
+index db5255bdc..73482f63c 100644
 --- a/src/main/java/net/minecraft/server/network/LoginListener.java
 +++ b/src/main/java/net/minecraft/server/network/LoginListener.java
 @@ -118,10 +118,23 @@ public class LoginListener implements PacketLoginInListener {
@@ -32,7 +32,7 @@ index ab9bbdd0f..eb38aecee 100644
  
          // CraftBukkit start - fire PlayerLoginEvent
          EntityPlayer s = this.server.getPlayerList().canPlayerLogin(this, this.gameProfile, hostname);
-@@ -181,7 +194,21 @@ public class LoginListener implements PacketLoginInListener {
+@@ -182,7 +195,21 @@ public class LoginListener implements PacketLoginInListener {
              this.state = LoginListener.EnumProtocolState.KEY;
              this.connection.send(new PacketLoginOutEncryptionBegin("", this.server.getKeyPair().getPublic().getEncoded(), this.nonce));
          } else {
@@ -55,7 +55,7 @@ index ab9bbdd0f..eb38aecee 100644
          }
  
      }
-@@ -221,40 +248,7 @@ public class LoginListener implements PacketLoginInListener {
+@@ -228,40 +255,7 @@ public class LoginListener implements PacketLoginInListener {
                              return;
                          }
  
@@ -97,7 +97,7 @@ index ab9bbdd0f..eb38aecee 100644
                      } else if (LoginListener.this.server.isSingleplayer()) {
                          LoginListener.LOGGER.warn("Failed to verify username but will let them in anyway!");
                          LoginListener.this.gameProfile = LoginListener.this.createFakeProfile(gameprofile);
-@@ -293,7 +287,48 @@ public class LoginListener implements PacketLoginInListener {
+@@ -300,7 +294,48 @@ public class LoginListener implements PacketLoginInListener {
          thread.start();
      }
  

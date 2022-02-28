@@ -1,14 +1,14 @@
-From 8b69973f80594ec7e89dcbd4f0b351431234ae5c Mon Sep 17 00:00:00 2001
+From df985da3fa396b58e507d45339586c386e6ebe08 Mon Sep 17 00:00:00 2001
 From: lazertester <austin.techhead@gmail.com>
 Date: Sun, 17 Aug 2014 19:56:17 +1000
 Subject: [PATCH] Add Hunger Config Values
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/player/EntityHuman.java b/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
-index dc9467620..066ac4fb4 100644
+index a270f0b49..b78e57141 100644
 --- a/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
 +++ b/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
-@@ -1329,7 +1329,7 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1342,7 +1342,7 @@ public abstract class EntityHuman extends EntityLiving {
                              }
                          }
  
@@ -17,7 +17,7 @@ index dc9467620..066ac4fb4 100644
                      } else {
                          this.level.playSound((EntityHuman) null, this.getX(), this.getY(), this.getZ(), SoundEffects.PLAYER_ATTACK_NODAMAGE, this.getSoundSource(), 1.0F, 1.0F);
                          if (flag4) {
-@@ -1502,9 +1502,9 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1515,9 +1515,9 @@ public abstract class EntityHuman extends EntityLiving {
          super.jumpFromGround();
          this.awardStat(StatisticList.JUMP);
          if (this.isSprinting()) {
@@ -29,7 +29,7 @@ index dc9467620..066ac4fb4 100644
          }
  
      }
-@@ -1577,19 +1577,19 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1590,19 +1590,19 @@ public abstract class EntityHuman extends EntityLiving {
                  i = Math.round((float) Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2) * 100.0F);
                  if (i > 0) {
                      this.awardStat(StatisticList.SWIM_ONE_CM, i);
@@ -52,7 +52,7 @@ index dc9467620..066ac4fb4 100644
                  }
              } else if (this.onClimbable()) {
                  if (d1 > 0.0D) {
-@@ -1600,13 +1600,13 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1613,13 +1613,13 @@ public abstract class EntityHuman extends EntityLiving {
                  if (i > 0) {
                      if (this.isSprinting()) {
                          this.awardStat(StatisticList.SPRINT_ONE_CM, i);
@@ -83,12 +83,12 @@ index 94531cafc..0dc5a9998 100644
              }
          } else if (this.foodLevel <= 0) {
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 4a03e5b25..984045831 100644
+index 012a1e187..b100c99bb 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -322,4 +322,30 @@ public class SpigotWorldConfig
+@@ -320,4 +320,30 @@ public class SpigotWorldConfig
          log( "Custom Map Seeds:  Village: " + villageSeed + " Desert: " + desertSeed + " Igloo: " + iglooSeed + " Jungle: " + jungleSeed + " Swamp: " + swampSeed + " Monument: " + monumentSeed
-                 + " Ocean: " + oceanSeed + " Shipwreck: " + shipwreckSeed + " End City: " + endCitySeed + " Slime: " + slimeSeed + " Bastion: " + bastionSeed + " Fortress: " + fortressSeed + " Mansion: " + mansionSeed + " Fossil: " + fossilSeed + " Portal: " + portalSeed );
+                 + " Ocean: " + oceanSeed + " Shipwreck: " + shipwreckSeed + " End City: " + endCitySeed + " Slime: " + slimeSeed + " Nether: " + netherSeed + " Mansion: " + mansionSeed + " Fossil: " + fossilSeed + " Portal: " + portalSeed );
      }
 +
 +    public float jumpWalkExhaustion;

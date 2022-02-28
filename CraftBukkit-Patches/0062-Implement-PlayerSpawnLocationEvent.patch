@@ -1,11 +1,11 @@
-From 97761b4ca76c0368d45a1518854af28e7fab5527 Mon Sep 17 00:00:00 2001
+From e466b9c559ab2d54820f6466fed54627dc386e46 Mon Sep 17 00:00:00 2001
 From: ninja <xninja@openmailbox.org>
 Date: Tue, 8 Apr 2014 14:05:19 +0200
 Subject: [PATCH] Implement PlayerSpawnLocationEvent.
 
 
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 3631f88c7..86033e34a 100644
+index d7685e96d..6ffd915f1 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
 @@ -212,6 +212,19 @@ public abstract class PlayerList {
@@ -26,7 +26,7 @@ index 3631f88c7..86033e34a 100644
 +        // Spigot end
 +
          // CraftBukkit - Moved message to after join
-         // PlayerList.LOGGER.info("{}[{}] logged in with entity id {} at ({}, {}, {})", entityplayer.getName().getString(), s1, entityplayer.getId(), entityplayer.getX(), entityplayer.getY(), entityplayer.getZ());
+         // PlayerList.LOGGER.info("{}[{}] logged in with entity id {} at ({}, {}, {})", new Object[]{entityplayer.getName().getString(), s1, entityplayer.getId(), entityplayer.getX(), entityplayer.getY(), entityplayer.getZ()});
          WorldData worlddata = worldserver1.getLevelData();
 -- 
 2.25.1
