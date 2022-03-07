@@ -1,4 +1,4 @@
-From 69735626a0805e98180d65c8d267491a198689b5 Mon Sep 17 00:00:00 2001
+From 4c0e043de00167e146dac01db6835e6e9d336758 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 03:06:05 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -32,7 +32,7 @@ index 484ab3140..5148f68a3 100644
          packetdataserializer.writeUUID(this.sender);
      }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 028e7d093..8ebd34f04 100644
+index d9b6ce6c1..030349b39 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -244,6 +244,8 @@ import org.yaml.snakeyaml.Yaml;

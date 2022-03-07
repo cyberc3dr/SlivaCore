@@ -1,4 +1,4 @@
-From 8c2d364873f09a658239dc712daa7bb8eefa7136 Mon Sep 17 00:00:00 2001
+From dd462f56d8bdcc4abb0f10d07bfe09af6429f257 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 20 Aug 2014 18:12:32 -0400
 Subject: [PATCH] Limit TNT Detonations per tick

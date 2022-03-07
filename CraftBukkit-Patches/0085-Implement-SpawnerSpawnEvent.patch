@@ -1,4 +1,4 @@
-From 35aee1f2211cf507e863b86fb46837d382a9eb7c Mon Sep 17 00:00:00 2001
+From 923d7afdea694d9c68f128b8f64d1a3969057626 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 3 Mar 2016 19:45:46 +1100
 Subject: [PATCH] Implement SpawnerSpawnEvent.

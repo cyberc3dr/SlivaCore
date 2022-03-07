@@ -1,4 +1,4 @@
-From e466b9c559ab2d54820f6466fed54627dc386e46 Mon Sep 17 00:00:00 2001
+From aad118b13837d2426841f23d5e19441144cbfe38 Mon Sep 17 00:00:00 2001
 From: ninja <xninja@openmailbox.org>
 Date: Tue, 8 Apr 2014 14:05:19 +0200
 Subject: [PATCH] Implement PlayerSpawnLocationEvent.

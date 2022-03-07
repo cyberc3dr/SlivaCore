@@ -1,4 +1,4 @@
-From ceb3c8c0258dd12f56738eadf080e667850f0100 Mon Sep 17 00:00:00 2001
+From 316e3315f971825e6b987c3d43beb3fe9ff5b446 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 2 Jun 2013 15:10:56 +1000
 Subject: [PATCH] Skeleton API Implementations
@@ -6,7 +6,7 @@ Subject: [PATCH] Skeleton API Implementations
 This contains the basic, empty implementations for some Spigot-API extensions. They are included early in the patching progress so that compilation will still succeed midway despite the APIs only being provided by subsequent patches.
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index f024eb239..dbf4a3726 100644
+index 7520b4615..29ce4cbc7 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -2237,4 +2237,16 @@ public final class CraftServer implements Server {

@@ -1,4 +1,4 @@
-From 63ea5286b78cef98670af364f1f4b19e0769d190 Mon Sep 17 00:00:00 2001
+From 9f75f761f84fd81ca78b469d69ee74d49fd5de16 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 13 Jul 2015 19:05:15 +1000
 Subject: [PATCH] Use Map for getPlayer(String) lookup.

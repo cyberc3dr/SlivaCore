@@ -1,4 +1,4 @@
-From 3d11029a9890aae11c5e0dbcb5e5241a3689282e Mon Sep 17 00:00:00 2001
+From b44c69f79f7b0ded43f5eb31339c8d7f5783cf96 Mon Sep 17 00:00:00 2001
 From: DerFrZocker <derrieple@gmail.com>
 Date: Sun, 28 Nov 2021 12:09:29 +1100
 Subject: [PATCH] Configurable Below Zero Generation

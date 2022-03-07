@@ -1,4 +1,4 @@
-From 52823cdaea842f23cc9d276ec5fa05db7517dadf Mon Sep 17 00:00:00 2001
+From 75686b58456bb2e4870026ded49dccf1a1293b5a Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Tue, 25 Mar 2014 16:10:01 +1100
 Subject: [PATCH] Async Operation Catching
@@ -122,7 +122,7 @@ index 44402dc13..7e1529ec9 100644
              world.removeBlockEntity(blockposition);
          }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 87d03fa02..afceb9667 100644
+index cec5e3771..56a80199e 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -800,6 +800,7 @@ public final class CraftServer implements Server {

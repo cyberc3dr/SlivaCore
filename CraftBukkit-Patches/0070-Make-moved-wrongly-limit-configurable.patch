@@ -1,4 +1,4 @@
-From eaeb8fd2e36dd013f676ccd66245f4c530b627b4 Mon Sep 17 00:00:00 2001
+From 381175b54427b918b5c3de29355c93186f6abf4b Mon Sep 17 00:00:00 2001
 From: Jonas Konrad <me@yawk.at>
 Date: Fri, 4 Jul 2014 23:03:13 +0200
 Subject: [PATCH] Make "moved wrongly" limit configurable
