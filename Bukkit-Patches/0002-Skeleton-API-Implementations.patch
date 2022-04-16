@@ -1,14 +1,14 @@
-From 9ac30e66684bbd0f2c3f95fefac17e98ae0f75cf Mon Sep 17 00:00:00 2001
+From 278a8e8369844bbfbdf62b5f96963f20b6d54047 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 15 May 2017 15:16:15 +1000
 Subject: [PATCH] Skeleton API Implementations
 
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 31576f9a..f8001caf 100644
+index e85204a4..353d5b41 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1869,4 +1869,9 @@ public final class Bukkit {
+@@ -1881,4 +1881,9 @@ public final class Bukkit {
      public static UnsafeValues getUnsafe() {
          return server.getUnsafe();
      }
@@ -19,10 +19,10 @@ index 31576f9a..f8001caf 100644
 +    }
  }
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 9e52461b..839a1833 100644
+index 324e47f3..7015d5ef 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1584,4 +1584,13 @@ public interface Server extends PluginMessageRecipient {
+@@ -1597,4 +1597,13 @@ public interface Server extends PluginMessageRecipient {
      @Deprecated
      @NotNull
      UnsafeValues getUnsafe();
@@ -120,10 +120,10 @@ index 76aad05f..4d308c5a 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index c5d88d5c..d6bd9a3c 100644
+index 4a6b8dae..6fd32aef 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1539,4 +1539,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1563,4 +1563,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       * @return whether the player allows server listings
       */
      public boolean isAllowingServerListings();

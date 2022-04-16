@@ -1,4 +1,4 @@
-From 67b5c1d162d437defb6cd777169afc5b0ebfbf87 Mon Sep 17 00:00:00 2001
+From 1c7467398637f847981988533bd3b5b922fa0a90 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 02:59:14 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -293,10 +293,10 @@ index 427368a7..44d597d7 100644
       * Gets the char value associated with this color
       *
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 65064d90..130f9d15 100644
+index eb53789a..53cae9d7 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1592,6 +1592,24 @@ public interface Server extends PluginMessageRecipient {
+@@ -1605,6 +1605,24 @@ public interface Server extends PluginMessageRecipient {
          public org.bukkit.configuration.file.YamlConfiguration getConfig() {
              throw new UnsupportedOperationException("Not supported yet.");
          }
@@ -370,7 +370,7 @@ index 4b6b9540..284be63a 100644
  
      @NotNull
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 06cdd25f..5015386d 100644
+index 0a5d8e51..e0f9ba3d 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
 @@ -1,6 +1,7 @@
@@ -381,7 +381,7 @@ index 06cdd25f..5015386d 100644
  import org.bukkit.DyeColor;
  import org.bukkit.Effect;
  import org.bukkit.GameMode;
-@@ -1591,6 +1592,58 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1615,6 +1616,58 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          public java.util.Set<Player> getHiddenPlayers() {
              throw new UnsupportedOperationException("Not supported yet.");
          }

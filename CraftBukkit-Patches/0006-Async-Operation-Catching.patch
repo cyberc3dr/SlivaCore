@@ -1,4 +1,4 @@
-From 75686b58456bb2e4870026ded49dccf1a1293b5a Mon Sep 17 00:00:00 2001
+From 2cd493c507d0b7277a917c2adc7bb838b4ec9983 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Tue, 25 Mar 2014 16:10:01 +1100
 Subject: [PATCH] Async Operation Catching
@@ -42,10 +42,10 @@ index a1f7dd777..1681b9771 100644
                  Vec3D vec3d = entityplayer.position().subtract(this.entity.position()); // MC-155077, SPIGOT-5113
                  double d0 = (double) Math.min(this.getEffectiveRange(), (PlayerChunkMap.this.viewDistance - 1) * 16);
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 2742ac401..d54ee1848 100644
+index f300ea003..ff29a6961 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -968,6 +968,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -971,6 +971,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
      // CraftBukkit start
      private boolean addEntity(Entity entity, CreatureSpawnEvent.SpawnReason spawnReason) {
@@ -53,7 +53,7 @@ index 2742ac401..d54ee1848 100644
          if (entity.isRemoved()) {
              // WorldServer.LOGGER.warn("Tried to add entity {} but it was marked as removed already", EntityTypes.getKey(entity.getType())); // CraftBukkit
              return false;
-@@ -1779,6 +1780,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1783,6 +1784,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
      @Override
      public LevelEntityGetter<Entity> getEntities() {
@@ -61,7 +61,7 @@ index 2742ac401..d54ee1848 100644
          return this.entityManager.getEntityGetter();
      }
  
-@@ -1852,6 +1854,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1856,6 +1858,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
          }
  
          public void onTrackingStart(Entity entity) {
@@ -69,7 +69,7 @@ index 2742ac401..d54ee1848 100644
              WorldServer.this.getChunkSource().addEntity(entity);
              if (entity instanceof EntityPlayer) {
                  EntityPlayer entityplayer = (EntityPlayer) entity;
-@@ -1888,6 +1891,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1892,6 +1895,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
          }
  
          public void onTrackingEnd(Entity entity) {
@@ -122,10 +122,10 @@ index 44402dc13..7e1529ec9 100644
              world.removeBlockEntity(blockposition);
          }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index cec5e3771..56a80199e 100644
+index 0b7519852..00cd8f712 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -800,6 +800,7 @@ public final class CraftServer implements Server {
+@@ -801,6 +801,7 @@ public final class CraftServer implements Server {
      public boolean dispatchCommand(CommandSender sender, String commandLine) {
          Validate.notNull(sender, "Sender cannot be null");
          Validate.notNull(commandLine, "CommandLine cannot be null");
@@ -134,7 +134,7 @@ index cec5e3771..56a80199e 100644
          if (commandMap.dispatch(sender, commandLine)) {
              return true;
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 5baa2234e..7c19dcebf 100644
+index 469213782..7809b3a42 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 @@ -256,6 +256,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
@@ -198,10 +198,10 @@ index 04c85cf43..b679deee7 100644
          List<Entity> notchEntityList = entity.level.getEntities(entity, entity.getBoundingBox().inflate(x, y, z), Predicates.alwaysTrue());
          List<org.bukkit.entity.Entity> bukkitEntityList = new java.util.ArrayList<org.bukkit.entity.Entity>(notchEntityList.size());
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 5e6ba6f3f..9d467bd5d 100644
+index 4a2bcdf60..00028074c 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -351,6 +351,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -361,6 +361,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
  
      @Override
      public void kickPlayer(String message) {

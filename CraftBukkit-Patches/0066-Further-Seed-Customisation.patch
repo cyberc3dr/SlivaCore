@@ -1,4 +1,4 @@
-From e8976f6ad50b4a8ead945a8c971d3c4109ab719f Mon Sep 17 00:00:00 2001
+From 1ad219cb5c9fadac272c01fdefa6b176425571ed Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
@@ -6,7 +6,7 @@ Subject: [PATCH] Further Seed Customisation
 Allow server admins that really want to to customise the seeds used in world generation even further.
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index d63911c30..c96abb6c4 100644
+index 262de8928..9baab0e79 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
 @@ -245,6 +245,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
@@ -31,7 +31,7 @@ index 8f6baef3c..0b8b10f88 100644
              if (random.nextInt(10) == 0 && flag && blockposition.getY() < 40) {
                  return checkMobSpawnRules(entitytypes, generatoraccess, enummobspawn, blockposition, random);
 diff --git a/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java b/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
-index 4613925b6..13059fa95 100644
+index 4613925b6..dcb1fa378 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
 @@ -101,6 +101,7 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
@@ -42,11 +42,13 @@ index 4613925b6..13059fa95 100644
  
      protected static final <T extends ChunkGenerator> P1<Mu<T>, IRegistry<StructureSet>> commonCodec(Instance<T> instance) {
          return instance.group(RegistryOps.retrieveRegistry(IRegistry.STRUCTURE_SET_REGISTRY).forGetter((chunkgenerator) -> {
-@@ -131,6 +132,59 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
+@@ -126,11 +127,72 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
+         return this.structureOverrides.isPresent() ? ((HolderSet) this.structureOverrides.get()).stream() : this.structureSets.holders().map(Holder::hackyErase);
+     }
  
-         this.possibleStructureSets().forEach((holder) -> {
-             StructureSet structureset = (StructureSet) holder.value();
-+            // Spigot start
++    // Spigot start
++    private Stream<StructureSet> possibleStructureSetsSpigot() {
++        return possibleStructureSets().map(Holder::value).map((structureset) -> {
 +            if (structureset.placement() instanceof RandomSpreadStructurePlacement randomConfig) {
 +                String name = structureSets.getKey(structureset).getPath();
 +                int seed = randomConfig.salt();
@@ -98,8 +100,50 @@ index 4613925b6..13059fa95 100644
 +
 +                structureset = new StructureSet(structureset.structures(), new RandomSpreadStructurePlacement(randomConfig.spacing(), randomConfig.separation(), randomConfig.spreadType(), seed, randomConfig.locateOffset()));
 +            }
++            return structureset;
++        });
++    }
++    // Spigot end
++
+     private void generatePositions() {
+         Set<Holder<BiomeBase>> set = this.runtimeBiomeSource.possibleBiomes();
+ 
+-        this.possibleStructureSets().forEach((holder) -> {
+-            StructureSet structureset = (StructureSet) holder.value();
++        // Spigot start
++        this.possibleStructureSetsSpigot().forEach((holder) -> {
++            StructureSet structureset = (StructureSet) holder;
 +            // Spigot end
              Iterator iterator = structureset.structures().iterator();
+ 
+             while (iterator.hasNext()) {
+@@ -157,11 +219,11 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
+         });
+     }
+ 
+-    private CompletableFuture<List<ChunkCoordIntPair>> generateRingPositions(Holder<StructureSet> holder, ConcentricRingsStructurePlacement concentricringsstructureplacement) {
++    private CompletableFuture<List<ChunkCoordIntPair>> generateRingPositions(StructureSet holder, ConcentricRingsStructurePlacement concentricringsstructureplacement) { // Spigot
+         return concentricringsstructureplacement.count() == 0 ? CompletableFuture.completedFuture(List.of()) : CompletableFuture.supplyAsync(SystemUtils.wrapThreadWithTaskName("placement calculation", () -> {
+             Stopwatch stopwatch = Stopwatch.createStarted(SystemUtils.TICKER);
+             List<ChunkCoordIntPair> list = new ArrayList();
+-            Set<Holder<BiomeBase>> set = (Set) ((StructureSet) holder.value()).structures().stream().flatMap((structureset_a) -> {
++            Set<Holder<BiomeBase>> set = (Set) ((StructureSet) holder).structures().stream().flatMap((structureset_a) -> { // Spigot
+                 return ((StructureFeature) structureset_a.structure().value()).biomes().stream();
+             }).collect(Collectors.toSet());
+             int i = concentricringsstructureplacement.distance();
+@@ -666,9 +728,11 @@ public abstract class ChunkGenerator implements BiomeManager.Provider {
+         ChunkCoordIntPair chunkcoordintpair = ichunkaccess.getPos();
+         SectionPosition sectionposition = SectionPosition.bottomOf(ichunkaccess);
+ 
+-        this.possibleStructureSets().forEach((holder) -> {
+-            StructurePlacement structureplacement = ((StructureSet) holder.value()).placement();
+-            List<StructureSet.a> list = ((StructureSet) holder.value()).structures();
++        // Spigot start
++        this.possibleStructureSetsSpigot().forEach((holder) -> {
++            StructurePlacement structureplacement = ((StructureSet) holder).placement();
++            List<StructureSet.a> list = ((StructureSet) holder).structures();
++            // Spigot end
+             Iterator iterator = list.iterator();
  
              while (iterator.hasNext()) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java

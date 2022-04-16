@@ -1,4 +1,4 @@
-From 9926dd8ccc2f05499403638f5b2aaec2f55dae33 Mon Sep 17 00:00:00 2001
+From 3ecf22f56da05675a432e3d4655ffa2fa17e941e Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sat, 23 Mar 2013 09:52:41 +1100
 Subject: [PATCH] View Distance
@@ -6,7 +6,7 @@ Subject: [PATCH] View Distance
 This commit allows the user to select per world view distances.
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index d54ee1848..c5a03a6a6 100644
+index ff29a6961..aafc24c4e 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
 @@ -252,8 +252,8 @@ public class WorldServer extends World implements GeneratorAccessSeed {
@@ -21,10 +21,10 @@ index d54ee1848..c5a03a6a6 100644
  
          Objects.requireNonNull(this.entityManager);
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 94433e475..a54bac86f 100644
+index b4dfc295d..780a7f2ed 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -1496,7 +1496,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -1497,7 +1497,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
          BlockPosition blockposition = movingobjectpositionblock.getBlockPos();
          Vec3D vec3d1 = vec3d.subtract(Vec3D.atCenterOf(blockposition));
  
@@ -34,7 +34,7 @@ index 94433e475..a54bac86f 100644
  
              if (Math.abs(vec3d1.x()) < 1.0000001D && Math.abs(vec3d1.y()) < 1.0000001D && Math.abs(vec3d1.z()) < 1.0000001D) {
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 265d6a9e9..d477ae034 100644
+index 1088fa0ed..b5dc8181b 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
 @@ -222,7 +222,8 @@ public abstract class PlayerList {
@@ -57,7 +57,7 @@ index 265d6a9e9..d477ae034 100644
          entityplayer1.unsetRemoved();
          entityplayer1.connection.teleport(new Location(worldserver1.getWorld(), entityplayer1.getX(), entityplayer1.getY(), entityplayer1.getZ(), entityplayer1.getYRot(), entityplayer1.getXRot()));
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 7c19dcebf..0bb954f45 100644
+index 7809b3a42..02bbaab43 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 @@ -1825,6 +1825,18 @@ public class CraftWorld extends CraftRegionAccessor implements World {

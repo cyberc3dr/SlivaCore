@@ -1,4 +1,4 @@
-From 4c0e043de00167e146dac01db6835e6e9d336758 Mon Sep 17 00:00:00 2001
+From fcaa2b347e66a09393c4ec1b4a45f4a822995e75 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 03:06:05 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -32,10 +32,10 @@ index 484ab3140..5148f68a3 100644
          packetdataserializer.writeUUID(this.sender);
      }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index d9b6ce6c1..030349b39 100644
+index 6ea0d7404..159a184ae 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -244,6 +244,8 @@ import org.yaml.snakeyaml.Yaml;
+@@ -245,6 +245,8 @@ import org.yaml.snakeyaml.Yaml;
  import org.yaml.snakeyaml.constructor.SafeConstructor;
  import org.yaml.snakeyaml.error.MarkedYAMLException;
  
@@ -44,7 +44,7 @@ index d9b6ce6c1..030349b39 100644
  public final class CraftServer implements Server {
      private final String serverName = "CraftBukkit";
      private final String serverVersion;
-@@ -2287,6 +2289,20 @@ public final class CraftServer implements Server {
+@@ -2310,6 +2312,20 @@ public final class CraftServer implements Server {
          public void restart() {
              org.spigotmc.RestartCommand.restart();
          }
@@ -139,10 +139,10 @@ index b679deee7..12683cc96 100644
  
      public org.bukkit.entity.Entity.Spigot spigot()
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 7c9233c33..8a8cfaf63 100644
+index 83f8a08f2..206b68039 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -143,6 +143,8 @@ import org.bukkit.plugin.messaging.StandardMessenger;
+@@ -151,6 +151,8 @@ import org.bukkit.plugin.messaging.StandardMessenger;
  import org.bukkit.profile.PlayerProfile;
  import org.bukkit.scoreboard.Scoreboard;
  
@@ -151,7 +151,7 @@ index 7c9233c33..8a8cfaf63 100644
  @DelegateDeserialization(CraftOfflinePlayer.class)
  public class CraftPlayer extends CraftHumanEntity implements Player {
      private long firstPlayed = 0;
-@@ -1865,6 +1867,58 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1951,6 +1953,58 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
  
              return java.util.Collections.unmodifiableSet( ret );
          }

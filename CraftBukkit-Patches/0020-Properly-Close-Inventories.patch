@@ -1,4 +1,4 @@
-From 1f2c655ad77e3f06d0d4cb4f64d4f07b00e09f2a Mon Sep 17 00:00:00 2001
+From a71b7f614cafe6ad7f5e0f373ad9e3164d7295b2 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Thu, 27 Jun 2013 17:26:09 +1000
 Subject: [PATCH] Properly Close Inventories
@@ -6,10 +6,10 @@ Subject: [PATCH] Properly Close Inventories
 Properly close inventories when unloading and switching worlds.
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index e135ba1f4..d63911c30 100644
+index 700a8f29b..262de8928 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -1021,6 +1021,15 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1025,6 +1025,15 @@ public class WorldServer extends World implements GeneratorAccessSeed {
      }
  
      public void unload(Chunk chunk) {
@@ -25,7 +25,7 @@ index e135ba1f4..d63911c30 100644
          chunk.clearAllBlockEntities();
          chunk.unregisterTickContainerFromLevel(this);
      }
-@@ -1911,6 +1920,13 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1915,6 +1924,13 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
          public void onTrackingEnd(Entity entity) {
              org.spigotmc.AsyncCatcher.catchOp("entity unregister"); // Spigot
