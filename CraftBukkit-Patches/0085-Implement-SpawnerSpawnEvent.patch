@@ -1,4 +1,4 @@
-From 923d7afdea694d9c68f128b8f64d1a3969057626 Mon Sep 17 00:00:00 2001
+From 1bb5785f5ae79376421052c9bd83f8706528fe23 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 3 Mar 2016 19:45:46 +1100
 Subject: [PATCH] Implement SpawnerSpawnEvent.
@@ -28,7 +28,7 @@ index 452de2c89..bd0a49124 100644
                          if (!worldserver.tryAddFreshEntityWithPassengers(entity, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.SPAWNER)) { // CraftBukkit
                              this.delay(worldserver, blockposition);
 diff --git a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
-index 6ff3a2440..69bc85f88 100644
+index c19316b58..1406b7b6d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 +++ b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 @@ -231,6 +231,8 @@ import org.bukkit.inventory.InventoryView;
@@ -40,7 +40,7 @@ index 6ff3a2440..69bc85f88 100644
  public class CraftEventFactory {
      public static final DamageSource MELTING = CraftDamageSource.copyOf(DamageSource.ON_FIRE);
      public static final DamageSource POISON = CraftDamageSource.copyOf(DamageSource.MAGIC);
-@@ -1491,6 +1493,21 @@ public class CraftEventFactory {
+@@ -1489,6 +1491,21 @@ public class CraftEventFactory {
          return event;
      }
  

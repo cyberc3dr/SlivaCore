@@ -1,4 +1,4 @@
-From a61a7c9558449d255b1e61501835c921392fffa2 Mon Sep 17 00:00:00 2001
+From d9680678aa101bb2855fa18ff313e93aa8dca6dd Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 10 Jan 2013 00:18:11 -0500
 Subject: [PATCH] Spigot Timings
@@ -323,7 +323,7 @@ index 780a7f2ed..d6538cafc 100644
          // this.server.getCommands().performCommand(this.player.createCommandSourceStack(), s);
          // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index dcdc50764..2f6e147ae 100644
+index 48f8c466b..a85efeb3d 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -130,6 +130,7 @@ import org.bukkit.craftbukkit.event.CraftPortalEvent;
@@ -434,10 +434,10 @@ index f656694af..a37a2255c 100644
          if (!this.level.isClientSide && this.isSensitiveToWater() && this.isInWaterRainOrBubble()) {
              this.hurt(DamageSource.DROWN, 1.0F);
 diff --git a/src/main/java/net/minecraft/world/level/SpawnerCreature.java b/src/main/java/net/minecraft/world/level/SpawnerCreature.java
-index 9223d4d2e..1fe3aa467 100644
+index 2b68b2faf..3ad9bb877 100644
 --- a/src/main/java/net/minecraft/world/level/SpawnerCreature.java
 +++ b/src/main/java/net/minecraft/world/level/SpawnerCreature.java
-@@ -116,6 +116,7 @@ public final class SpawnerCreature {
+@@ -115,6 +115,7 @@ public final class SpawnerCreature {
  
      public static void spawnForChunk(WorldServer worldserver, Chunk chunk, SpawnerCreature.d spawnercreature_d, boolean flag, boolean flag1, boolean flag2) {
          worldserver.getProfiler().push("spawner");
@@ -445,7 +445,7 @@ index 9223d4d2e..1fe3aa467 100644
          EnumCreatureType[] aenumcreaturetype = SpawnerCreature.SPAWNING_CATEGORIES;
          int i = aenumcreaturetype.length;
  
-@@ -146,6 +147,7 @@ public final class SpawnerCreature {
+@@ -145,6 +146,7 @@ public final class SpawnerCreature {
              }
          }
  
