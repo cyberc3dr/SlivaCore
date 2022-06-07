@@ -1,4 +1,4 @@
-From 2e4255a49cba06e21f7872892fbcb984a6c0a080 Mon Sep 17 00:00:00 2001
+From f89e94b4812b1449ae3912534f53eb8cbae36f8b Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 03:06:05 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -144,7 +144,7 @@ index 2b95bfe26..a4e36b96e 100644
  
      public org.bukkit.entity.Entity.Spigot spigot()
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index a9a615a1e..b230a1f2d 100644
+index a9a615a1e..5c066acc5 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 @@ -149,6 +149,8 @@ import org.bukkit.plugin.messaging.StandardMessenger;
@@ -201,7 +201,7 @@ index a9a615a1e..b230a1f2d 100644
 +            if ( getHandle().connection == null ) return;
 +
 +            net.minecraft.core.IRegistry<ChatMessageType> iregistry = CraftPlayer.this.getHandle().level.registryAccess().registryOrThrow(net.minecraft.core.IRegistry.CHAT_TYPE_REGISTRY);
-+            int i = iregistry.getId((ChatMessageType) iregistry.get(ChatMessageType.SYSTEM));
++            int i = position.ordinal();
 +
 +            getHandle().connection.send(new net.minecraft.network.protocol.game.ClientboundSystemChatPacket(components, i));
 +        }
