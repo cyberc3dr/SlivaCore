@@ -1,23 +1,10 @@
-From 79ce9ae574ceb6b0d22e092f255a276a1e7fc031 Mon Sep 17 00:00:00 2001
+From 339772ebaf722c25fff5d7fbb39c5f940f11409f Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 28 Jul 2014 16:55:51 +1000
 Subject: [PATCH] Allow Attribute Capping.
 
 Apply some sensible defaults and allow server owners to customize the maximum values of selected common attributes.
 
-diff --git a/src/main/java/net/minecraft/world/entity/ai/attributes/AttributeRanged.java b/src/main/java/net/minecraft/world/entity/ai/attributes/AttributeRanged.java
-index dd381de81..c83598d84 100644
---- a/src/main/java/net/minecraft/world/entity/ai/attributes/AttributeRanged.java
-+++ b/src/main/java/net/minecraft/world/entity/ai/attributes/AttributeRanged.java
-@@ -5,7 +5,7 @@ import net.minecraft.util.MathHelper;
- public class AttributeRanged extends AttributeBase {
- 
-     private final double minValue;
--    public final double maxValue;
-+    public double maxValue; // Spigot
- 
-     public AttributeRanged(String s, double d0, double d1, double d2) {
-         super(s, d0);
 diff --git a/src/main/java/net/minecraft/world/entity/ai/attributes/GenericAttributes.java b/src/main/java/net/minecraft/world/entity/ai/attributes/GenericAttributes.java
 index 0d1c6e497..18bb28ad1 100644
 --- a/src/main/java/net/minecraft/world/entity/ai/attributes/GenericAttributes.java

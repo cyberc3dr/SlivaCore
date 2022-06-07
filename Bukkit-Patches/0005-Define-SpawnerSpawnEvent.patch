@@ -1,4 +1,4 @@
-From cf18ec1b85647a4d28e85ed613f32374f444c4d5 Mon Sep 17 00:00:00 2001
+From 28819266f54c59c100f81695ddbb824a72f6dca7 Mon Sep 17 00:00:00 2001
 From: Andy Shulman <andy.shulman@hotmail.com>
 Date: Mon, 15 Apr 2013 20:06:01 -0500
 Subject: [PATCH] Define SpawnerSpawnEvent

@@ -1,14 +1,14 @@
-From 3f11f4f96e738fbfc2afce08d04c6e4caa1a421f Mon Sep 17 00:00:00 2001
+From 9e00e7b761dc5ac5e34fdbb8efd057f58e7f7451 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Wed, 2 Jul 2014 23:35:51 +0100
 Subject: [PATCH] Better item validation
 
 
 diff --git a/src/main/java/net/minecraft/network/PacketDataSerializer.java b/src/main/java/net/minecraft/network/PacketDataSerializer.java
-index d241dd38b..8defe3019 100644
+index e06014976..91bbb9ff4 100644
 --- a/src/main/java/net/minecraft/network/PacketDataSerializer.java
 +++ b/src/main/java/net/minecraft/network/PacketDataSerializer.java
-@@ -481,6 +481,10 @@ public class PacketDataSerializer extends ByteBuf {
+@@ -564,6 +564,10 @@ public class PacketDataSerializer extends ByteBuf {
              NBTTagCompound nbttagcompound = null;
  
              if (item.canBeDepleted() || item.shouldOverrideMultiplayerNbt()) {
@@ -58,7 +58,7 @@ index 4229c88dd..d14b5c38d 100644
          }
      }
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
-index b3ab8c56c..82ef4a4b2 100644
+index b4389c1a0..aca227cb2 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
 @@ -77,6 +77,10 @@ import org.bukkit.inventory.meta.Repairable;

@@ -1,14 +1,14 @@
-From 8bc9dc60e35fd7787b1d9799541d35a374060513 Mon Sep 17 00:00:00 2001
+From ca63082a9c8c37e074f5ec7937762821a961d249 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 26 Jan 2017 21:50:51 +0000
 Subject: [PATCH] Highly Optimized Tick Loop
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index cfd6e48b0..d5fe9f5e7 100644
+index 412845f57..de58e7eab 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -291,6 +291,12 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -278,6 +278,12 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
      public CommandDispatcher vanillaCommandDispatcher;
      private boolean forceTicks;
      // CraftBukkit end
@@ -21,7 +21,7 @@ index cfd6e48b0..d5fe9f5e7 100644
  
      public static <S extends MinecraftServer> S spin(Function<Thread, S> function) {
          AtomicReference<S> atomicreference = new AtomicReference();
-@@ -983,6 +989,13 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -942,6 +948,13 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
  
      }
  
@@ -34,37 +34,37 @@ index cfd6e48b0..d5fe9f5e7 100644
 +
      protected void runServer() {
          try {
-             if (this.initServer()) {
-@@ -991,8 +1004,11 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
-                 this.status.setVersion(new ServerPing.ServerData(SharedConstants.getCurrentVersion().getName(), SharedConstants.getCurrentVersion().getProtocolVersion()));
-                 this.updateStatusIcon(this.status);
+             if (!this.initServer()) {
+@@ -954,8 +967,11 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+             this.status.setPreviewsChat(this.previewsChat());
+             this.updateStatusIcon(this.status);
  
-+                // Spigot start
-+                Arrays.fill( recentTps, 20 );
-+                long curTime, tickSection = SystemUtils.getMillis(), tickCount = 1;
-                 while (this.running) {
--                    long i = SystemUtils.getMillis() - this.nextTickTime;
-+                    long i = (curTime = SystemUtils.getMillis()) - this.nextTickTime;
++            // Spigot start
++            Arrays.fill( recentTps, 20 );
++            long curTime, tickSection = SystemUtils.getMillis(), tickCount = 1;
+             while (this.running) {
+-                long i = SystemUtils.getMillis() - this.nextTickTime;
++                long i = (curTime = SystemUtils.getMillis()) - this.nextTickTime;
  
-                     if (i > 5000L && this.nextTickTime - this.lastOverloadWarning >= 30000L) { // CraftBukkit
-                         long j = i / 50L;
-@@ -1003,6 +1019,16 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
-                         this.lastOverloadWarning = this.nextTickTime;
-                     }
+                 if (i > 5000L && this.nextTickTime - this.lastOverloadWarning >= 30000L) { // CraftBukkit
+                     long j = i / 50L;
+@@ -966,6 +982,16 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+                     this.lastOverloadWarning = this.nextTickTime;
+                 }
  
-+                    if ( tickCount++ % SAMPLE_INTERVAL == 0 )
-+                    {
-+                        double currentTps = 1E3 / ( curTime - tickSection ) * SAMPLE_INTERVAL;
-+                        recentTps[0] = calcTps( recentTps[0], 0.92, currentTps ); // 1/exp(5sec/1min)
-+                        recentTps[1] = calcTps( recentTps[1], 0.9835, currentTps ); // 1/exp(5sec/5min)
-+                        recentTps[2] = calcTps( recentTps[2], 0.9945, currentTps ); // 1/exp(5sec/15min)
-+                        tickSection = curTime;
-+                    }
-+                    // Spigot end
++                if ( tickCount++ % SAMPLE_INTERVAL == 0 )
++                {
++                    double currentTps = 1E3 / ( curTime - tickSection ) * SAMPLE_INTERVAL;
++                    recentTps[0] = calcTps( recentTps[0], 0.92, currentTps ); // 1/exp(5sec/1min)
++                    recentTps[1] = calcTps( recentTps[1], 0.9835, currentTps ); // 1/exp(5sec/5min)
++                    recentTps[2] = calcTps( recentTps[2], 0.9945, currentTps ); // 1/exp(5sec/15min)
++                    tickSection = curTime;
++                }
++                // Spigot end
 +
-                     if (this.debugCommandProfilerDelayStart) {
-                         this.debugCommandProfilerDelayStart = false;
-                         this.debugCommandProfiler = new MinecraftServer.b(SystemUtils.getNanos(), this.tickCount);
+                 if (this.debugCommandProfilerDelayStart) {
+                     this.debugCommandProfilerDelayStart = false;
+                     this.debugCommandProfiler = new MinecraftServer.TimeProfiler(SystemUtils.getNanos(), this.tickCount);
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
 index 5e6011331..123512de6 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java

@@ -1,4 +1,4 @@
-From b620c5729a02c8618fef8a512d6e504a0413ca86 Mon Sep 17 00:00:00 2001
+From c62916f9bf3f6747956a540828838665827847ef Mon Sep 17 00:00:00 2001
 From: Jonas Konrad <me@yawk.at>
 Date: Fri, 25 Apr 2014 23:46:46 +0200
 Subject: [PATCH] Fix race condition that could kill connections before they
@@ -12,7 +12,7 @@ initialized. The ServerConnection does not remove NetworkManagers with
 this flag.
 
 diff --git a/src/main/java/net/minecraft/network/NetworkManager.java b/src/main/java/net/minecraft/network/NetworkManager.java
-index 9d942f125..927b59532 100644
+index 5f718e47d..3ddc3480c 100644
 --- a/src/main/java/net/minecraft/network/NetworkManager.java
 +++ b/src/main/java/net/minecraft/network/NetworkManager.java
 @@ -81,6 +81,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
@@ -44,10 +44,10 @@ index 9d942f125..927b59532 100644
              this.channel.close(); // We can't wait as this may be called from an event loop.
              this.disconnectedReason = ichatbasecomponent;
 diff --git a/src/main/java/net/minecraft/server/network/ServerConnection.java b/src/main/java/net/minecraft/server/network/ServerConnection.java
-index a2a2d1fa4..609dc7c5f 100644
+index e462ddade..a82553db7 100644
 --- a/src/main/java/net/minecraft/server/network/ServerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/ServerConnection.java
-@@ -184,6 +184,10 @@ public class ServerConnection {
+@@ -185,6 +185,10 @@ public class ServerConnection {
                              networkmanager.setReadOnly();
                          }
                      } else {

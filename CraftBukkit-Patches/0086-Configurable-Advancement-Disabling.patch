@@ -1,4 +1,4 @@
-From b5eae06d999f8326ad56ba574db08a7b54e5eb44 Mon Sep 17 00:00:00 2001
+From 40f0185692f4e75a5258fea99197fb1e89c50d29 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 9 Jun 2017 16:29:31 +1000
 Subject: [PATCH] Configurable Advancement Disabling
@@ -6,10 +6,10 @@ Subject: [PATCH] Configurable Advancement Disabling
 Allow disabling any (or all) inbuilt advancements with a configuration option.
 
 diff --git a/src/main/java/net/minecraft/server/AdvancementDataPlayer.java b/src/main/java/net/minecraft/server/AdvancementDataPlayer.java
-index 609faca36..6d67390bc 100644
+index b16e4465f..7e789a80f 100644
 --- a/src/main/java/net/minecraft/server/AdvancementDataPlayer.java
 +++ b/src/main/java/net/minecraft/server/AdvancementDataPlayer.java
-@@ -214,6 +214,7 @@ public class AdvancementDataPlayer {
+@@ -213,6 +213,7 @@ public class AdvancementDataPlayer {
      }
  
      public void save() {

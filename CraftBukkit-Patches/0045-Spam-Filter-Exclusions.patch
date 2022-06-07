@@ -1,35 +1,51 @@
-From 1ecb29653682de4f2ce4d0cb2fb4585fd184447b Mon Sep 17 00:00:00 2001
+From d78786023321fc7bb3ca1bb19cddccb83124a651 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sat, 8 Feb 2014 08:13:40 +0000
 Subject: [PATCH] Spam Filter Exclusions
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index eb86a448c..96404894f 100644
+index 2d18a998c..907866c7a 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -1801,9 +1801,20 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
-                 }, ChatMessageType.CHAT, this.player.getUUID());
+@@ -1814,7 +1814,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+                 } finally {
+                     this.server.server.playerCommandState = false;
+                 }
+-                this.detectRateSpam(true);
++                this.detectRateSpam(true, "/" + serverboundchatcommandpacket.command()); // Spigot
+                 // CraftBukkit end
              }
  
-+            // Spigot start - spam exclusions
-+            boolean counted = true;
-+            for ( String exclude : org.spigotmc.SpigotConfig.spamExclusions )
+@@ -1913,7 +1913,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+                 this.chat(s, true);
+             }
+             // this.server.getPlayerList().broadcastChatMessage(playerchatmessage, filteredtext, this.player, ChatMessageType.CHAT);
+-            this.detectRateSpam(false);
++            this.detectRateSpam(false, s); // Spigot
+             // CraftBukkit end
+         }
+     }
+@@ -2021,7 +2021,18 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+     // CraftBukkit end
+ 
+     // CraftBukkit start - replaced with thread safe throttle
+-    private void detectRateSpam(boolean isSync) {
++    // Spigot start - spam exclusions
++    private void detectRateSpam(boolean isSync, String s) {
++        boolean counted = true;
++        for ( String exclude : org.spigotmc.SpigotConfig.spamExclusions )
++        {
++            if ( exclude != null && s.startsWith( exclude ) )
 +            {
-+                if ( exclude != null && s.startsWith( exclude ) )
-+                {
-+                    counted = false;
-+                    break;
-+                }
++                counted = false;
++                break;
 +            }
-+            // Spigot end
-             // CraftBukkit start - replaced with thread safe throttle
-             // this.chatSpamTickCount += 20;
--            if (chatSpamTickCount.addAndGet(20) > 200 && !this.server.getPlayerList().isOp(this.player.getGameProfile())) {
-+            if (counted && chatSpamTickCount.addAndGet(20) > 200 && !this.server.getPlayerList().isOp(this.player.getGameProfile())) { // Spigot
-                 if (!isSync) {
-                     Waitable waitable = new Waitable() {
-                         @Override
++        }
++        // Spigot end
+         // this.chatSpamTickCount += 20;
+         if (this.chatSpamTickCount.addAndGet(20) > 200 && !this.server.getPlayerList().isOp(this.player.getGameProfile())) {
+             if (!isSync) {
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
 index 245a9e5e9..5f0b27ad2 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java

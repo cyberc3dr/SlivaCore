@@ -1,15 +1,15 @@
-From 9473e7b37d36d2a971a168a75bd6813be62e49bd Mon Sep 17 00:00:00 2001
+From f6fe5260270312ebbc225f61ee28b1c3958650ec Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Thu, 5 Dec 2013 13:55:53 +1100
 Subject: [PATCH] Fix Broken Async Chat
 
 
 diff --git a/src/main/java/net/minecraft/network/protocol/game/PacketPlayInChat.java b/src/main/java/net/minecraft/network/protocol/game/PacketPlayInChat.java
-index 32407b2a0..84004a07a 100644
+index e123aea60..aa9ae8f3c 100644
 --- a/src/main/java/net/minecraft/network/protocol/game/PacketPlayInChat.java
 +++ b/src/main/java/net/minecraft/network/protocol/game/PacketPlayInChat.java
-@@ -25,7 +25,24 @@ public class PacketPlayInChat implements Packet<PacketListenerPlayIn> {
-         packetdataserializer.writeUtf(this.message);
+@@ -39,7 +39,24 @@ public class PacketPlayInChat implements Packet<PacketListenerPlayIn> {
+         packetdataserializer.writeBoolean(this.signedPreview);
      }
  
 -    public void handle(PacketListenerPlayIn packetlistenerplayin) {

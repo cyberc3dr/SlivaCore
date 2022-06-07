@@ -1,4 +1,4 @@
-From 301f71492f826fc71d316f13b5137c8a8da8b75d Mon Sep 17 00:00:00 2001
+From 0dc87fe2bb1e006f754ee179c96958ac3f5669e4 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 20 Feb 2015 21:39:31 +1100
 Subject: [PATCH] Allow Capping (Tile)Entity Tick Time.
@@ -10,10 +10,10 @@ For tiles there is very little tradeoff for this option, as tile ticks are based
 This feature was commisioned by Chunkr.
 
 diff --git a/src/main/java/net/minecraft/world/level/World.java b/src/main/java/net/minecraft/world/level/World.java
-index 825bb3868..6345b3cf0 100644
+index b2019384b..fde96ff46 100644
 --- a/src/main/java/net/minecraft/world/level/World.java
 +++ b/src/main/java/net/minecraft/world/level/World.java
-@@ -146,6 +146,9 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -152,6 +152,9 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
  
      public final SpigotTimings.WorldTimingsHandler timings; // Spigot
      public static BlockPosition lastPhysicsProblem; // Spigot
@@ -23,7 +23,7 @@ index 825bb3868..6345b3cf0 100644
  
      public CraftWorld getWorld() {
          return this.world;
-@@ -232,6 +235,8 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -243,6 +246,8 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
          });
          // CraftBukkit end
          timings = new SpigotTimings.WorldTimingsHandler(this); // Spigot - code below can generate new world and access timings
@@ -32,7 +32,7 @@ index 825bb3868..6345b3cf0 100644
      }
  
      @Override
-@@ -656,20 +661,28 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -614,20 +619,28 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
          timings.tileEntityPending.stopTiming(); // Spigot
  
          timings.tileEntityTick.startTiming(); // Spigot
@@ -64,7 +64,7 @@ index 825bb3868..6345b3cf0 100644
 +                tilesThisCycle--;
 +                this.blockEntityTickers.remove(tileTickPosition--);
 +                // Spigot end
-             } else if (this.shouldTickBlocksAt(ChunkCoordIntPair.asLong(tickingblockentity.getPos()))) {
+             } else if (this.shouldTickBlocksAt(tickingblockentity.getPos())) {
                  tickingblockentity.tick();
              }
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java

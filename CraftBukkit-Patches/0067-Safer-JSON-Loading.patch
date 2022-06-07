@@ -1,4 +1,4 @@
-From 5a8df836eec161febd64dc340ba4152a5efaa5a9 Mon Sep 17 00:00:00 2001
+From 66ad130b493067a27c9d166c3a717503ad9ec0af Mon Sep 17 00:00:00 2001
 From: Suddenly <suddenly@suddenly.coffee>
 Date: Tue, 8 Jul 2014 09:44:18 +1000
 Subject: [PATCH] Safer JSON Loading
@@ -24,7 +24,7 @@ index 1220c2e88..86fb74deb 100644
                  if (bufferedreader != null) {
                      try {
 diff --git a/src/main/java/net/minecraft/server/players/UserCache.java b/src/main/java/net/minecraft/server/players/UserCache.java
-index 45dd649be..c871a8cab 100644
+index 89bbe9350..d5428f7ca 100644
 --- a/src/main/java/net/minecraft/server/players/UserCache.java
 +++ b/src/main/java/net/minecraft/server/players/UserCache.java
 @@ -262,6 +262,11 @@ public class UserCache {

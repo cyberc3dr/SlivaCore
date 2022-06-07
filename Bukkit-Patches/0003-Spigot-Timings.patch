@@ -1,4 +1,4 @@
-From 901d5a3f7bb72e1de2dd59be175aa5c917aae4b8 Mon Sep 17 00:00:00 2001
+From 7d9f0af880990365798e59b3de948c4b3dd54689 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 2 Jun 2013 10:42:57 +1000
 Subject: [PATCH] Spigot Timings
@@ -35,7 +35,7 @@ index 7015d5ef..eb53789a 100644
  
      @NotNull
 diff --git a/src/main/java/org/bukkit/command/Command.java b/src/main/java/org/bukkit/command/Command.java
-index 03d801a9..4bfc2146 100644
+index 0577d80a..80209bb8 100644
 --- a/src/main/java/org/bukkit/command/Command.java
 +++ b/src/main/java/org/bukkit/command/Command.java
 @@ -33,6 +33,7 @@ public abstract class Command {
@@ -63,7 +63,7 @@ index 03d801a9..4bfc2146 100644
              return true;
          }
 diff --git a/src/main/java/org/bukkit/command/SimpleCommandMap.java b/src/main/java/org/bukkit/command/SimpleCommandMap.java
-index 95bfced6..81e4fa57 100644
+index 73906146..e195e74c 100644
 --- a/src/main/java/org/bukkit/command/SimpleCommandMap.java
 +++ b/src/main/java/org/bukkit/command/SimpleCommandMap.java
 @@ -144,11 +144,15 @@ public class SimpleCommandMap implements CommandMap {
@@ -83,7 +83,7 @@ index 95bfced6..81e4fa57 100644
          }
  
 diff --git a/src/main/java/org/bukkit/command/defaults/TimingsCommand.java b/src/main/java/org/bukkit/command/defaults/TimingsCommand.java
-index cb020d68..2a145d85 100644
+index ed4cbce7..516d7fc7 100644
 --- a/src/main/java/org/bukkit/command/defaults/TimingsCommand.java
 +++ b/src/main/java/org/bukkit/command/defaults/TimingsCommand.java
 @@ -18,23 +18,102 @@ import org.bukkit.plugin.TimedRegisteredListener;
@@ -245,10 +245,10 @@ index cb020d68..2a145d85 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index 95f4a4d3..77dcfe35 100644
+index 5bec3c94..f5710d53 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-@@ -358,6 +358,7 @@ public final class SimplePluginManager implements PluginManager {
+@@ -357,6 +357,7 @@ public final class SimplePluginManager implements PluginManager {
              }
          }
  
@@ -257,7 +257,7 @@ index 95f4a4d3..77dcfe35 100644
      }
  
 diff --git a/src/main/java/org/bukkit/plugin/java/JavaPluginLoader.java b/src/main/java/org/bukkit/plugin/java/JavaPluginLoader.java
-index 390abd51..a09c3f71 100644
+index 39b991ff..047c0304 100644
 --- a/src/main/java/org/bukkit/plugin/java/JavaPluginLoader.java
 +++ b/src/main/java/org/bukkit/plugin/java/JavaPluginLoader.java
 @@ -43,6 +43,7 @@ import org.bukkit.plugin.TimedRegisteredListener;

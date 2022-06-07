@@ -1,4 +1,4 @@
-From 278a8e8369844bbfbdf62b5f96963f20b6d54047 Mon Sep 17 00:00:00 2001
+From ca8c2778d18fed3d156237a11ad81bf034be50c9 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 15 May 2017 15:16:15 +1000
 Subject: [PATCH] Skeleton API Implementations
@@ -37,7 +37,7 @@ index 324e47f3..7015d5ef 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 965a5f3b..d21c4cbe 100644
+index d1bb770e..ae53fdc5 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -2573,6 +2573,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient

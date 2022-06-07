@@ -1,14 +1,14 @@
-From 8550748e1f343841f14876a6ef9d3767e1e74047 Mon Sep 17 00:00:00 2001
+From 05b802dd602c4c35e536dff5bca59d10c819b73d Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 18:05:54 +1000
 Subject: [PATCH] Allow Disabling of Command TabComplete
 
 
 diff --git a/src/main/java/net/minecraft/commands/CommandDispatcher.java b/src/main/java/net/minecraft/commands/CommandDispatcher.java
-index 5aa4f5361..4ffe7f355 100644
+index 591af9a48..d385041b6 100644
 --- a/src/main/java/net/minecraft/commands/CommandDispatcher.java
 +++ b/src/main/java/net/minecraft/commands/CommandDispatcher.java
-@@ -343,6 +343,7 @@ public class CommandDispatcher {
+@@ -346,6 +346,7 @@ public class CommandDispatcher {
      }
  
      public void sendCommands(EntityPlayer entityplayer) {
@@ -16,7 +16,7 @@ index 5aa4f5361..4ffe7f355 100644
          // CraftBukkit start
          // Register Vanilla commands into builtRoot as before
          Map<CommandNode<CommandListenerWrapper>, CommandNode<ICompletionProvider>> map = Maps.newIdentityHashMap(); // Use identity to prevent aliasing issues
-@@ -381,6 +382,7 @@ public class CommandDispatcher {
+@@ -384,6 +385,7 @@ public class CommandDispatcher {
  
          while (iterator.hasNext()) {
              CommandNode<CommandListenerWrapper> commandnode2 = (CommandNode) iterator.next();
@@ -25,10 +25,10 @@ index 5aa4f5361..4ffe7f355 100644
              if (commandnode2.canUse(commandlistenerwrapper)) {
                  ArgumentBuilder argumentbuilder = commandnode2.createBuilder(); // CraftBukkit - decompile error
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 9c9c4771b..059814bde 100644
+index 3ae63ee01..aafac1a2d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -1926,6 +1926,13 @@ public final class CraftServer implements Server {
+@@ -1909,6 +1909,13 @@ public final class CraftServer implements Server {
      }
  
      public List<String> tabCompleteCommand(Player player, String message, WorldServer world, Vec3D pos) {

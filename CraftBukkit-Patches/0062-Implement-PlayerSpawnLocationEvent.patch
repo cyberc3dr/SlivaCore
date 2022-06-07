@@ -1,14 +1,14 @@
-From aad118b13837d2426841f23d5e19441144cbfe38 Mon Sep 17 00:00:00 2001
+From a0b82a022162668f33f88697efc053bfdaf5dc5a Mon Sep 17 00:00:00 2001
 From: ninja <xninja@openmailbox.org>
 Date: Tue, 8 Apr 2014 14:05:19 +0200
 Subject: [PATCH] Implement PlayerSpawnLocationEvent.
 
 
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index d7685e96d..6ffd915f1 100644
+index a40e1e508..fabbad4d2 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -212,6 +212,19 @@ public abstract class PlayerList {
+@@ -216,6 +216,19 @@ public abstract class PlayerList {
              s1 = networkmanager.getRemoteAddress().toString();
          }
  
