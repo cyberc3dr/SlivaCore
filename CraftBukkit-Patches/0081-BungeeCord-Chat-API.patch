@@ -1,4 +1,4 @@
-From dcd46779df6556e8ae62d48b04811e83f0e77c5b Mon Sep 17 00:00:00 2001
+From 56dc866a3cdddc2005b5d6e1bb1fbf27eaae8e47 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 03:06:05 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -144,7 +144,7 @@ index 2b95bfe26..a4e36b96e 100644
  
      public org.bukkit.entity.Entity.Spigot spigot()
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index a9a615a1e..86adfa50d 100644
+index a9a615a1e..50ca1cf5b 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 @@ -149,6 +149,8 @@ import org.bukkit.plugin.messaging.StandardMessenger;
@@ -204,7 +204,7 @@ index a9a615a1e..86adfa50d 100644
 +            if (position == net.md_5.bungee.api.ChatMessageType.CHAT) {
 +                position = net.md_5.bungee.api.ChatMessageType.SYSTEM;
 +            }
-+            int i = position.ordinal();
++            int i = position.ordinal() - 1;
 +
 +            getHandle().connection.send(new net.minecraft.network.protocol.game.ClientboundSystemChatPacket(components, i));
 +        }
