@@ -1,4 +1,4 @@
-From 7e7e16af8fdf68d184cf4397d633d49845338459 Mon Sep 17 00:00:00 2001
+From 3378a8a19ffa475bd4fc1a725d2fb24e457809db Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
@@ -6,10 +6,10 @@ Subject: [PATCH] Further Seed Customisation
 Allow server admins that really want to to customise the seeds used in world generation even further.
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index cc2e329ac..2b2487ac5 100644
+index c980cda98..f23082915 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -262,6 +262,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -265,6 +265,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
          if (gen != null) {
              chunkgenerator = new org.bukkit.craftbukkit.generator.CustomChunkGenerator(this, chunkgenerator, gen);
          }

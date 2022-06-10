@@ -1,4 +1,4 @@
-From a1663e96e2ff713a21e3e526d64297ee3075ffd7 Mon Sep 17 00:00:00 2001
+From c5807297174cd6ae40268447f63e490add3526f6 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 10 Jan 2013 00:18:11 -0500
 Subject: [PATCH] Spigot Timings
@@ -201,10 +201,10 @@ index 86791fccb..8fd5501a7 100644
      }
  
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 85f2aa1b3..a72d042cf 100644
+index ffe94377d..099875428 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -160,6 +160,7 @@ import net.minecraft.world.level.storage.WorldDataServer;
+@@ -161,6 +161,7 @@ import net.minecraft.world.level.storage.WorldDataServer;
  import org.bukkit.Bukkit;
  import org.bukkit.Location;
  import org.bukkit.WeatherType;
@@ -212,7 +212,7 @@ index 85f2aa1b3..a72d042cf 100644
  import org.bukkit.craftbukkit.event.CraftEventFactory;
  import org.bukkit.craftbukkit.generator.CustomWorldChunkManager;
  import org.bukkit.craftbukkit.util.CraftNamespacedKey;
-@@ -355,6 +356,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -358,6 +359,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
          this.updateSkyBrightness();
          this.tickTime();
          gameprofilerfiller.popPush("tickPending");
@@ -220,7 +220,7 @@ index 85f2aa1b3..a72d042cf 100644
          if (!this.isDebug()) {
              j = this.getGameTime();
              gameprofilerfiller.push("blockTicks");
-@@ -363,13 +365,16 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -366,13 +368,16 @@ public class WorldServer extends World implements GeneratorAccessSeed {
              this.fluidTicks.tick(j, 65536, this::tickFluid);
              gameprofilerfiller.pop();
          }
@@ -237,7 +237,7 @@ index 85f2aa1b3..a72d042cf 100644
          this.handlingTick = false;
          gameprofilerfiller.pop();
          boolean flag = true || !this.players.isEmpty() || !this.getForcedChunks().isEmpty(); // CraftBukkit - this prevents entity cleanup, other issues on servers with no players
-@@ -380,12 +385,14 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -383,12 +388,14 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
          if (flag || this.emptyTime++ < 300) {
              gameprofilerfiller.push("entities");
@@ -252,7 +252,7 @@ index 85f2aa1b3..a72d042cf 100644
              this.entityTickList.forEach((entity) -> {
                  if (!entity.isRemoved()) {
                      if (false && this.shouldDiscardEntity(entity)) { // CraftBukkit - We prevent spawning in general, so this butchering is not needed
-@@ -412,6 +419,8 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -415,6 +422,8 @@ public class WorldServer extends World implements GeneratorAccessSeed {
                      }
                  }
              });
@@ -261,7 +261,7 @@ index 85f2aa1b3..a72d042cf 100644
              gameprofilerfiller.pop();
              this.tickBlockEntities();
          }
-@@ -793,6 +802,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -796,6 +805,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
      }
  
      public void tickNonPassenger(Entity entity) {
@@ -269,7 +269,7 @@ index 85f2aa1b3..a72d042cf 100644
          entity.setOldPosAndRot();
          GameProfilerFiller gameprofilerfiller = this.getProfiler();
  
-@@ -811,6 +821,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -814,6 +824,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
              this.tickPassenger(entity, entity1);
          }
@@ -278,7 +278,7 @@ index 85f2aa1b3..a72d042cf 100644
      }
  
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 1fcab1ea7..cdc86f86a 100644
+index 78dc73545..7cc199599 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
 @@ -310,6 +310,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
