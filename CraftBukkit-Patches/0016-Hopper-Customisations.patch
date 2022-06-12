@@ -1,4 +1,4 @@
-From dffb19264a601200d74f72206d2eb271ef966391 Mon Sep 17 00:00:00 2001
+From e6d6bd1534161b62a97521586a4af534050bcceb Mon Sep 17 00:00:00 2001
 From: erocs <github@erocs.org>
 Date: Sun, 8 Sep 2013 12:06:15 -0700
 Subject: [PATCH] Hopper Customisations
@@ -6,7 +6,7 @@ Subject: [PATCH] Hopper Customisations
 Allows editing hopper cooldowns and amount transferred per tick.
 
 diff --git a/src/main/java/net/minecraft/world/level/block/entity/TileEntityHopper.java b/src/main/java/net/minecraft/world/level/block/entity/TileEntityHopper.java
-index 80cbb3f6c..d35ce34b2 100644
+index 80cbb3f6c..25cc1cca6 100644
 --- a/src/main/java/net/minecraft/world/level/block/entity/TileEntityHopper.java
 +++ b/src/main/java/net/minecraft/world/level/block/entity/TileEntityHopper.java
 @@ -140,9 +140,14 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
@@ -135,11 +135,19 @@ index 80cbb3f6c..d35ce34b2 100644
                      }
                  }
  
+@@ -451,6 +464,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+     private static IInventory getContainerAt(World world, double d0, double d1, double d2) {
+         Object object = null;
+         BlockPosition blockposition = new BlockPosition(d0, d1, d2);
++        if ( !world.spigotConfig.hopperCanLoadChunks && !world.hasChunkAt( blockposition ) ) return null; // Spigot
+         IBlockData iblockdata = world.getBlockState(blockposition);
+         Block block = iblockdata.getBlock();
+ 
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index ee822b2a3..a03727d59 100644
+index ee822b2a3..ecb1ecb2a 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -220,4 +220,20 @@ public class SpigotWorldConfig
+@@ -220,4 +220,22 @@ public class SpigotWorldConfig
          otherTrackingRange = getInt( "entity-tracking-range.other", otherTrackingRange );
          log( "Entity Tracking Range: Pl " + playerTrackingRange + " / An " + animalTrackingRange + " / Mo " + monsterTrackingRange + " / Mi " + miscTrackingRange + " / Other " + otherTrackingRange );
      }
@@ -147,6 +155,7 @@ index ee822b2a3..a03727d59 100644
 +    public int hopperTransfer;
 +    public int hopperCheck;
 +    public int hopperAmount;
++    public boolean hopperCanLoadChunks;
 +    private void hoppers()
 +    {
 +        // Set the tick delay between hopper item movements
@@ -157,9 +166,10 @@ index ee822b2a3..a03727d59 100644
 +        }
 +        hopperCheck = getInt( "ticks-per.hopper-check", 1 );
 +        hopperAmount = getInt( "hopper-amount", 1 );
-+        log( "Hopper Transfer: " + hopperTransfer + " Hopper Check: " + hopperCheck + " Hopper Amount: " + hopperAmount );
++        hopperCanLoadChunks = getBoolean( "hopper-can-load-chunks", false );
++        log( "Hopper Transfer: " + hopperTransfer + " Hopper Check: " + hopperCheck + " Hopper Amount: " + hopperAmount + " Hopper Can Load Chunks: " + hopperCanLoadChunks );
 +    }
  }
 -- 
-2.25.1
+2.34.1
 

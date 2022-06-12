@@ -1,4 +1,4 @@
-From 736df9b91387718f543d1f7823c1b3917b20cae1 Mon Sep 17 00:00:00 2001
+From 0b953c73195a818bd272a80c92ddf021d55a6167 Mon Sep 17 00:00:00 2001
 From: Dmck2b <dmck2b+github@gmail.com>
 Date: Mon, 20 Jan 2014 20:18:23 +0000
 Subject: [PATCH] Allow toggling of ZombiePigmen spawning in portal blocks
@@ -18,10 +18,10 @@ index 6a9860347..dd9b612e5 100644
                  blockposition = blockposition.below();
              }
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index e5e1f112b..280d1a4b1 100644
+index ebca8eda0..c65935c9b 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -259,4 +259,11 @@ public class SpigotWorldConfig
+@@ -261,4 +261,11 @@ public class SpigotWorldConfig
          nerfSpawnerMobs = getBoolean( "nerf-spawner-mobs", false );
          log( "Nerfing mobs spawned from spawners: " + nerfSpawnerMobs );
      }
@@ -34,5 +34,5 @@ index e5e1f112b..280d1a4b1 100644
 +    }
  }
 -- 
-2.25.1
+2.34.1
 
