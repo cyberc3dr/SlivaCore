@@ -1,4 +1,4 @@
-From 0674dfdb7c6a40d11a4d554863a4698c61a39ac0 Mon Sep 17 00:00:00 2001
+From 4beac3c74e25f96cdf1e019adac7d2f267b4fc23 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 12 Jan 2014 20:56:41 +1100
 Subject: [PATCH] Try and Debug Crash Reports Crashing
@@ -25,5 +25,5 @@ index cce83e78b..412845f57 100644
                  worldserver.fillReportDetails(crashreport);
                  throw new ReportedException(crashreport);
 -- 
-2.25.1
+2.34.1
 

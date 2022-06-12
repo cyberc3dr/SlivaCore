@@ -1,4 +1,4 @@
-From 92674834642e4394de05720832a8d8872af06da3 Mon Sep 17 00:00:00 2001
+From 65838c0f87ca782f5e8bfa55dc1e8ce2fa567a09 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Wed, 18 Dec 2013 13:39:14 +1100
 Subject: [PATCH] Log Cause of Unexpected Exceptions
@@ -22,5 +22,5 @@ index e2938d7f5..cce83e78b 100644
  
              this.fillSystemReport(crashreport.getSystemReport());
 -- 
-2.25.1
+2.34.1
 

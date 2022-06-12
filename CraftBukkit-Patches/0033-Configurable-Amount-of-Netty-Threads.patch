@@ -1,4 +1,4 @@
-From a4c9c1828ca5e52fbec0dbc90abe68ba6daa2b4f Mon Sep 17 00:00:00 2001
+From 3945338182623d2b303c270fe7b6f29df3c8384d Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 13 Dec 2013 11:58:58 +1100
 Subject: [PATCH] Configurable Amount of Netty Threads
@@ -44,5 +44,5 @@ index 3bb51f452..c5989e8e9 100644
 +    }
  }
 -- 
-2.25.1
+2.34.1
 

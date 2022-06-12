@@ -1,4 +1,4 @@
-From e1f1e32565d35a478588ab055a5af2dbfd353196 Mon Sep 17 00:00:00 2001
+From e0184c092eb68928423259e20e18ab62bb57fa3d Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 2 Jun 2013 10:36:24 +1000
 Subject: [PATCH] POM Changes
@@ -20,7 +20,7 @@ index c658f38f..b979da19 100644
          <!-- See http://checkstyle.sourceforge.net/config_imports.html -->
          <module name="AvoidStarImport">
 diff --git a/pom.xml b/pom.xml
-index 9a36457e..aed8b24d 100644
+index 483ccdfe..5c483e5c 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -3,14 +3,14 @@
@@ -43,5 +43,5 @@ index 9a36457e..aed8b24d 100644
      <properties>
          <skipTests>true</skipTests>
 -- 
-2.25.1
+2.34.1
 

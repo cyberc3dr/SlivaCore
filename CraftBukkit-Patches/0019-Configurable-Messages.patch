@@ -1,4 +1,4 @@
-From 45e01210f935672cd2b1555d3f8d7ae1b9a0b31f Mon Sep 17 00:00:00 2001
+From de726e52ee4522bc2f0070ccf3f43d2a33ac1b14 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 19:21:58 +1000
 Subject: [PATCH] Configurable Messages
@@ -104,5 +104,5 @@ index fc352ecf1..8ad8b2589 100644
 +    }
  }
 -- 
-2.25.1
+2.34.1
 

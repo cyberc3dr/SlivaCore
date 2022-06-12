@@ -1,4 +1,4 @@
-From e1fc0dc2fd4db4f00031ce9be6d2f09adff16884 Mon Sep 17 00:00:00 2001
+From 02bafd4fe1d5066888daa179f72c3bb8c354d0f9 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 2 Jun 2013 15:20:49 +1000
 Subject: [PATCH] BungeeCord Support
@@ -88,5 +88,5 @@ index 498f0be8..084ca8cf 100644
       * Gets the current result of the login, as an enum
       *
 -- 
-2.25.1
+2.34.1
 

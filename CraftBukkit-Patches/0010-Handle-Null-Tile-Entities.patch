@@ -1,4 +1,4 @@
-From 41a8d7cd6645b24009d8471679b2a40b635db02a Mon Sep 17 00:00:00 2001
+From 9603fa7faae904211f7aa09428d5a723d72ea436 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 3 Feb 2013 09:20:19 +1100
 Subject: [PATCH] Handle Null Tile Entities
@@ -23,5 +23,5 @@ index 167902935..60e47cf63 100644
              if (tickingblockentity.isRemoved()) {
                  iterator.remove();
 -- 
-2.25.1
+2.34.1
 

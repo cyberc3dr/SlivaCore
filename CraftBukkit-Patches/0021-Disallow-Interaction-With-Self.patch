@@ -1,11 +1,11 @@
-From 0a5ff45f5e9f71449cf25f28fa01f93dac245c3b Mon Sep 17 00:00:00 2001
+From 1f755e1877f82cbc2edc57464bae1c4562479328 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 28 Jun 2013 19:52:54 +1000
 Subject: [PATCH] Disallow Interaction With Self
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 8cdeb6d7f..b7bc2dc30 100644
+index 051e70977..5c8ac3222 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
 @@ -2238,6 +2238,13 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
@@ -23,5 +23,5 @@ index 8cdeb6d7f..b7bc2dc30 100644
          this.player.resetLastActionTime();
          this.player.setShiftKeyDown(packetplayinuseentity.isUsingSecondaryAction());
 -- 
-2.25.1
+2.34.1
 

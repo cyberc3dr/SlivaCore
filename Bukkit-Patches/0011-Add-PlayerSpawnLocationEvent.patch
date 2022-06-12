@@ -1,4 +1,4 @@
-From b5d54df5e531f8c04011bdd52280f5404628744d Mon Sep 17 00:00:00 2001
+From 85fdfe00540d5851ea5d2b36dddc14ea3eff4dd6 Mon Sep 17 00:00:00 2001
 From: ninja <xninja@openmailbox.org>
 Date: Tue, 8 Apr 2014 14:01:32 +0200
 Subject: [PATCH] Add PlayerSpawnLocationEvent.
@@ -74,5 +74,5 @@ index 00000000..6a2d5d84
 + */
 +package org.spigotmc.event.player;
 -- 
-2.25.1
+2.34.1
 

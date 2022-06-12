@@ -1,4 +1,4 @@
-From f6fe5260270312ebbc225f61ee28b1c3958650ec Mon Sep 17 00:00:00 2001
+From 8991003976b788609852185d18aeb23479943ec0 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Thu, 5 Dec 2013 13:55:53 +1100
 Subject: [PATCH] Fix Broken Async Chat
@@ -35,5 +35,5 @@ index e123aea60..aa9ae8f3c 100644
      }
  
 -- 
-2.25.1
+2.34.1
 

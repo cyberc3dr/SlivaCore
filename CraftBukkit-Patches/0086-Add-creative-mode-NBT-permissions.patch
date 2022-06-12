@@ -1,4 +1,4 @@
-From 5ecab788dd815b73f03e9171474b06e2a6cb3a8f Mon Sep 17 00:00:00 2001
+From e462c001dc1b5b93eec98432317b98b1f0f20f11 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 25 Feb 2019 19:26:56 +1100
 Subject: [PATCH] Add creative mode NBT permissions

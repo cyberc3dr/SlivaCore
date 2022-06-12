@@ -1,4 +1,4 @@
-From c06afeef1680b84ef1db9aa28afbcfa684420197 Mon Sep 17 00:00:00 2001
+From 3c22f2e6dc167083159fa7ecc65e74ee69f11d2e Mon Sep 17 00:00:00 2001
 From: Spottedleaf <Spottedleaf@users.noreply.github.com>
 Date: Tue, 30 Jul 2019 13:47:34 -0700
 Subject: [PATCH] View Distance
@@ -33,5 +33,5 @@ index e2a116ce..9fa83c72 100644
      public class Spigot {
  
 -- 
-2.25.1
+2.34.1
 
