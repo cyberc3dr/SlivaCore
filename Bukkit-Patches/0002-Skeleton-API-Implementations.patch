@@ -1,14 +1,14 @@
-From 9862e49f8b0ecab40eb4c217340d8eca240214e8 Mon Sep 17 00:00:00 2001
+From 6e33cc3cd358b3d5d221ff651984a671f3a33a5d Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 15 May 2017 15:16:15 +1000
 Subject: [PATCH] Skeleton API Implementations
 
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index e85204a4..353d5b41 100644
+index 7922d65d..ebb4d028 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1881,4 +1881,9 @@ public final class Bukkit {
+@@ -1929,4 +1929,9 @@ public final class Bukkit {
      public static UnsafeValues getUnsafe() {
          return server.getUnsafe();
      }
@@ -19,10 +19,10 @@ index e85204a4..353d5b41 100644
 +    }
  }
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 324e47f3..7015d5ef 100644
+index 01c01876..3a782d20 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1597,4 +1597,13 @@ public interface Server extends PluginMessageRecipient {
+@@ -1637,4 +1637,13 @@ public interface Server extends PluginMessageRecipient {
      @Deprecated
      @NotNull
      UnsafeValues getUnsafe();
@@ -37,12 +37,12 @@ index 324e47f3..7015d5ef 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index d1bb770e..ae53fdc5 100644
+index a2774163..4a371ea3 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -2573,6 +2573,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -2649,6 +2649,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      @Nullable
-     public Location locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
+     StructureSearchResult locateNearestStructure(@NotNull Location origin, @NotNull Structure structure, int radius, boolean findUnexplored);
  
 +    // Spigot start
 +    public class Spigot {
