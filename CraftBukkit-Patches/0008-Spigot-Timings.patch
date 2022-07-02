@@ -1,4 +1,4 @@
-From 6c1272b4564715ece025a94d5adc9e72a21cefd2 Mon Sep 17 00:00:00 2001
+From 83343517877399b88be05608fed35952430b0175 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 10 Jan 2013 00:18:11 -0500
 Subject: [PATCH] Spigot Timings
@@ -323,10 +323,10 @@ index 78dc73545..7cc199599 100644
      }
      // CraftBukkit end
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 7e316064b..94034b535 100644
+index 375cac9c3..0cb6f8798 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -133,6 +133,7 @@ import org.bukkit.craftbukkit.event.CraftPortalEvent;
+@@ -134,6 +134,7 @@ import org.bukkit.craftbukkit.event.CraftPortalEvent;
  import org.bukkit.entity.Hanging;
  import org.bukkit.entity.LivingEntity;
  import org.bukkit.entity.Vehicle;
@@ -334,7 +334,7 @@ index 7e316064b..94034b535 100644
  import org.bukkit.event.entity.EntityCombustByEntityEvent;
  import org.bukkit.event.hanging.HangingBreakByEntityEvent;
  import org.bukkit.event.vehicle.VehicleBlockCollisionEvent;
-@@ -299,6 +300,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -300,6 +301,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
      public boolean lastDamageCancelled; // SPIGOT-5339, SPIGOT-6252, SPIGOT-6777: Keep track if the event was canceled
      public boolean persistentInvisibility = false;
      public BlockPosition lastLavaContact;
@@ -342,7 +342,7 @@ index 7e316064b..94034b535 100644
  
      public float getBukkitYaw() {
          return this.yRot;
-@@ -729,6 +731,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -730,6 +732,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
      }
  
      public void move(EnumMoveType enummovetype, Vec3D vec3d) {
@@ -350,7 +350,7 @@ index 7e316064b..94034b535 100644
          if (this.noPhysics) {
              this.setPos(this.getX() + vec3d.x, this.getY() + vec3d.y, this.getZ() + vec3d.z);
          } else {
-@@ -892,6 +895,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -893,6 +896,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
                  this.level.getProfiler().pop();
              }
          }

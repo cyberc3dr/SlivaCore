@@ -1,14 +1,14 @@
-From b403cdbb52c87df2838806007548413ca444f6ec Mon Sep 17 00:00:00 2001
+From 76dfa294610dd15ff8232ff81000ca63069b813a Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Sat, 19 Jul 2014 19:54:41 +0100
 Subject: [PATCH] Prevent a crash involving attributes
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 440a0eeb1..261e805db 100644
+index 53d6a5e9b..0d8684b7f 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1728,7 +1728,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1735,7 +1735,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
              }
          }
          AttributeModifiable dummy = new AttributeModifiable(GenericAttributes.MAX_HEALTH, (attribute) -> { });
