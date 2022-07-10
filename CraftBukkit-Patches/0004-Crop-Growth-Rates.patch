@@ -1,4 +1,4 @@
-From 1a9fdb8ec64d5c1d4d4dd86d15b05076b7b85a62 Mon Sep 17 00:00:00 2001
+From 717b6aa1984b30f6f727efd63a991bc7165e813d Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 7 Mar 2016 22:14:13 +1100
 Subject: [PATCH] Crop Growth Rates
@@ -146,7 +146,7 @@ index 442200504..adb54833e 100644
                      worldserver.setBlock(blockposition, (IBlockData) iblockdata.setValue(BlockReed.AGE, 0), 4);
                  } else {
 diff --git a/src/main/java/net/minecraft/world/level/block/BlockSapling.java b/src/main/java/net/minecraft/world/level/block/BlockSapling.java
-index d0c89fb8d..30dc0d3ab 100644
+index 7e2042d4d..671873c16 100644
 --- a/src/main/java/net/minecraft/world/level/block/BlockSapling.java
 +++ b/src/main/java/net/minecraft/world/level/block/BlockSapling.java
 @@ -42,7 +42,7 @@ public class BlockSapling extends BlockPlant implements IBlockFragilePlantElemen
@@ -155,9 +155,9 @@ index d0c89fb8d..30dc0d3ab 100644
      public void randomTick(IBlockData iblockdata, WorldServer worldserver, BlockPosition blockposition, RandomSource randomsource) {
 -        if (worldserver.getMaxLocalRawBrightness(blockposition.above()) >= 9 && randomsource.nextInt(7) == 0) {
 +        if (worldserver.getMaxLocalRawBrightness(blockposition.above()) >= 9 && randomsource.nextInt(Math.max(2, (int) (((100.0F / worldserver.spigotConfig.saplingModifier) * 7) + 0.5F))) == 0) { // Spigot
-             // CraftBukkit start
-             worldserver.captureTreeGeneration = true;
-             // CraftBukkit end
+             this.advanceTree(worldserver, blockposition, iblockdata, randomsource);
+         }
+ 
 diff --git a/src/main/java/net/minecraft/world/level/block/BlockStem.java b/src/main/java/net/minecraft/world/level/block/BlockStem.java
 index e8a25e164..734384910 100644
 --- a/src/main/java/net/minecraft/world/level/block/BlockStem.java
