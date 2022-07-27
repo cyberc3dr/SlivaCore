@@ -1,14 +1,14 @@
-From 3025ba410fc3b8274d84210efa2ae98577574bfd Mon Sep 17 00:00:00 2001
+From c305ac5bff04311174b02cdb0ec73257165170fa Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 6 Oct 2013 17:36:28 +1100
 Subject: [PATCH] Don't Special Case X Move Value
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 5c8ac3222..8ad41b14a 100644
+index 2cbb7c98b..8f410adff 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -303,6 +303,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -330,6 +330,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
      private float lastPitch = Float.MAX_VALUE;
      private float lastYaw = Float.MAX_VALUE;
      private boolean justTeleported = false;
@@ -16,7 +16,7 @@ index 5c8ac3222..8ad41b14a 100644
  
      public CraftPlayer getCraftPlayer() {
          return (this.player == null) ? null : (CraftPlayer) this.player.getBukkitEntity();
-@@ -582,6 +583,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -623,6 +624,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
                      flag2 = true;
                      PlayerConnection.LOGGER.warn("{} (vehicle of {}) moved wrongly! {}", new Object[]{entity.getName().getString(), this.player.getName().getString(), Math.sqrt(d10)});
                  }
@@ -24,7 +24,7 @@ index 5c8ac3222..8ad41b14a 100644
  
                  entity.absMoveTo(d3, d4, d5, f, f1);
                  player.absMoveTo(d3, d4, d5, this.player.getYRot(), this.player.getXRot()); // CraftBukkit
-@@ -596,6 +598,17 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -637,6 +639,17 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
                  // CraftBukkit start - fire PlayerMoveEvent
                  Player player = this.getCraftPlayer();
@@ -42,7 +42,7 @@ index 5c8ac3222..8ad41b14a 100644
                  Location from = new Location(player.getWorld(), lastPosX, lastPosY, lastPosZ, lastYaw, lastPitch); // Get the Players previous Event location.
                  Location to = player.getLocation().clone(); // Start off the To location as the Players current location.
  
-@@ -621,7 +634,7 @@ public class PlayerConnection implements ServerPlayerConnection, PacketListenerP
+@@ -662,7 +675,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
                      this.lastPitch = to.getPitch();
  
                      // Skip the first time we do this

@@ -1,4 +1,4 @@
-From 88671e24363123f7076285ba7ed0b16734c5ed82 Mon Sep 17 00:00:00 2001
+From 251dc59dd7a6f6b4b4277620b5ab24e0791c95d8 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 17:29:54 +1000
 Subject: [PATCH] Fix Mob Spawning Relative to View Distance
@@ -21,10 +21,10 @@ index 8fd5501a7..03ce15577 100644
                      }
  
 diff --git a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-index add164639..d1d4e1b37 100644
+index 06b684300..0bf98b0a9 100644
 --- a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
-@@ -1068,6 +1068,17 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1069,6 +1069,17 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
      }
  
      boolean anyPlayerCloseEnoughForSpawning(ChunkCoordIntPair chunkcoordintpair) {
@@ -42,7 +42,7 @@ index add164639..d1d4e1b37 100644
          long i = chunkcoordintpair.toLong();
  
          if (!this.distanceManager.hasPlayersNearby(i)) {
-@@ -1083,7 +1094,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1084,7 +1095,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
                  }
  
                  entityplayer = (EntityPlayer) iterator.next();
@@ -51,7 +51,7 @@ index add164639..d1d4e1b37 100644
  
              return true;
          }
-@@ -1101,7 +1112,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1102,7 +1113,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
              while (iterator.hasNext()) {
                  EntityPlayer entityplayer = (EntityPlayer) iterator.next();
  
@@ -60,7 +60,7 @@ index add164639..d1d4e1b37 100644
                      builder.add(entityplayer);
                  }
              }
-@@ -1110,13 +1121,13 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+@@ -1111,13 +1122,13 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
          }
      }
  

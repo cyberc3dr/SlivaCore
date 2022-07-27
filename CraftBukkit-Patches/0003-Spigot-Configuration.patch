@@ -1,4 +1,4 @@
-From 2067794c0e321905b12fd2f6e3ea282d65aeb34f Mon Sep 17 00:00:00 2001
+From 0f225e22d0ad78b5a509963e9ba818abbf09bbbc Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 7 Jul 2013 09:32:53 +1000
 Subject: [PATCH] Spigot Configuration
@@ -6,7 +6,7 @@ Subject: [PATCH] Spigot Configuration
 Provides the basic infrastructure to load and save the Spigot configuration file, spigot.yml
 
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 4dea4d905..47782492f 100644
+index 61fc7c961..3ee110b62 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -183,6 +183,11 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer

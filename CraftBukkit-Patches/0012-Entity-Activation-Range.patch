@@ -1,4 +1,4 @@
-From 41d223a13d0764fcc97209a3c10e202c5eb02ac5 Mon Sep 17 00:00:00 2001
+From bbd413ef9f5423ab2176ea0ec88b33ff9f6eb01f Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 3 Feb 2013 05:10:21 -0500
 Subject: [PATCH] Entity Activation Range
@@ -9,10 +9,10 @@ This will drastically cut down on tick timings for entities that are not in rang
 This change can have dramatic impact on gameplay if configured too low. Balance according to your servers desired gameplay.
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 189c82112..37325acdd 100644
+index 8ee75fb84..12485d1f7 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -395,6 +395,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -396,6 +396,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
                  gameprofilerfiller.pop();
              }
  
@@ -20,7 +20,7 @@ index 189c82112..37325acdd 100644
              timings.entityTick.startTiming(); // Spigot
              this.entityTickList.forEach((entity) -> {
                  if (!entity.isRemoved()) {
-@@ -805,6 +806,13 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -806,6 +807,13 @@ public class WorldServer extends World implements GeneratorAccessSeed {
      }
  
      public void tickNonPassenger(Entity entity) {
@@ -35,7 +35,7 @@ index 189c82112..37325acdd 100644
          entity.setOldPosAndRot();
          GameProfilerFiller gameprofilerfiller = this.getProfiler();
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 0cb6f8798..bd84b6fb4 100644
+index 0cda7a69a..02b460070 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -302,6 +302,12 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
@@ -125,7 +125,7 @@ index 3a25f8858..0d5b9fc03 100644
      public void tick() {
          super.tick();
 diff --git a/src/main/java/net/minecraft/world/entity/EntityLiving.java b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-index 55711380d..a8dc14844 100644
+index 31fb69264..fd5a7fdcf 100644
 --- a/src/main/java/net/minecraft/world/entity/EntityLiving.java
 +++ b/src/main/java/net/minecraft/world/entity/EntityLiving.java
 @@ -268,6 +268,13 @@ public abstract class EntityLiving extends Entity {
@@ -143,10 +143,10 @@ index 55711380d..a8dc14844 100644
      protected EntityLiving(EntityTypes<? extends EntityLiving> entitytypes, World world) {
          super(entitytypes, world);
 diff --git a/src/main/java/net/minecraft/world/entity/item/EntityItem.java b/src/main/java/net/minecraft/world/entity/item/EntityItem.java
-index 67a086e42..2b7b5f8ef 100644
+index a5b0878c5..3080d1590 100644
 --- a/src/main/java/net/minecraft/world/entity/item/EntityItem.java
 +++ b/src/main/java/net/minecraft/world/entity/item/EntityItem.java
-@@ -195,6 +195,28 @@ public class EntityItem extends Entity {
+@@ -193,6 +193,28 @@ public class EntityItem extends Entity {
          }
      }
  

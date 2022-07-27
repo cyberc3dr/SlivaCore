@@ -1,0 +1,37 @@
+From 75a307790d1ab9315298d68848a5a485ccf0b4fd Mon Sep 17 00:00:00 2001
+From: md_5 <git@md-5.net>
+Date: Sun, 9 Feb 2014 14:39:01 +1100
+Subject: [PATCH] Add Option to Silence CommandBlock Console
+
+
+diff --git a/src/main/java/net/minecraft/commands/CommandListenerWrapper.java b/src/main/java/net/minecraft/commands/CommandListenerWrapper.java
+index fb3d82a2c..69259db09 100644
+--- a/src/main/java/net/minecraft/commands/CommandListenerWrapper.java
++++ b/src/main/java/net/minecraft/commands/CommandListenerWrapper.java
+@@ -323,7 +323,7 @@ public class CommandListenerWrapper implements ICompletionProvider {
+             }
+         }
+ 
+-        if (this.source != this.server && this.server.getGameRules().getBoolean(GameRules.RULE_LOGADMINCOMMANDS)) {
++        if (this.source != this.server && this.server.getGameRules().getBoolean(GameRules.RULE_LOGADMINCOMMANDS) && !org.spigotmc.SpigotConfig.silentCommandBlocks) { // Spigot
+             this.server.sendSystemMessage(ichatmutablecomponent);
+         }
+ 
+diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
+index 5f0b27ad2..6ed26b5de 100644
+--- a/src/main/java/org/spigotmc/SpigotConfig.java
++++ b/src/main/java/org/spigotmc/SpigotConfig.java
+@@ -294,4 +294,10 @@ public class SpigotConfig
+                 "/skill"
+         } ) );
+     }
++
++    public static boolean silentCommandBlocks;
++    private static void silentCommandBlocks()
++    {
++        silentCommandBlocks = getBoolean( "commands.silent-commandblock-console", false );
++    }
+ }
+-- 
+2.34.1
+

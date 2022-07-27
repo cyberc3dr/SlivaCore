@@ -1,11 +1,11 @@
-From f834087679cb1c0a496372409d8c5f50ebd611dd Mon Sep 17 00:00:00 2001
+From 4178b0748bf8bbf67735ab79ca55aaa8947f9b28 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Tue, 5 Aug 2014 17:20:19 +0100
 Subject: [PATCH] Watchdog Thread.
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 45d3e3db3..fdb9aad3e 100644
+index 2a58b3a34..c67f60b5f 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -1013,6 +1013,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
@@ -25,7 +25,7 @@ index 45d3e3db3..fdb9aad3e 100644
          org.spigotmc.CustomTimingsHandler.tick(); // Spigot
      }
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 19f69098b..65d4053e4 100644
+index c513b02eb..a6d388db4 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 @@ -265,7 +265,7 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer

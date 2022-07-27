@@ -1,0 +1,78 @@
+From 2db94c5ed55e2bc6c00c5ec9e1b3ba11af8bb30c Mon Sep 17 00:00:00 2001
+From: md_5 <md_5@live.com.au>
+Date: Sat, 8 Feb 2014 08:13:40 +0000
+Subject: [PATCH] Spam Filter Exclusions
+
+
+diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
+index 8a9d92577..667f2187d 100644
+--- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
++++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
+@@ -1882,7 +1882,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+             if (this.tryHandleChat(serverboundchatcommandpacket.command(), serverboundchatcommandpacket.timeStamp(), serverboundchatcommandpacket.lastSeenMessages())) {
+                 this.server.submit(() -> {
+                     this.performChatCommand(serverboundchatcommandpacket);
+-                    this.detectRateSpam();
++                    this.detectRateSpam("/" + serverboundchatcommandpacket.command()); // Spigot
+                 });
+             }
+ 
+@@ -2178,7 +2178,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+         }
+         // this.server.getPlayerList().broadcastChatMessage(playerchatmessage, this.player, ChatMessageType.bind(ChatMessageType.CHAT, (Entity) this.player));
+         // CraftBukkit end
+-        this.detectRateSpam();
++        this.detectRateSpam(s); // Spigot
+     }
+ 
+     private boolean verifyChatMessage(PlayerChatMessage playerchatmessage) {
+@@ -2196,8 +2196,19 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+         }
+     }
+ 
+-    private void detectRateSpam() {
++    // Spigot start - spam exclusions
++    private void detectRateSpam(String s) {
+         // CraftBukkit start - replaced with thread safe throttle
++        boolean counted = true;
++        for ( String exclude : org.spigotmc.SpigotConfig.spamExclusions )
++        {
++            if ( exclude != null && s.startsWith( exclude ) )
++            {
++                counted = false;
++                break;
++            }
++        }
++        // Spigot end
+         // this.chatSpamTickCount += 20;
+         if (this.chatSpamTickCount.addAndGet(20) > 200 && !this.server.getPlayerList().isOp(this.player.getGameProfile())) {
+             // CraftBukkit end
+diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
+index 245a9e5e9..5f0b27ad2 100644
+--- a/src/main/java/org/spigotmc/SpigotConfig.java
++++ b/src/main/java/org/spigotmc/SpigotConfig.java
+@@ -6,6 +6,7 @@ import java.io.IOException;
+ import java.lang.reflect.InvocationTargetException;
+ import java.lang.reflect.Method;
+ import java.lang.reflect.Modifier;
++import java.util.Arrays;
+ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
+@@ -284,4 +285,13 @@ public class SpigotConfig
+     {
+         playerShuffle = getInt( "settings.player-shuffle", 0 );
+     }
++
++    public static List<String> spamExclusions;
++    private static void spamExclusions()
++    {
++        spamExclusions = getList( "commands.spam-exclusions", Arrays.asList( new String[]
++        {
++                "/skill"
++        } ) );
++    }
+ }
+-- 
+2.34.1
+

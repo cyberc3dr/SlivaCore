@@ -1,0 +1,42 @@
+From 22c6e8b2c99fd6b7b76f44c10ad226eecc854b00 Mon Sep 17 00:00:00 2001
+From: md_5 <git@md-5.net>
+Date: Sun, 2 Feb 2014 16:55:46 +0000
+Subject: [PATCH] Add Option to Nerf Mobs from Spawners
+
+
+diff --git a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
+index 2a5c24471..de82750c2 100644
+--- a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
++++ b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
+@@ -147,6 +147,12 @@ public abstract class MobSpawnerAbstract {
+                             if (this.nextSpawnData.getEntityToSpawn().size() == 1 && this.nextSpawnData.getEntityToSpawn().contains("id", 8)) {
+                                 ((EntityInsentient) entity).finalizeSpawn(worldserver, worldserver.getCurrentDifficultyAt(entity.blockPosition()), EnumMobSpawn.SPAWNER, (GroupDataEntity) null, (NBTTagCompound) null);
+                             }
++                            // Spigot Start
++                            if ( entityinsentient.level.spigotConfig.nerfSpawnerMobs )
++                            {
++                                entityinsentient.aware = false;
++                            }
++                            // Spigot End
+                         }
+ 
+                         if (!worldserver.tryAddFreshEntityWithPassengers(entity, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.SPAWNER)) { // CraftBukkit
+diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
+index 82ec6ead5..ebca8eda0 100644
+--- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
++++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
+@@ -254,4 +254,11 @@ public class SpigotWorldConfig
+         zombieAggressiveTowardsVillager = getBoolean( "zombie-aggressive-towards-villager", true );
+         log( "Zombie Aggressive Towards Villager: " + zombieAggressiveTowardsVillager );
+     }
++
++    public boolean nerfSpawnerMobs;
++    private void nerfSpawnerMobs()
++    {
++        nerfSpawnerMobs = getBoolean( "nerf-spawner-mobs", false );
++        log( "Nerfing mobs spawned from spawners: " + nerfSpawnerMobs );
++    }
+ }
+-- 
+2.34.1
+

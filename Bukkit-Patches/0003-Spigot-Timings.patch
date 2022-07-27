@@ -1,4 +1,4 @@
-From b4c22da124e6d47d9869adda8b636a7ebcde2ea0 Mon Sep 17 00:00:00 2001
+From cc3e49f02a536a7f0b1565fc2a2b8b9e463273cc Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 2 Jun 2013 10:42:57 +1000
 Subject: [PATCH] Spigot Timings
@@ -245,10 +245,10 @@ index ed4cbce7..516d7fc7 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/plugin/SimplePluginManager.java b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-index 5bec3c94..f5710d53 100644
+index 1fe7249d..a69c5d5c 100644
 --- a/src/main/java/org/bukkit/plugin/SimplePluginManager.java
 +++ b/src/main/java/org/bukkit/plugin/SimplePluginManager.java
-@@ -357,6 +357,7 @@ public final class SimplePluginManager implements PluginManager {
+@@ -358,6 +358,7 @@ public final class SimplePluginManager implements PluginManager {
              }
          }
  

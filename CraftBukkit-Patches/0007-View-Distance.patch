@@ -1,4 +1,4 @@
-From 2b9d6e73010170807e2e89116b2caa71a3c8a9bf Mon Sep 17 00:00:00 2001
+From 3787e5aa4bac18c54871f513ba407b700cc86e6c Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sat, 23 Mar 2013 09:52:41 +1100
 Subject: [PATCH] View Distance
@@ -6,10 +6,10 @@ Subject: [PATCH] View Distance
 This commit allows the user to select per world view distances.
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 92e80b529..669efebaf 100644
+index 0f29eb29f..cc98fa0eb 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -271,8 +271,8 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -272,8 +272,8 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
          this.entityManager = new PersistentEntitySectionManager<>(Entity.class, new WorldServer.a(), entitypersistentstorage);
          StructureTemplateManager structuretemplatemanager = minecraftserver.getStructureManager();
@@ -21,10 +21,10 @@ index 92e80b529..669efebaf 100644
  
          Objects.requireNonNull(this.entityManager);
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 1f759e818..70f53a49e 100644
+index 39d84abcf..4165c93a0 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -226,7 +226,8 @@ public abstract class PlayerList {
+@@ -228,7 +228,8 @@ public abstract class PlayerList {
          boolean flag = gamerules.getBoolean(GameRules.RULE_DO_IMMEDIATE_RESPAWN);
          boolean flag1 = gamerules.getBoolean(GameRules.RULE_REDUCEDDEBUGINFO);
  
@@ -34,7 +34,7 @@ index 1f759e818..70f53a49e 100644
          entityplayer.getBukkitEntity().sendSupportedChannels(); // CraftBukkit
          playerconnection.send(new PacketPlayOutCustomPayload(PacketPlayOutCustomPayload.BRAND, (new PacketDataSerializer(Unpooled.buffer())).writeUtf(this.getServer().getServerModName())));
          playerconnection.send(new PacketPlayOutServerDifficulty(worlddata.getDifficulty(), worlddata.isDifficultyLocked()));
-@@ -747,6 +748,8 @@ public abstract class PlayerList {
+@@ -749,6 +750,8 @@ public abstract class PlayerList {
          // CraftBukkit start
          WorldData worlddata = worldserver1.getLevelData();
          entityplayer1.connection.send(new PacketPlayOutRespawn(worldserver1.dimensionTypeId(), worldserver1.dimension(), BiomeManager.obfuscateSeed(worldserver1.getSeed()), entityplayer1.gameMode.getGameModeForPlayer(), entityplayer1.gameMode.getPreviousGameModeForPlayer(), worldserver1.isDebug(), worldserver1.isFlat(), flag, entityplayer1.getLastDeathLocation()));

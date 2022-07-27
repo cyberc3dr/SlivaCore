@@ -1,4 +1,4 @@
-From d02b45e58b4ec61352f310553f29a969e1218d6a Mon Sep 17 00:00:00 2001
+From cef9942495f33e3ac12ef6a900f466fd479ce81c Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 19:21:58 +1000
 Subject: [PATCH] Configurable Messages
@@ -21,10 +21,10 @@ index fa7cf0ea9..190fb0006 100644
  
                      this.connection.send(new PacketLoginOutDisconnect(ichatmutablecomponent));
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 70f53a49e..b02d3f835 100644
+index 4165c93a0..fa218ef37 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -583,7 +583,7 @@ public abstract class PlayerList {
+@@ -585,7 +585,7 @@ public abstract class PlayerList {
              event.disallow(PlayerLoginEvent.Result.KICK_BANNED, CraftChatMessage.fromComponent(ichatmutablecomponent));
          } else if (!this.isWhiteListed(gameprofile)) {
              ichatmutablecomponent = IChatBaseComponent.translatable("multiplayer.disconnect.not_whitelisted");
@@ -33,7 +33,7 @@ index 70f53a49e..b02d3f835 100644
          } else if (getIpBans().isBanned(socketaddress) && !getIpBans().get(socketaddress).hasExpired()) {
              IpBanEntry ipbanentry = this.ipBans.get(socketaddress);
  
-@@ -597,7 +597,7 @@ public abstract class PlayerList {
+@@ -599,7 +599,7 @@ public abstract class PlayerList {
          } else {
              // return this.players.size() >= this.maxPlayers && !this.canBypassPlayerLimit(gameprofile) ? IChatBaseComponent.translatable("multiplayer.disconnect.server_full") : null;
              if (this.players.size() >= this.maxPlayers && !this.canBypassPlayerLimit(gameprofile)) {
