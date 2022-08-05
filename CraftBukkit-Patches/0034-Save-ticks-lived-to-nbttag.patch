@@ -1,4 +1,4 @@
-From d7bd16573fad3f6cd7f70c01ce6711ac413ff307 Mon Sep 17 00:00:00 2001
+From 5d89ff4ed6fc3286dcc25c936c1c989de87e7c7a Mon Sep 17 00:00:00 2001
 From: DerFlash <bte@freenet.de>
 Date: Tue, 9 Jul 2013 00:11:12 +0200
 Subject: [PATCH] Save ticks lived to nbttag

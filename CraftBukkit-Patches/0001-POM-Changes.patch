@@ -1,4 +1,4 @@
-From 87cd74ee113094e7979b735621fcf22b8403706a Mon Sep 17 00:00:00 2001
+From 4970566d2cb715fc73db55f232afa2bf6049bedd Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Tue, 2 Jul 2013 13:07:39 +1000
 Subject: [PATCH] POM Changes
@@ -34,7 +34,7 @@ index 63914723e..01319e4f7 100644
          <!-- See http://checkstyle.sourceforge.net/config_imports.html -->
          <module name="AvoidStarImport">
 diff --git a/pom.xml b/pom.xml
-index eeba2f3f1..a0701510d 100644
+index eb0e934f0..82a2b163a 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,13 +1,20 @@
@@ -46,7 +46,7 @@ index eeba2f3f1..a0701510d 100644
 +    <groupId>org.spigotmc</groupId>
 +    <artifactId>spigot</artifactId>
      <packaging>jar</packaging>
-     <version>1.19.1-R0.1-SNAPSHOT</version>
+     <version>1.19.2-R0.1-SNAPSHOT</version>
 -    <name>CraftBukkit</name>
 +    <name>Spigot</name>
      <url>https://www.spigotmc.org/</url>

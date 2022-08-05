@@ -1,11 +1,11 @@
-From 569d5266a67a6c673fe179346fca675950c6b483 Mon Sep 17 00:00:00 2001
+From 535eb4b10e836b7122c12b4655f39723160ab0d2 Mon Sep 17 00:00:00 2001
 From: Jonas Konrad <me@yawk.at>
 Date: Tue, 22 Jul 2014 15:59:01 +0200
 Subject: [PATCH] Make "moved too quickly" limit configurable
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index ec7a29fff..5801a326d 100644
+index 5ee696bfa..38ae6fa99 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
 @@ -593,7 +593,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL

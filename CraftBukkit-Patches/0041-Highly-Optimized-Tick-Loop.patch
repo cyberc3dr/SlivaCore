@@ -1,11 +1,11 @@
-From 129ddb4f6195a4aa8a2dc409c46bee19108a8b7a Mon Sep 17 00:00:00 2001
+From 413878f594290203f7e6a37fdfe14b33b5a20647 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 26 Jan 2017 21:50:51 +0000
 Subject: [PATCH] Highly Optimized Tick Loop
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index a29476e76..47f2aa339 100644
+index 719f8821d..df512ac4b 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -280,6 +280,12 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas

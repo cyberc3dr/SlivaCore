@@ -1,4 +1,4 @@
-From 90437280b89d6097be5de1b977db3fa3b297c261 Mon Sep 17 00:00:00 2001
+From 369c3c08a538658ddb58aceeaaba5e5d1039fe68 Mon Sep 17 00:00:00 2001
 From: David <dmck2b@gmail.com>
 Date: Mon, 21 Apr 2014 12:43:08 +0100
 Subject: [PATCH] Prevent NoClassDefError crash and notify on crash

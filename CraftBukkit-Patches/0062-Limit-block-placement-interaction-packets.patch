@@ -1,4 +1,4 @@
-From be96a6c187fddd79e51fd897c48065094f5db153 Mon Sep 17 00:00:00 2001
+From c01202876e27854e5fceb71fd4056f7306f124b9 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Sun, 29 Jun 2014 21:10:34 +0100
 Subject: [PATCH] Limit block placement/interaction packets
@@ -45,7 +45,7 @@ index 675909dc6..44ed8f10d 100644
          this.blockHit = packetdataserializer.readBlockHitResult();
          this.sequence = packetdataserializer.readVarInt();
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 667f2187d..63e4009f6 100644
+index 4350a7b78..bd47298ec 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
 @@ -1597,10 +1597,30 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL

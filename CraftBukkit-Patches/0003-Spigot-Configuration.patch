@@ -1,4 +1,4 @@
-From 0f225e22d0ad78b5a509963e9ba818abbf09bbbc Mon Sep 17 00:00:00 2001
+From 72aeeae82afbe1b275a3c7a8732515d38efd22b0 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 7 Jul 2013 09:32:53 +1000
 Subject: [PATCH] Spigot Configuration
@@ -77,7 +77,7 @@ index 8a8a01643..591b831a1 100644
          ignoreVanillaPermissions = commandsConfiguration.getBoolean("ignore-vanilla-permissions");
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/Main.java b/src/main/java/org/bukkit/craftbukkit/Main.java
-index 18e4793ae..7f63dd395 100644
+index c81d1db03..7c35bbd6c 100644
 --- a/src/main/java/org/bukkit/craftbukkit/Main.java
 +++ b/src/main/java/org/bukkit/craftbukkit/Main.java
 @@ -121,6 +121,14 @@ public class Main {

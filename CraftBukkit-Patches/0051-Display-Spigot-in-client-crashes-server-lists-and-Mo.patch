@@ -1,4 +1,4 @@
-From a6687370bef048d02707c2db6fd194d45e4ac110 Mon Sep 17 00:00:00 2001
+From 3daa2015df51be261b9f47c8efe0403b64001305 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thethinkofdeath@gmail.com>
 Date: Fri, 11 Apr 2014 11:16:34 +0100
 Subject: [PATCH] Display 'Spigot' in client crashes, server lists and Mojang
@@ -6,7 +6,7 @@ Subject: [PATCH] Display 'Spigot' in client crashes, server lists and Mojang
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 47f2aa339..1c3f21097 100644
+index df512ac4b..a82d7d68b 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -1379,7 +1379,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas

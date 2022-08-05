@@ -1,4 +1,4 @@
-From f14adb7bd135c2a5ef4fe1300fe71246454b4ee2 Mon Sep 17 00:00:00 2001
+From 5cb64d52fff7fd5a09199c4731143a4f34d2fa4a Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 1 Dec 2013 18:18:41 +1100
 Subject: [PATCH] BungeeCord Support
@@ -94,10 +94,10 @@ index 190fb0006..a107fa07d 100644
                  }
                  break;
 diff --git a/src/main/java/net/minecraft/server/network/LoginListener.java b/src/main/java/net/minecraft/server/network/LoginListener.java
-index 64299c64c..29b2a4dda 100644
+index e5b0edcf1..f2e256d89 100644
 --- a/src/main/java/net/minecraft/server/network/LoginListener.java
 +++ b/src/main/java/net/minecraft/server/network/LoginListener.java
-@@ -125,7 +125,25 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
+@@ -121,7 +121,25 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
      // Spigot start
      public void initUUID()
      {
@@ -125,7 +125,7 @@ index 64299c64c..29b2a4dda 100644
  
      public void handleAcceptedLogin() {
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 8f410adff..8a9d92577 100644
+index e04c32a69..4472066f9 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
 @@ -2044,10 +2044,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
@@ -187,10 +187,10 @@ index e61a5650e..3cb6b718f 100644
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index f0a397aea..49b2dd9f1 100644
+index db02d6c94..ef985d648 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1908,6 +1908,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1907,6 +1907,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
      private final Player.Spigot spigot = new Player.Spigot()
      {
  
