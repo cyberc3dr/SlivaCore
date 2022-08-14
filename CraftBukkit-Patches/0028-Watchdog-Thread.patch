@@ -1,11 +1,11 @@
-From 0252f6d92aa33ed4226d7b2b8ddd735216c7e9e9 Mon Sep 17 00:00:00 2001
+From 0cbce345aba89fd9f71f0085f68a24e189d8d9d4 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Tue, 5 Aug 2014 17:20:19 +0100
 Subject: [PATCH] Watchdog Thread.
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 94d878818..12b5bf538 100644
+index ef172b754..eafde3c66 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
 @@ -1013,6 +1013,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
@@ -38,10 +38,10 @@ index c513b02eb..a6d388db4 100644
  
                  thread1.setUncaughtExceptionHandler(new ThreadNamedUncaughtExceptionHandler(DedicatedServer.LOGGER));
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index c5677eeb2..e61a5650e 100644
+index 68dc1de16..c6402dcea 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -1901,7 +1901,7 @@ public final class CraftServer implements Server {
+@@ -1903,7 +1903,7 @@ public final class CraftServer implements Server {
  
      @Override
      public boolean isPrimaryThread() {
@@ -50,7 +50,7 @@ index c5677eeb2..e61a5650e 100644
      }
  
      @Override
-@@ -2294,6 +2294,11 @@ public final class CraftServer implements Server {
+@@ -2301,6 +2301,11 @@ public final class CraftServer implements Server {
          {
              return org.spigotmc.SpigotConfig.config;
          }

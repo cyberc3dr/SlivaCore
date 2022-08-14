@@ -1,11 +1,11 @@
-From 83f4cddbaf37477dcf9c7dff558f1c43b073a526 Mon Sep 17 00:00:00 2001
+From aac7dc74a2399191bfb45eba75c5b82694e6dddb Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 8 Aug 2014 19:57:03 +1000
 Subject: [PATCH] Plug WorldMap Memory Leak
 
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index dcb145102..9499cdc66 100644
+index dcb145102..ce914a7b8 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
 @@ -2008,6 +2008,29 @@ public class WorldServer extends World implements GeneratorAccessSeed {
@@ -15,7 +15,7 @@ index dcb145102..9499cdc66 100644
 +            // Spigot start
 +            if ( entity instanceof EntityHuman )
 +            {
-+                getServer().levels.values().stream().map( WorldServer::getDataStorage ).forEach( (worldData) ->
++                com.google.common.collect.Streams.stream( getServer().getAllLevels() ).map( WorldServer::getDataStorage ).forEach( (worldData) ->
 +                {
 +                    for (Object o : worldData.cache.values() )
 +                    {

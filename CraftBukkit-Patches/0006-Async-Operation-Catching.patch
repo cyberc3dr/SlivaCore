@@ -1,4 +1,4 @@
-From 2fe0abb313fc7642c76146858c079119b26d7b0e Mon Sep 17 00:00:00 2001
+From 6dfe1a16fc10d96c64c1af2fe13d87e404497358 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Tue, 25 Mar 2014 16:10:01 +1100
 Subject: [PATCH] Async Operation Catching
@@ -122,10 +122,10 @@ index d9c45c168..8f7ddff35 100644
              world.removeBlockEntity(blockposition);
          }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 591b831a1..aab68f031 100644
+index 574ff033a..3cc4ec186 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -806,6 +806,7 @@ public final class CraftServer implements Server {
+@@ -808,6 +808,7 @@ public final class CraftServer implements Server {
      public boolean dispatchCommand(CommandSender sender, String commandLine) {
          Validate.notNull(sender, "Sender cannot be null");
          Validate.notNull(commandLine, "CommandLine cannot be null");
@@ -210,7 +210,7 @@ index 858be927f..588fca8bf 100644
  
          getHandle().connection.disconnect(message == null ? "" : message);
 diff --git a/src/main/java/org/bukkit/craftbukkit/scoreboard/CraftScoreboardManager.java b/src/main/java/org/bukkit/craftbukkit/scoreboard/CraftScoreboardManager.java
-index c63d76306..227b22d7d 100644
+index 659c1b272..329b2fbe0 100644
 --- a/src/main/java/org/bukkit/craftbukkit/scoreboard/CraftScoreboardManager.java
 +++ b/src/main/java/org/bukkit/craftbukkit/scoreboard/CraftScoreboardManager.java
 @@ -41,6 +41,7 @@ public final class CraftScoreboardManager implements ScoreboardManager {
