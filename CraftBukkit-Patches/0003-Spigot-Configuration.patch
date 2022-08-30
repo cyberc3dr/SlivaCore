@@ -1,4 +1,4 @@
-From 99aea270b426bfe72da1ee0f0d16025a6b112b25 Mon Sep 17 00:00:00 2001
+From c999af88dcee33b55d09950ca95f2109c4a214fa Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 7 Jul 2013 09:32:53 +1000
 Subject: [PATCH] Spigot Configuration
@@ -77,13 +77,13 @@ index 947c77603..574ff033a 100644
          ignoreVanillaPermissions = commandsConfiguration.getBoolean("ignore-vanilla-permissions");
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/Main.java b/src/main/java/org/bukkit/craftbukkit/Main.java
-index c81d1db03..7c35bbd6c 100644
+index b899da786..4b142ff88 100644
 --- a/src/main/java/org/bukkit/craftbukkit/Main.java
 +++ b/src/main/java/org/bukkit/craftbukkit/Main.java
-@@ -121,6 +121,14 @@ public class Main {
-                 acceptsAll(asList("v", "version"), "Show the CraftBukkit Version");
- 
+@@ -123,6 +123,14 @@ public class Main {
                  acceptsAll(asList("demo"), "Demo mode");
+ 
+                 acceptsAll(asList("initSettings"), "Only create configuration files and then exit"); // SPIGOT-5761: Add initSettings option
 +
 +                // Spigot Start
 +                acceptsAll(asList("S", "spigot-settings"), "File for spigot settings")

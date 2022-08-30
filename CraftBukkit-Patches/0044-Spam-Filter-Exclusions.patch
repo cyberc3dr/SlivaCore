@@ -1,14 +1,14 @@
-From cac9e64c5cb1a10f964cc1b11c21ddab000d7f7a Mon Sep 17 00:00:00 2001
+From 4cf4a6dfd39ef452e39502ff853bc34a06cdfa4d Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sat, 8 Feb 2014 08:13:40 +0000
 Subject: [PATCH] Spam Filter Exclusions
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 4472066f9..4350a7b78 100644
+index cba39fb48..16f010ed4 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -1882,7 +1882,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -1886,7 +1886,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
              if (this.tryHandleChat(serverboundchatcommandpacket.command(), serverboundchatcommandpacket.timeStamp(), serverboundchatcommandpacket.lastSeenMessages())) {
                  this.server.submit(() -> {
                      this.performChatCommand(serverboundchatcommandpacket);
@@ -17,7 +17,7 @@ index 4472066f9..4350a7b78 100644
                  });
              }
  
-@@ -2178,7 +2178,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2182,7 +2182,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
          }
          // this.server.getPlayerList().broadcastChatMessage(playerchatmessage, this.player, ChatMessageType.bind(ChatMessageType.CHAT, (Entity) this.player));
          // CraftBukkit end
@@ -26,7 +26,7 @@ index 4472066f9..4350a7b78 100644
      }
  
      private boolean verifyChatMessage(PlayerChatMessage playerchatmessage) {
-@@ -2204,8 +2204,19 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2208,8 +2208,19 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
          return true;
      }
  

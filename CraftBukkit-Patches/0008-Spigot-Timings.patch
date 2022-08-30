@@ -1,4 +1,4 @@
-From efef2e0c9783783f7bf641b2055fa9417a2c2099 Mon Sep 17 00:00:00 2001
+From 1ca4c017a2e37f50cdcdc1a063f6ec5c5945904f Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 10 Jan 2013 00:18:11 -0500
 Subject: [PATCH] Spigot Timings
@@ -278,10 +278,10 @@ index cc98fa0eb..8ee75fb84 100644
      }
  
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 680df2085..28a3bbee6 100644
+index a5a0981b2..834551a4d 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -338,6 +338,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -342,6 +342,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
      @Override
      public void tick() {
@@ -289,7 +289,7 @@ index 680df2085..28a3bbee6 100644
          if (this.ackBlockChangesUpTo > -1) {
              this.send(new ClientboundBlockChangedAckPacket(this.ackBlockChangesUpTo));
              this.ackBlockChangesUpTo = -1;
-@@ -418,6 +419,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -422,6 +423,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
              this.player.resetLastActionTime(); // CraftBukkit - SPIGOT-854
              this.disconnect(IChatBaseComponent.translatable("multiplayer.disconnect.idling"));
          }
@@ -297,7 +297,7 @@ index 680df2085..28a3bbee6 100644
  
          this.chatPreviewThrottler.tick();
      }
-@@ -2100,6 +2102,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2104,6 +2106,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
      }
  
      private void handleCommand(String s) {
@@ -305,7 +305,7 @@ index 680df2085..28a3bbee6 100644
          this.LOGGER.info(this.player.getScoreboardName() + " issued server command: " + s);
  
          CraftPlayer player = this.getCraftPlayer();
-@@ -2108,6 +2111,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2112,6 +2115,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
          this.cserver.getPluginManager().callEvent(event);
  
          if (event.isCancelled()) {
@@ -313,7 +313,7 @@ index 680df2085..28a3bbee6 100644
              return;
          }
  
-@@ -2119,6 +2123,8 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2123,6 +2127,8 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
              player.sendMessage(org.bukkit.ChatColor.RED + "An internal error occurred while attempting to perform this command");
              java.util.logging.Logger.getLogger(PlayerConnection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
              return;

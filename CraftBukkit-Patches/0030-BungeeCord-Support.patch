@@ -1,4 +1,4 @@
-From 9ac35a8ca119389e4b8acb1c64ec17a9c631317d Mon Sep 17 00:00:00 2001
+From b7963d737982d3344ecc235af4c255feb4bd882e Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 1 Dec 2013 18:18:41 +1100
 Subject: [PATCH] BungeeCord Support
@@ -125,10 +125,10 @@ index e5b0edcf1..f2e256d89 100644
  
      public void handleAcceptedLogin() {
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index e04c32a69..4472066f9 100644
+index 7bf6a70b6..cba39fb48 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -2044,10 +2044,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2048,10 +2048,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
                          String message = String.format(queueEvent.getFormat(), queueEvent.getPlayer().getDisplayName(), queueEvent.getMessage());
                          if (((LazyPlayerSet) queueEvent.getRecipients()).isLazy()) {
@@ -141,7 +141,7 @@ index e04c32a69..4472066f9 100644
                                  PlayerConnection.this.server.getPlayerList().broadcastChatMessage(original, PlayerConnection.this.player, ChatMessageType.bind(ChatMessageType.RAW, (Entity) PlayerConnection.this.player));
                                  return null;
                              }
-@@ -2089,10 +2089,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2093,10 +2093,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
                  s = String.format(event.getFormat(), event.getPlayer().getDisplayName(), event.getMessage());
                  if (((LazyPlayerSet) event.getRecipients()).isLazy()) {

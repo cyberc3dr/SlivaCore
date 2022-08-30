@@ -1,14 +1,14 @@
-From 464db1c46aae734aa4774ebbfec88e8947dbf2ab Mon Sep 17 00:00:00 2001
+From 218bb0717f2c81a3d4f75ca3d2bd8e02df64e6ba Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 25 Feb 2019 19:26:56 +1100
 Subject: [PATCH] Add creative mode NBT permissions
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index bc880f3cc..83314146d 100644
+index adff01084..a4a83efa6 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -2992,7 +2992,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2995,7 +2995,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
              ItemStack itemstack = packetplayinsetcreativeslot.getItem();
              NBTTagCompound nbttagcompound = ItemBlock.getBlockEntityData(itemstack);
  
