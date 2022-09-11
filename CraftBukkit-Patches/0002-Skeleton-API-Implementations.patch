@@ -1,4 +1,4 @@
-From 191537fa1c2a977e38a048777a16285445e5e461 Mon Sep 17 00:00:00 2001
+From d4af481b892c372d6ddc4f69629ec56538759adb Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 2 Jun 2013 15:10:56 +1000
 Subject: [PATCH] Skeleton API Implementations
@@ -144,10 +144,10 @@ index a7cda388d..858be927f 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
-index ca9ea5eb0..4229c88dd 100644
+index 8615d7bcf..967d5ba30 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
-@@ -357,6 +357,7 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
+@@ -349,6 +349,7 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
          if (this.pages != null) {
              meta.pages = new ArrayList<String>(this.pages);
          }
@@ -155,7 +155,7 @@ index ca9ea5eb0..4229c88dd 100644
          return meta;
      }
  
-@@ -430,4 +431,15 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
+@@ -422,4 +423,15 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
  
          return builder;
      }

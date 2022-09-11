@@ -1,4 +1,4 @@
-From 7df88643bf89dd8244a6e2c3755e9642e67774b8 Mon Sep 17 00:00:00 2001
+From b7c56d82900c0f89794117975d0cbcff8fabd286 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Wed, 2 Jul 2014 23:35:51 +0100
 Subject: [PATCH] Better item validation
@@ -20,12 +20,12 @@ index e06014976..91bbb9ff4 100644
              }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
-index 4229c88dd..d14b5c38d 100644
+index 967d5ba30..82c1487db 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
-@@ -22,6 +22,10 @@ import org.bukkit.craftbukkit.util.CraftMagicNumbers;
+@@ -20,6 +20,10 @@ import org.bukkit.craftbukkit.util.CraftChatMessage;
+ import org.bukkit.craftbukkit.util.CraftMagicNumbers;
  import org.bukkit.inventory.meta.BookMeta;
- import org.bukkit.inventory.meta.BookMeta.Generation;
  
 +// Spigot start
 +import static org.spigotmc.ValidateUtils.*;
@@ -34,7 +34,7 @@ index 4229c88dd..d14b5c38d 100644
  @DelegateDeserialization(SerializableMeta.class)
  public class CraftMetaBook extends CraftMetaItem implements BookMeta {
      static final ItemMetaKey BOOK_TITLE = new ItemMetaKey("title");
-@@ -82,11 +86,11 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
+@@ -80,11 +84,11 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
          super(tag);
  
          if (tag.contains(BOOK_TITLE.NBT)) {
@@ -48,7 +48,7 @@ index 4229c88dd..d14b5c38d 100644
          }
  
          if (tag.contains(RESOLVED.NBT)) {
-@@ -114,7 +118,7 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
+@@ -112,7 +116,7 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
                  } else {
                      page = validatePage(page);
                  }

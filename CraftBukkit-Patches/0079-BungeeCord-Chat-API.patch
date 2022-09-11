@@ -1,4 +1,4 @@
-From dd8a15766cbb4b207028e1874b9c9e09005b20bc Mon Sep 17 00:00:00 2001
+From a8c81161e0334d82e5f4b0f814b0e9cf71633847 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sat, 13 Dec 2014 03:06:05 +0100
 Subject: [PATCH] BungeeCord Chat API
@@ -206,10 +206,10 @@ index a686aa63a..60dc91231 100644
  
      public Player.Spigot spigot()
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
-index d14b5c38d..93d2ce01d 100644
+index 82c1487db..ea96eab4e 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaBook.java
-@@ -24,6 +24,9 @@ import org.bukkit.inventory.meta.BookMeta.Generation;
+@@ -22,6 +22,9 @@ import org.bukkit.inventory.meta.BookMeta;
  
  // Spigot start
  import static org.spigotmc.ValidateUtils.*;
@@ -219,7 +219,7 @@ index d14b5c38d..93d2ce01d 100644
  // Spigot end
  
  @DelegateDeserialization(SerializableMeta.class)
-@@ -439,6 +442,94 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
+@@ -431,6 +434,94 @@ public class CraftMetaBook extends CraftMetaItem implements BookMeta {
      // Spigot start
      private BookMeta.Spigot spigot = new SpigotMeta();
      private class SpigotMeta extends BookMeta.Spigot {
