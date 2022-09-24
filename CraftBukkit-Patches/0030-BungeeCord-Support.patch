@@ -1,4 +1,4 @@
-From b7963d737982d3344ecc235af4c255feb4bd882e Mon Sep 17 00:00:00 2001
+From 17d1a67586cb4954b6e20cec59be15fbc4249f14 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 1 Dec 2013 18:18:41 +1100
 Subject: [PATCH] BungeeCord Support
@@ -125,10 +125,10 @@ index e5b0edcf1..f2e256d89 100644
  
      public void handleAcceptedLogin() {
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index 7bf6a70b6..cba39fb48 100644
+index 919fecf3a..8a1225af5 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -2048,10 +2048,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2053,10 +2053,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
                          String message = String.format(queueEvent.getFormat(), queueEvent.getPlayer().getDisplayName(), queueEvent.getMessage());
                          if (((LazyPlayerSet) queueEvent.getRecipients()).isLazy()) {
@@ -141,7 +141,7 @@ index 7bf6a70b6..cba39fb48 100644
                                  PlayerConnection.this.server.getPlayerList().broadcastChatMessage(original, PlayerConnection.this.player, ChatMessageType.bind(ChatMessageType.RAW, (Entity) PlayerConnection.this.player));
                                  return null;
                              }
-@@ -2093,10 +2093,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -2098,10 +2098,10 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
  
                  s = String.format(event.getFormat(), event.getPlayer().getDisplayName(), event.getMessage());
                  if (((LazyPlayerSet) event.getRecipients()).isLazy()) {
@@ -187,10 +187,10 @@ index c6402dcea..226209c78 100644
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index db02d6c94..ef985d648 100644
+index e5eeb9bbf..7022b27b3 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1907,6 +1907,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1952,6 +1952,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
      private final Player.Spigot spigot = new Player.Spigot()
      {
  

@@ -1,4 +1,4 @@
-From d4af481b892c372d6ddc4f69629ec56538759adb Mon Sep 17 00:00:00 2001
+From e1cfc555efa3bd1a81eaf6b91e74b9678c20da94 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 2 Jun 2013 15:10:56 +1000
 Subject: [PATCH] Skeleton API Implementations
@@ -84,10 +84,10 @@ index 7fa2588b8..e0acbada8 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
-index 4606c8d43..22c034c87 100644
+index 6d51dd2da..4c6d8d7a6 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
-@@ -1096,4 +1096,15 @@ public abstract class CraftEntity implements org.bukkit.entity.Entity {
+@@ -1114,4 +1114,15 @@ public abstract class CraftEntity implements org.bukkit.entity.Entity {
          }
          return perm;
      }
@@ -124,10 +124,10 @@ index 9ab9f0a31..e63833dcd 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index a7cda388d..858be927f 100644
+index d7e408cd2..d12e254dd 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1901,4 +1901,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1946,4 +1946,15 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
      public boolean isAllowingServerListings() {
          return getHandle().allowsListing();
      }

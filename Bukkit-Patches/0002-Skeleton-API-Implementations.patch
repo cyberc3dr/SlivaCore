@@ -1,4 +1,4 @@
-From 18c51757e535f0c841cd2bf479da16073f6440aa Mon Sep 17 00:00:00 2001
+From b8db3c20285578fd20ead2e08e2fa48e4215bdc4 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 15 May 2017 15:16:15 +1000
 Subject: [PATCH] Skeleton API Implementations
@@ -37,7 +37,7 @@ index b1ed8a51..24d6a018 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index a2774163..4a371ea3 100644
+index aa67bd2e..5d2a529d 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
 @@ -2649,6 +2649,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
@@ -75,10 +75,10 @@ index a7a2587b..4b6b9540 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/entity/Entity.java b/src/main/java/org/bukkit/entity/Entity.java
-index 046cf816..922d33ff 100644
+index 41866422..259d878d 100644
 --- a/src/main/java/org/bukkit/entity/Entity.java
 +++ b/src/main/java/org/bukkit/entity/Entity.java
-@@ -646,4 +646,14 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
+@@ -673,4 +673,14 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
       */
      @NotNull
      SpawnCategory getSpawnCategory();
@@ -120,10 +120,10 @@ index 76aad05f..4d308c5a 100644
 +    // Spigot end
  }
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index d86c5320..260107b5 100644
+index 14ca6478..695ee3f0 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -1577,4 +1577,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -1601,4 +1601,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       * @return whether the player allows server listings
       */
      public boolean isAllowingServerListings();
