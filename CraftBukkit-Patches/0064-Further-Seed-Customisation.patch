@@ -1,4 +1,4 @@
-From 6584460e0801e2dc2da4eb8c55c05ee65bc508a8 Mon Sep 17 00:00:00 2001
+From 4c0e016e8c22e042410c82dd18191a53425257db Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
@@ -142,7 +142,7 @@ index e51494d21..c892ce881 100644
  
              while (iterator.hasNext()) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
-index 9818d6271..ed86a0674 100644
+index d58076279..92eb9f055 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
 @@ -221,7 +221,7 @@ public class CraftChunk implements Chunk {
@@ -155,10 +155,10 @@ index 9818d6271..ed86a0674 100644
  
      @Override
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index dd32a4ed9..9b4ab83b7 100644
+index 33d74abad..ad0a04ff9 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -286,4 +286,40 @@ public class SpigotWorldConfig
+@@ -292,4 +292,40 @@ public class SpigotWorldConfig
      {
          endPortalSoundRadius = getInt( "end-portal-sound-radius", 0 );
      }

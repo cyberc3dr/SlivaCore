@@ -1,4 +1,4 @@
-From e7d3e68fde46651fee70c20f2f0a214955f298a5 Mon Sep 17 00:00:00 2001
+From 26a6a68d82ee015ed0ce6aa3cac3875960abefec Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sat, 23 Mar 2013 09:52:41 +1100
 Subject: [PATCH] View Distance
@@ -67,10 +67,10 @@ index 9c10bee1d..6912ece1e 100644
      private final org.bukkit.World.Spigot spigot = new org.bukkit.World.Spigot()
      {
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 8c855cf9b..e5df553a9 100644
+index 5ff085b9e..acaf90301 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -142,4 +142,36 @@ public class SpigotWorldConfig
+@@ -148,4 +148,36 @@ public class SpigotWorldConfig
          expMerge = getDouble("merge-radius.exp", 3.0 );
          log( "Experience Merge Radius: " + expMerge );
      }

@@ -1,4 +1,4 @@
-From 73c4fdd22de052edeb243880da84e5775dc23279 Mon Sep 17 00:00:00 2001
+From 1e618db71e37fed96b345447242f10316d5a4048 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 2 Feb 2014 16:55:46 +0000
 Subject: [PATCH] Add Option to Nerf Mobs from Spawners
@@ -22,10 +22,10 @@ index 2a5c24471..de82750c2 100644
  
                          if (!worldserver.tryAddFreshEntityWithPassengers(entity, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.SPAWNER)) { // CraftBukkit
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 82ec6ead5..ebca8eda0 100644
+index 5ec554072..b7d04ac15 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -254,4 +254,11 @@ public class SpigotWorldConfig
+@@ -260,4 +260,11 @@ public class SpigotWorldConfig
          zombieAggressiveTowardsVillager = getBoolean( "zombie-aggressive-towards-villager", true );
          log( "Zombie Aggressive Towards Villager: " + zombieAggressiveTowardsVillager );
      }

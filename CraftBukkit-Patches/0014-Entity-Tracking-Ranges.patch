@@ -1,4 +1,4 @@
-From 62575be885c5779417abfc2ee4aa7baf209c13f0 Mon Sep 17 00:00:00 2001
+From 7d72d5ec3e37c0ee71f86ba3b5c8efb5579cf9ed Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Wed, 20 Feb 2013 11:58:47 -0500
 Subject: [PATCH] Entity Tracking Ranges
@@ -24,10 +24,10 @@ index 0bf98b0a9..967aa5582 100644
              if (i != 0) {
                  int j = entitytypes.updateInterval();
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 8daa6784a..ee822b2a3 100644
+index 936279b5f..434a7632a 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -205,4 +205,19 @@ public class SpigotWorldConfig
+@@ -211,4 +211,19 @@ public class SpigotWorldConfig
          ignoreSpectatorActivation = getBoolean( "entity-activation-range.ignore-spectators", ignoreSpectatorActivation );
          log( "Entity Activation Range: An " + animalActivationRange + " / Mo " + monsterActivationRange + " / Ra " + raiderActivationRange + " / Mi " + miscActivationRange + " / Tiv " + tickInactiveVillagers + " / Isa " + ignoreSpectatorActivation );
      }

@@ -1,4 +1,4 @@
-From 7ed9026cbc2835163f114db48dc81bdd0833b21c Mon Sep 17 00:00:00 2001
+From 6fe7786d7cbf932dab0fd3f7a63c09e1f8ebce70 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 22 Sep 2013 19:10:53 +1000
 Subject: [PATCH] Item Despawn Rate
@@ -27,10 +27,10 @@ index 70c74e9c4..a5b0878c5 100644
  
      public float getSpin(float f) {
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 55af2f874..9fc17f219 100644
+index 0c0c29efe..e3682d28c 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -181,4 +181,11 @@ public class SpigotWorldConfig
+@@ -187,4 +187,11 @@ public class SpigotWorldConfig
          mobSpawnRange = (byte) getInt( "mob-spawn-range", 6 );
          log( "Mob Spawn Range: " + mobSpawnRange );
      }

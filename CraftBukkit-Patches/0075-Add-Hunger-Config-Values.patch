@@ -1,4 +1,4 @@
-From ac3c0dd144f936978db408dff3e673ec731ea04c Mon Sep 17 00:00:00 2001
+From 659951f1dcb9f1fef9de2aff90e28406fe84063f Mon Sep 17 00:00:00 2001
 From: lazertester <austin.techhead@gmail.com>
 Date: Sun, 17 Aug 2014 19:56:17 +1000
 Subject: [PATCH] Add Hunger Config Values
@@ -83,10 +83,10 @@ index 94531cafc..0dc5a9998 100644
              }
          } else if (this.foodLevel <= 0) {
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 9b4ab83b7..84d81dd21 100644
+index ad0a04ff9..12a75a1c7 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -322,4 +322,30 @@ public class SpigotWorldConfig
+@@ -328,4 +328,30 @@ public class SpigotWorldConfig
          log( "Custom Map Seeds:  Village: " + villageSeed + " Desert: " + desertSeed + " Igloo: " + iglooSeed + " Jungle: " + jungleSeed + " Swamp: " + swampSeed + " Monument: " + monumentSeed
                  + " Ocean: " + oceanSeed + " Shipwreck: " + shipwreckSeed + " End City: " + endCitySeed + " Slime: " + slimeSeed + " Nether: " + netherSeed + " Mansion: " + mansionSeed + " Fossil: " + fossilSeed + " Portal: " + portalSeed );
      }

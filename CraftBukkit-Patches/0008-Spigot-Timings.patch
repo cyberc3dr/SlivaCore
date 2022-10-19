@@ -1,4 +1,4 @@
-From 3bd29c8912fb7c9792a77549e7953392bd94fad4 Mon Sep 17 00:00:00 2001
+From 6f45efe6e439769b06ac58d18fb9a9cd39898a47 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Thu, 10 Jan 2013 00:18:11 -0500
 Subject: [PATCH] Spigot Timings
@@ -359,7 +359,7 @@ index 8e856aacd..3ad91a6b4 100644
  
      protected boolean isHorizontalCollisionMinor(Vec3D vec3d) {
 diff --git a/src/main/java/net/minecraft/world/entity/EntityLiving.java b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-index ede58af96..c3b69f38e 100644
+index ea9ed2cf0..08dba14a4 100644
 --- a/src/main/java/net/minecraft/world/entity/EntityLiving.java
 +++ b/src/main/java/net/minecraft/world/entity/EntityLiving.java
 @@ -142,6 +142,8 @@ import org.bukkit.event.entity.EntityTeleportEvent;
@@ -371,7 +371,7 @@ index ede58af96..c3b69f38e 100644
  public abstract class EntityLiving extends Entity {
  
      private static final Logger LOGGER = LogUtils.getLogger();
-@@ -2809,6 +2811,7 @@ public abstract class EntityLiving extends Entity {
+@@ -2812,6 +2814,7 @@ public abstract class EntityLiving extends Entity {
  
      @Override
      public void tick() {
@@ -379,7 +379,7 @@ index ede58af96..c3b69f38e 100644
          super.tick();
          this.updatingUsingItem();
          this.updateSwimAmount();
-@@ -2850,7 +2853,9 @@ public abstract class EntityLiving extends Entity {
+@@ -2853,7 +2856,9 @@ public abstract class EntityLiving extends Entity {
          }
  
          if (!this.isRemoved()) {
@@ -389,7 +389,7 @@ index ede58af96..c3b69f38e 100644
          }
  
          double d0 = this.getX() - this.xo;
-@@ -2933,6 +2938,7 @@ public abstract class EntityLiving extends Entity {
+@@ -2936,6 +2941,7 @@ public abstract class EntityLiving extends Entity {
              this.setXRot(0.0F);
          }
  
@@ -397,7 +397,7 @@ index ede58af96..c3b69f38e 100644
      }
  
      public void detectEquipmentUpdates() {
-@@ -3114,6 +3120,7 @@ public abstract class EntityLiving extends Entity {
+@@ -3117,6 +3123,7 @@ public abstract class EntityLiving extends Entity {
  
          this.setDeltaMovement(d4, d5, d6);
          this.level.getProfiler().push("ai");
@@ -405,7 +405,7 @@ index ede58af96..c3b69f38e 100644
          if (this.isImmobile()) {
              this.jumping = false;
              this.xxa = 0.0F;
-@@ -3123,6 +3130,7 @@ public abstract class EntityLiving extends Entity {
+@@ -3126,6 +3133,7 @@ public abstract class EntityLiving extends Entity {
              this.serverAiStep();
              this.level.getProfiler().pop();
          }
@@ -413,7 +413,7 @@ index ede58af96..c3b69f38e 100644
  
          this.level.getProfiler().pop();
          this.level.getProfiler().push("jump");
-@@ -3157,7 +3165,9 @@ public abstract class EntityLiving extends Entity {
+@@ -3160,7 +3168,9 @@ public abstract class EntityLiving extends Entity {
          this.updateFallFlying();
          AxisAlignedBB axisalignedbb = this.getBoundingBox();
  
@@ -423,7 +423,7 @@ index ede58af96..c3b69f38e 100644
          this.level.getProfiler().pop();
          this.level.getProfiler().push("freezing");
          boolean flag1 = this.getType().is(TagsEntity.FREEZE_HURTS_EXTRA_TYPES);
-@@ -3186,7 +3196,9 @@ public abstract class EntityLiving extends Entity {
+@@ -3189,7 +3199,9 @@ public abstract class EntityLiving extends Entity {
              this.checkAutoSpinAttack(axisalignedbb, this.getBoundingBox());
          }
  
@@ -434,7 +434,7 @@ index ede58af96..c3b69f38e 100644
          if (!this.level.isClientSide && this.isSensitiveToWater() && this.isInWaterRainOrBubble()) {
              this.hurt(DamageSource.DROWN, 1.0F);
 diff --git a/src/main/java/net/minecraft/world/level/SpawnerCreature.java b/src/main/java/net/minecraft/world/level/SpawnerCreature.java
-index 424d0c589..fd6c35501 100644
+index dbe61b1cf..d2ff4528d 100644
 --- a/src/main/java/net/minecraft/world/level/SpawnerCreature.java
 +++ b/src/main/java/net/minecraft/world/level/SpawnerCreature.java
 @@ -116,6 +116,7 @@ public final class SpawnerCreature {

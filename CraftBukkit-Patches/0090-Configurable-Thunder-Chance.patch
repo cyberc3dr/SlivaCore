@@ -1,11 +1,11 @@
-From 04e2488730bc7e839f0dce5a3304ebe00c9649de Mon Sep 17 00:00:00 2001
+From 3824b0e6cde8636eab2389c6ddde388252ba5303 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 24 Oct 2021 20:29:25 +1100
 Subject: [PATCH] Configurable Thunder Chance
 
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 9499cdc66..41ffe24f8 100644
+index ce914a7b8..53e023792 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
 @@ -492,7 +492,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
@@ -18,10 +18,10 @@ index 9499cdc66..41ffe24f8 100644
              if (this.isRainingAt(blockposition)) {
                  DifficultyDamageScaler difficultydamagescaler = this.getCurrentDifficultyAt(blockposition);
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 24888bc6d..282ae1dc6 100644
+index fafddbef3..57be56742 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -374,4 +374,10 @@ public class SpigotWorldConfig
+@@ -380,4 +380,10 @@ public class SpigotWorldConfig
          entityMaxTickTime = getInt("max-tick-time.entity", 50);
          log("Tile Max Tick Time: " + tileMaxTickTime + "ms Entity max Tick Time: " + entityMaxTickTime + "ms");
      }

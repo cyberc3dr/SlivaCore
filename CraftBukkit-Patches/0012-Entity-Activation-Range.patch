@@ -1,4 +1,4 @@
-From 2b05d6e6cc729522146ea25659cec322f8694b44 Mon Sep 17 00:00:00 2001
+From 7ea4d253495a7d5b249ed6ded7fce59a366939af Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 3 Feb 2013 05:10:21 -0500
 Subject: [PATCH] Entity Activation Range
@@ -35,7 +35,7 @@ index 8ee75fb84..12485d1f7 100644
          entity.setOldPosAndRot();
          GameProfilerFiller gameprofilerfiller = this.getProfiler();
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 0cda7a69a..02b460070 100644
+index 3ad91a6b4..051c5f35c 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
 @@ -302,6 +302,12 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
@@ -125,7 +125,7 @@ index 3a25f8858..0d5b9fc03 100644
      public void tick() {
          super.tick();
 diff --git a/src/main/java/net/minecraft/world/entity/EntityLiving.java b/src/main/java/net/minecraft/world/entity/EntityLiving.java
-index 31fb69264..fd5a7fdcf 100644
+index 08dba14a4..5cd20735b 100644
 --- a/src/main/java/net/minecraft/world/entity/EntityLiving.java
 +++ b/src/main/java/net/minecraft/world/entity/EntityLiving.java
 @@ -268,6 +268,13 @@ public abstract class EntityLiving extends Entity {
@@ -221,7 +221,7 @@ index 5e4530883..95cdde462 100644
          super(entitytypes, world);
          this.pickup = EntityArrow.PickupStatus.DISALLOWED;
 diff --git a/src/main/java/net/minecraft/world/entity/projectile/EntityFireworks.java b/src/main/java/net/minecraft/world/entity/projectile/EntityFireworks.java
-index 1e8c5a659..5ff797d37 100644
+index b333ce06f..af48f31be 100644
 --- a/src/main/java/net/minecraft/world/entity/projectile/EntityFireworks.java
 +++ b/src/main/java/net/minecraft/world/entity/projectile/EntityFireworks.java
 @@ -81,6 +81,22 @@ public class EntityFireworks extends IProjectile implements ItemSupplier {
@@ -530,10 +530,10 @@ index 000000000..1939b9856
 +    }
 +}
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index 9fc17f219..8daa6784a 100644
+index e3682d28c..936279b5f 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -188,4 +188,21 @@ public class SpigotWorldConfig
+@@ -194,4 +194,21 @@ public class SpigotWorldConfig
          itemDespawnRate = getInt( "item-despawn-rate", 6000 );
          log( "Item Despawn Rate: " + itemDespawnRate );
      }

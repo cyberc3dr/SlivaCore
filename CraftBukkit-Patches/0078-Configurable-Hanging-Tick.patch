@@ -1,4 +1,4 @@
-From 1a3b6498c0a724f29b4da76e89fe331ff43555ea Mon Sep 17 00:00:00 2001
+From e621921d480cd88570f6a45cb7758076186c34c9 Mon Sep 17 00:00:00 2001
 From: drXor <mcyoung@mit.edu>
 Date: Sat, 9 Aug 2014 13:56:51 -0400
 Subject: [PATCH] Configurable Hanging Tick
@@ -18,10 +18,10 @@ index 7d28b5e45..1dde5897c 100644
                  if (!this.isRemoved() && !this.survives()) {
                      // CraftBukkit start - fire break events
 diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-index deff97bd0..78fdc0768 100644
+index 3e8869001..314a0f220 100644
 --- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
-@@ -359,4 +359,10 @@ public class SpigotWorldConfig
+@@ -365,4 +365,10 @@ public class SpigotWorldConfig
          maxTntTicksPerTick = getInt( "max-tnt-per-tick", 100 );
          log( "Max TNT Explosions: " + maxTntTicksPerTick );
      }
