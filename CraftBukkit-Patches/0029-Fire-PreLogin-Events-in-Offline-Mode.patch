@@ -1,14 +1,14 @@
-From 0ea04701784a9fa13952f745a2ce0fbfd1a25c0d Mon Sep 17 00:00:00 2001
+From eced1b57e0243a70f2310179b216f29a18cff600 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Wed, 18 Dec 2013 13:32:10 +1100
 Subject: [PATCH] Fire PreLogin Events in Offline Mode
 
 
 diff --git a/src/main/java/net/minecraft/server/network/LoginListener.java b/src/main/java/net/minecraft/server/network/LoginListener.java
-index 506bf435d..e5b0edcf1 100644
+index fe3c5aebd..b4e609b8c 100644
 --- a/src/main/java/net/minecraft/server/network/LoginListener.java
 +++ b/src/main/java/net/minecraft/server/network/LoginListener.java
-@@ -118,11 +118,18 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
+@@ -117,11 +117,18 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
  
      }
  
@@ -29,7 +29,7 @@ index 506bf435d..e5b0edcf1 100644
          } else {
              try {
                  SignatureValidator signaturevalidator = this.server.getServiceSignatureValidator();
-@@ -216,7 +223,21 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
+@@ -215,7 +222,21 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
                  this.state = LoginListener.EnumProtocolState.KEY;
                  this.connection.send(new PacketLoginOutEncryptionBegin("", this.server.getKeyPair().getPublic().getEncoded(), this.nonce));
              } else {
@@ -52,7 +52,7 @@ index 506bf435d..e5b0edcf1 100644
              }
  
          }
-@@ -270,40 +291,7 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
+@@ -269,40 +290,7 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
                              return;
                          }
  
@@ -94,7 +94,7 @@ index 506bf435d..e5b0edcf1 100644
                      } else if (LoginListener.this.server.isSingleplayer()) {
                          LoginListener.LOGGER.warn("Failed to verify username but will let them in anyway!");
                          LoginListener.this.gameProfile = gameprofile;
-@@ -342,7 +330,48 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
+@@ -341,7 +329,48 @@ public class LoginListener implements TickablePacketListener, PacketLoginInListe
          thread.start();
      }
  
