@@ -1,4 +1,4 @@
-From fb0df396f1aa667b6001f68637124cebc48e9d83 Mon Sep 17 00:00:00 2001
+From 2d9d238af51b8701c07dec21dabb99ca47fb43d2 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 28 Jul 2014 16:55:51 +1000
 Subject: [PATCH] Allow Attribute Capping.
@@ -6,10 +6,10 @@ Subject: [PATCH] Allow Attribute Capping.
 Apply some sensible defaults and allow server owners to customize the maximum values of selected common attributes.
 
 diff --git a/src/main/java/net/minecraft/world/entity/ai/attributes/GenericAttributes.java b/src/main/java/net/minecraft/world/entity/ai/attributes/GenericAttributes.java
-index 0d1c6e497..18bb28ad1 100644
+index ce952036e..0869a2435 100644
 --- a/src/main/java/net/minecraft/world/entity/ai/attributes/GenericAttributes.java
 +++ b/src/main/java/net/minecraft/world/entity/ai/attributes/GenericAttributes.java
-@@ -5,12 +5,12 @@ import net.minecraft.core.IRegistry;
+@@ -6,12 +6,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
  
  public class GenericAttributes {
  
@@ -26,11 +26,11 @@ index 0d1c6e497..18bb28ad1 100644
      public static final AttributeBase ATTACK_SPEED = register("generic.attack_speed", (new AttributeRanged("attribute.name.generic.attack_speed", 4.0D, 0.0D, 1024.0D)).setSyncable(true));
      public static final AttributeBase ARMOR = register("generic.armor", (new AttributeRanged("attribute.name.generic.armor", 0.0D, 0.0D, 30.0D)).setSyncable(true));
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index 50cab0a48..8263dad22 100644
+index 08f6ef8d4..58fb1b92e 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -16,6 +16,8 @@ import java.util.logging.Level;
- import net.minecraft.core.IRegistry;
+ import net.minecraft.core.registries.BuiltInRegistries;
  import net.minecraft.resources.MinecraftKey;
  import net.minecraft.server.MinecraftServer;
 +import net.minecraft.world.entity.ai.attributes.AttributeRanged;

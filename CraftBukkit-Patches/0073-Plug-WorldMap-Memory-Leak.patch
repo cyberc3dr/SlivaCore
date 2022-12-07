@@ -1,14 +1,14 @@
-From aac7dc74a2399191bfb45eba75c5b82694e6dddb Mon Sep 17 00:00:00 2001
+From 2e62287edad9d950e8ef5c0f464879d75a12de3d Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 8 Aug 2014 19:57:03 +1000
 Subject: [PATCH] Plug WorldMap Memory Leak
 
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index dcb145102..ce914a7b8 100644
+index add1ccddb..9e2337bbd 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -2008,6 +2008,29 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1989,6 +1989,29 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
          public void onTrackingEnd(Entity entity) {
              org.spigotmc.AsyncCatcher.catchOp("entity unregister"); // Spigot

@@ -1,14 +1,14 @@
-From e91508c6a3b2a7b016ebf60da110e8d60b3f21b6 Mon Sep 17 00:00:00 2001
+From 8f5df2de5d0c9b25cdb34b6b4f5f18246b4de495 Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Mon, 14 Oct 2013 19:20:10 +1100
 Subject: [PATCH] Arrow Despawn Rate
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/projectile/EntityArrow.java b/src/main/java/net/minecraft/world/entity/projectile/EntityArrow.java
-index 95cdde462..0f18feede 100644
+index 045e31dc5..ece7fe503 100644
 --- a/src/main/java/net/minecraft/world/entity/projectile/EntityArrow.java
 +++ b/src/main/java/net/minecraft/world/entity/projectile/EntityArrow.java
-@@ -313,7 +313,7 @@ public abstract class EntityArrow extends IProjectile {
+@@ -314,7 +314,7 @@ public abstract class EntityArrow extends IProjectile {
  
      protected void tickDespawn() {
          ++this.life;

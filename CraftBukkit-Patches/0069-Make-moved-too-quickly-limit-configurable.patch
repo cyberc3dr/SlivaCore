@@ -1,14 +1,14 @@
-From 28c3525fcceb8aa7304f88cdd770f0676ac62574 Mon Sep 17 00:00:00 2001
+From 9847b489f2a98c2b35fdca422cbc9d39aa381b07 Mon Sep 17 00:00:00 2001
 From: Jonas Konrad <me@yawk.at>
 Date: Tue, 22 Jul 2014 15:59:01 +0200
 Subject: [PATCH] Make "moved too quickly" limit configurable
 
 
 diff --git a/src/main/java/net/minecraft/server/network/PlayerConnection.java b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-index dda7a16f1..321b5ab7b 100644
+index 96d512117..56d8b9706 100644
 --- a/src/main/java/net/minecraft/server/network/PlayerConnection.java
 +++ b/src/main/java/net/minecraft/server/network/PlayerConnection.java
-@@ -597,7 +597,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -589,7 +589,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
                  }
                  speed *= 2f; // TODO: Get the speed of the vehicle instead of the player
  
@@ -17,7 +17,7 @@ index dda7a16f1..321b5ab7b 100644
                  // CraftBukkit end
                      PlayerConnection.LOGGER.warn("{} (vehicle of {}) moved too quickly! {},{},{}", new Object[]{entity.getName().getString(), this.player.getName().getString(), d6, d7, d8});
                      this.connection.send(new PacketPlayOutVehicleMove(entity));
-@@ -1270,7 +1270,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
+@@ -1262,7 +1262,7 @@ public class PlayerConnection implements ServerPlayerConnection, TickablePacketL
                              if (!this.player.isChangingDimension() && (!this.player.getLevel().getGameRules().getBoolean(GameRules.RULE_DISABLE_ELYTRA_MOVEMENT_CHECK) || !this.player.isFallFlying())) {
                                  float f2 = this.player.isFallFlying() ? 300.0F : 100.0F;
  
@@ -27,7 +27,7 @@ index dda7a16f1..321b5ab7b 100644
                                      PlayerConnection.LOGGER.warn("{} moved too quickly! {},{},{}", new Object[]{this.player.getName().getString(), d7, d8, d9});
                                      this.teleport(this.player.getX(), this.player.getY(), this.player.getZ(), this.player.getYRot(), this.player.getXRot());
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index cd677f51c..50cab0a48 100644
+index 9e34d3027..08f6ef8d4 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -332,4 +332,10 @@ public class SpigotConfig

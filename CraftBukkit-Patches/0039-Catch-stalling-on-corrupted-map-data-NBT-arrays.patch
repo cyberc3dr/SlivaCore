@@ -1,32 +1,32 @@
-From 27f3f6a8d5d8899535db8a308f973e734bcc91c5 Mon Sep 17 00:00:00 2001
+From 503c9a5599b6c3ed85c5dd9a78a843f103a9f4f7 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Mon, 20 Jan 2014 13:44:07 +1100
 Subject: [PATCH] Catch stalling on corrupted map data / NBT arrays.
 
 
 diff --git a/src/main/java/net/minecraft/nbt/NBTTagByteArray.java b/src/main/java/net/minecraft/nbt/NBTTagByteArray.java
-index d1569b1e8..b4fe8ddb5 100644
+index 4083563c6..2ab3a471e 100644
 --- a/src/main/java/net/minecraft/nbt/NBTTagByteArray.java
 +++ b/src/main/java/net/minecraft/nbt/NBTTagByteArray.java
 @@ -16,6 +16,7 @@ public class NBTTagByteArray extends NBTList<NBTTagByte> {
          public NBTTagByteArray load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
-             nbtreadlimiter.accountBits(192L);
+             nbtreadlimiter.accountBytes(24L);
              int j = datainput.readInt();
 +            com.google.common.base.Preconditions.checkArgument( j < 1 << 24); // Spigot
  
-             nbtreadlimiter.accountBits(8L * (long) j);
+             nbtreadlimiter.accountBytes(1L * (long) j);
              byte[] abyte = new byte[j];
 diff --git a/src/main/java/net/minecraft/nbt/NBTTagIntArray.java b/src/main/java/net/minecraft/nbt/NBTTagIntArray.java
-index d3f3537d0..76c2dcd52 100644
+index f0f4562d1..e5e90b9d7 100644
 --- a/src/main/java/net/minecraft/nbt/NBTTagIntArray.java
 +++ b/src/main/java/net/minecraft/nbt/NBTTagIntArray.java
 @@ -16,6 +16,7 @@ public class NBTTagIntArray extends NBTList<NBTTagInt> {
          public NBTTagIntArray load(DataInput datainput, int i, NBTReadLimiter nbtreadlimiter) throws IOException {
-             nbtreadlimiter.accountBits(192L);
+             nbtreadlimiter.accountBytes(24L);
              int j = datainput.readInt();
 +            com.google.common.base.Preconditions.checkArgument( j < 1 << 24); // Spigot
  
-             nbtreadlimiter.accountBits(32L * (long) j);
+             nbtreadlimiter.accountBytes(4L * (long) j);
              int[] aint = new int[j];
 -- 
 2.34.1

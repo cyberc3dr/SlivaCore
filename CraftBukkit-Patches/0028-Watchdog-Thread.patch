@@ -1,14 +1,14 @@
-From 0cbce345aba89fd9f71f0085f68a24e189d8d9d4 Mon Sep 17 00:00:00 2001
+From 701f4ad4a66af0fce1020a3ba9dad266ba94930a Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Tue, 5 Aug 2014 17:20:19 +0100
 Subject: [PATCH] Watchdog Thread.
 
 
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index ef172b754..eafde3c66 100644
+index 70bfbb4dc..c10f3db85 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -1013,6 +1013,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -1017,6 +1017,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
                      this.services.profileCache().clearExecutor();
                  }
  
@@ -16,7 +16,7 @@ index ef172b754..eafde3c66 100644
                  // CraftBukkit start - Restore terminal to original settings
                  try {
                      reader.getTerminal().restore();
-@@ -1196,6 +1197,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -1200,6 +1201,7 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
  
          this.frameTimer.logFrameDuration(i1 - i);
          this.profiler.pop();
@@ -25,10 +25,10 @@ index ef172b754..eafde3c66 100644
          org.spigotmc.CustomTimingsHandler.tick(); // Spigot
      }
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index c513b02eb..a6d388db4 100644
+index 4c4986ea4..29a1186cf 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-@@ -265,7 +265,7 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
+@@ -260,7 +260,7 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
                  this.remoteConsole = new org.bukkit.craftbukkit.command.CraftRemoteConsoleCommandSender(this.rconConsoleSource); // CraftBukkit
              }
  
@@ -38,10 +38,10 @@ index c513b02eb..a6d388db4 100644
  
                  thread1.setUncaughtExceptionHandler(new ThreadNamedUncaughtExceptionHandler(DedicatedServer.LOGGER));
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 68dc1de16..c6402dcea 100644
+index 5330cdd81..636941d00 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -1903,7 +1903,7 @@ public final class CraftServer implements Server {
+@@ -1928,7 +1928,7 @@ public final class CraftServer implements Server {
  
      @Override
      public boolean isPrimaryThread() {
@@ -50,7 +50,7 @@ index 68dc1de16..c6402dcea 100644
      }
  
      @Override
-@@ -2301,6 +2301,11 @@ public final class CraftServer implements Server {
+@@ -2326,6 +2326,11 @@ public final class CraftServer implements Server {
          {
              return org.spigotmc.SpigotConfig.config;
          }

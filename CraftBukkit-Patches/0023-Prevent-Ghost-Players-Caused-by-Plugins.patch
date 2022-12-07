@@ -1,4 +1,4 @@
-From 34ebf9c6e7a3a72a2e3c58652aa2c05684352192 Mon Sep 17 00:00:00 2001
+From 70aed0319824bb67a7f063d17f0ef3bf190f97ad Mon Sep 17 00:00:00 2001
 From: Alex Ciuba <alexciuba@gmail.com>
 Date: Tue, 11 Jun 2013 15:23:03 -0400
 Subject: [PATCH] Prevent Ghost Players Caused by Plugins
@@ -6,10 +6,10 @@ Subject: [PATCH] Prevent Ghost Players Caused by Plugins
 Check if the player is still connected after firing event. Fixes BUKKIT-4327
 
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index fa218ef37..81da9f01f 100644
+index f93528ccb..b1a278e6a 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -734,6 +734,11 @@ public abstract class PlayerList {
+@@ -744,6 +744,11 @@ public abstract class PlayerList {
              Player respawnPlayer = entityplayer1.getBukkitEntity();
              PlayerRespawnEvent respawnEvent = new PlayerRespawnEvent(respawnPlayer, location, isBedSpawn && !flag2, flag2);
              cserver.getPluginManager().callEvent(respawnEvent);

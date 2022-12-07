@@ -1,4 +1,4 @@
-From a47bc7078ecdff523a9edb9e95874e1aa8cfd35c Mon Sep 17 00:00:00 2001
+From 228f7bd238253b68f8cdea8bbd4ea9fa1f3c58ec Mon Sep 17 00:00:00 2001
 From: drXor <mcyoungsota@gmail.com>
 Date: Fri, 25 Apr 2014 18:17:30 -0400
 Subject: [PATCH] Configurable UserCache cap
@@ -18,7 +18,7 @@ index dd6c8a284..2a6872967 100644
          });
          String s = this.gson.toJson(jsonarray);
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index fe7eed4d9..4138d939e 100644
+index 588d4656b..285bb7a20 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -314,4 +314,10 @@ public class SpigotConfig

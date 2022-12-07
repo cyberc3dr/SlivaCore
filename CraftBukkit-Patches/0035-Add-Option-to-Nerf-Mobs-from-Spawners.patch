@@ -1,15 +1,15 @@
-From 1e618db71e37fed96b345447242f10316d5a4048 Mon Sep 17 00:00:00 2001
+From 595e85060fc5e9a9b9fa4484202b5e0d60578d9e Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 2 Feb 2014 16:55:46 +0000
 Subject: [PATCH] Add Option to Nerf Mobs from Spawners
 
 
 diff --git a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
-index 2a5c24471..de82750c2 100644
+index c0a5e1cbe..7f97600a2 100644
 --- a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
 +++ b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
-@@ -147,6 +147,12 @@ public abstract class MobSpawnerAbstract {
-                             if (this.nextSpawnData.getEntityToSpawn().size() == 1 && this.nextSpawnData.getEntityToSpawn().contains("id", 8)) {
+@@ -151,6 +151,12 @@ public abstract class MobSpawnerAbstract {
+                             if (mobspawnerdata.getEntityToSpawn().size() == 1 && mobspawnerdata.getEntityToSpawn().contains("id", 8)) {
                                  ((EntityInsentient) entity).finalizeSpawn(worldserver, worldserver.getCurrentDifficultyAt(entity.blockPosition()), EnumMobSpawn.SPAWNER, (GroupDataEntity) null, (NBTTagCompound) null);
                              }
 +                            // Spigot Start

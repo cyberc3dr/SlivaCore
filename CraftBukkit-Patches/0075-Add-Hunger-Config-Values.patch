@@ -1,14 +1,14 @@
-From 659951f1dcb9f1fef9de2aff90e28406fe84063f Mon Sep 17 00:00:00 2001
+From efe30e144553e148ac65965462902bf383dfbde5 Mon Sep 17 00:00:00 2001
 From: lazertester <austin.techhead@gmail.com>
 Date: Sun, 17 Aug 2014 19:56:17 +1000
 Subject: [PATCH] Add Hunger Config Values
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/player/EntityHuman.java b/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
-index e3f97db9a..f88bfe58a 100644
+index cebffae13..517755ce5 100644
 --- a/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
 +++ b/src/main/java/net/minecraft/world/entity/player/EntityHuman.java
-@@ -1400,7 +1400,7 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1382,7 +1382,7 @@ public abstract class EntityHuman extends EntityLiving {
                              }
                          }
  
@@ -17,7 +17,7 @@ index e3f97db9a..f88bfe58a 100644
                      } else {
                          this.level.playSound((EntityHuman) null, this.getX(), this.getY(), this.getZ(), SoundEffects.PLAYER_ATTACK_NODAMAGE, this.getSoundSource(), 1.0F, 1.0F);
                          if (flag4) {
-@@ -1582,9 +1582,9 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1559,9 +1559,9 @@ public abstract class EntityHuman extends EntityLiving {
          super.jumpFromGround();
          this.awardStat(StatisticList.JUMP);
          if (this.isSprinting()) {
@@ -29,7 +29,7 @@ index e3f97db9a..f88bfe58a 100644
          }
  
      }
-@@ -1657,19 +1657,19 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1634,19 +1634,19 @@ public abstract class EntityHuman extends EntityLiving {
                  i = Math.round((float) Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2) * 100.0F);
                  if (i > 0) {
                      this.awardStat(StatisticList.SWIM_ONE_CM, i);
@@ -52,7 +52,7 @@ index e3f97db9a..f88bfe58a 100644
                  }
              } else if (this.onClimbable()) {
                  if (d1 > 0.0D) {
-@@ -1680,13 +1680,13 @@ public abstract class EntityHuman extends EntityLiving {
+@@ -1657,13 +1657,13 @@ public abstract class EntityHuman extends EntityLiving {
                  if (i > 0) {
                      if (this.isSprinting()) {
                          this.awardStat(StatisticList.SPRINT_ONE_CM, i);

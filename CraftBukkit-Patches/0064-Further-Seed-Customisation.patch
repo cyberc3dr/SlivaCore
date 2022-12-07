@@ -1,4 +1,4 @@
-From 4c0e016e8c22e042410c82dd18191a53425257db Mon Sep 17 00:00:00 2001
+From 9dd12b81a8f0796ded3b3b6dfe681dcad5b4feb2 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
@@ -6,10 +6,10 @@ Subject: [PATCH] Further Seed Customisation
 Allow server admins that really want to to customise the seeds used in world generation even further.
 
 diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index aeba97e9b..dcb145102 100644
+index 646923204..add1ccddb 100644
 --- a/src/main/java/net/minecraft/server/level/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -266,6 +266,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -268,6 +268,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
          if (gen != null) {
              chunkgenerator = new org.bukkit.craftbukkit.generator.CustomChunkGenerator(this, chunkgenerator, gen);
          }
@@ -18,10 +18,10 @@ index aeba97e9b..dcb145102 100644
          boolean flag2 = minecraftserver.forceSynchronousWrites();
          DataFixer datafixer = minecraftserver.getFixerUpper();
 diff --git a/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java b/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
-index cc47b0cf2..43ed956ce 100644
+index ae541283c..04f377834 100644
 --- a/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
 +++ b/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
-@@ -317,7 +317,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
+@@ -319,7 +319,7 @@ public class EntitySlime extends EntityInsentient implements IMonster {
              }
  
              ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(blockposition);
@@ -31,26 +31,72 @@ index cc47b0cf2..43ed956ce 100644
              if (randomsource.nextInt(10) == 0 && flag && blockposition.getY() < 40) {
                  return checkMobSpawnRules(entitytypes, generatoraccess, enummobspawn, blockposition, randomsource);
 diff --git a/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java b/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
-index e51494d21..c892ce881 100644
+index 0422d9e46..141eb4bbd 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
-@@ -98,6 +98,7 @@ public abstract class ChunkGenerator {
-     private final Map<Structure, List<StructurePlacement>> placementsForStructure;
-     private final Map<ConcentricRingsStructurePlacement, CompletableFuture<List<ChunkCoordIntPair>>> ringPositions;
-     private boolean hasGeneratedPositions;
+@@ -83,6 +83,7 @@ public abstract class ChunkGenerator {
+     protected final WorldChunkManager biomeSource;
+     private final Supplier<List<FeatureSorter.b>> featuresPerStep;
+     public final Function<Holder<BiomeBase>, BiomeSettingsGeneration> generationSettingsGetter;
 +    public org.spigotmc.SpigotWorldConfig conf; // Spigot
  
-     protected static <T extends ChunkGenerator> P1<Mu<T>, IRegistry<StructureSet>> commonCodec(Instance<T> instance) {
-         return instance.group(RegistryOps.retrieveRegistry(IRegistry.STRUCTURE_SET_REGISTRY).forGetter((chunkgenerator) -> {
-@@ -129,11 +130,72 @@ public abstract class ChunkGenerator {
-         return this.structureOverrides.isPresent() ? ((HolderSet) this.structureOverrides.get()).stream() : this.structureSets.holders().map(Holder::hackyErase);
+     public ChunkGenerator(WorldChunkManager worldchunkmanager) {
+         this(worldchunkmanager, (holder) -> {
+@@ -103,7 +104,7 @@ public abstract class ChunkGenerator {
+     protected abstract Codec<? extends ChunkGenerator> codec();
+ 
+     public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> holderlookup, RandomState randomstate, long i) {
+-        return ChunkGeneratorStructureState.createForNormal(randomstate, i, this.biomeSource, holderlookup);
++        return ChunkGeneratorStructureState.createForNormal(randomstate, i, this.biomeSource, holderlookup, conf); // Spigot
      }
  
+     public Optional<ResourceKey<Codec<? extends ChunkGenerator>>> getTypeNameForDataFixer() {
+diff --git a/src/main/java/net/minecraft/world/level/chunk/ChunkGeneratorStructureState.java b/src/main/java/net/minecraft/world/level/chunk/ChunkGeneratorStructureState.java
+index 35f744746..80eacaf7a 100644
+--- a/src/main/java/net/minecraft/world/level/chunk/ChunkGeneratorStructureState.java
++++ b/src/main/java/net/minecraft/world/level/chunk/ChunkGeneratorStructureState.java
+@@ -34,6 +34,11 @@ import net.minecraft.world.level.levelgen.structure.placement.ConcentricRingsStr
+ import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
+ import org.slf4j.Logger;
+ 
++// Spigot start
++import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
++import org.spigotmc.SpigotWorldConfig;
++// Spigot end
++
+ public class ChunkGeneratorStructureState {
+ 
+     private static final Logger LOGGER = LogUtils.getLogger();
+@@ -46,21 +51,81 @@ public class ChunkGeneratorStructureState {
+     private boolean hasGeneratedPositions;
+     private final List<Holder<StructureSet>> possibleStructureSets;
+ 
+-    public static ChunkGeneratorStructureState createForFlat(RandomState randomstate, long i, WorldChunkManager worldchunkmanager, Stream<Holder<StructureSet>> stream) {
++    public static ChunkGeneratorStructureState createForFlat(RandomState randomstate, long i, WorldChunkManager worldchunkmanager, Stream<Holder<StructureSet>> stream, SpigotWorldConfig conf) { // Spigot
+         List<Holder<StructureSet>> list = stream.filter((holder) -> {
+             return hasBiomesForStructureSet((StructureSet) holder.value(), worldchunkmanager);
+         }).toList();
+ 
+-        return new ChunkGeneratorStructureState(randomstate, worldchunkmanager, i, 0L, list);
++        return new ChunkGeneratorStructureState(randomstate, worldchunkmanager, i, 0L, injectSpigot(list, conf)); // Spigot
+     }
+ 
+-    public static ChunkGeneratorStructureState createForNormal(RandomState randomstate, long i, WorldChunkManager worldchunkmanager, HolderLookup<StructureSet> holderlookup) {
++    public static ChunkGeneratorStructureState createForNormal(RandomState randomstate, long i, WorldChunkManager worldchunkmanager, HolderLookup<StructureSet> holderlookup, SpigotWorldConfig conf) { // Spigot
+         List<Holder<StructureSet>> list = (List) holderlookup.listElements().filter((holder_c) -> {
+             return hasBiomesForStructureSet((StructureSet) holder_c.value(), worldchunkmanager);
+         }).collect(Collectors.toUnmodifiableList());
+ 
+-        return new ChunkGeneratorStructureState(randomstate, worldchunkmanager, i, i, list);
++        return new ChunkGeneratorStructureState(randomstate, worldchunkmanager, i, i, injectSpigot(list, conf)); // Spigot
++    }
++
 +    // Spigot start
-+    private Stream<StructureSet> possibleStructureSetsSpigot() {
-+        return possibleStructureSets().map(Holder::value).map((structureset) -> {
++    private static List<Holder<StructureSet>> injectSpigot(List<Holder<StructureSet>> list, SpigotWorldConfig conf) {
++        return list.stream().map((holder) -> {
++            StructureSet structureset = holder.value();
 +            if (structureset.placement() instanceof RandomSpreadStructurePlacement randomConfig) {
-+                String name = structureSets.getKey(structureset).getPath();
++                String name = holder.unwrapKey().orElseThrow().location().getPath();
 +                int seed = randomConfig.salt;
 +
 +                switch (name) {
@@ -100,52 +146,31 @@ index e51494d21..c892ce881 100644
 +
 +                structureset = new StructureSet(structureset.structures(), new RandomSpreadStructurePlacement(randomConfig.locateOffset, randomConfig.frequencyReductionMethod, randomConfig.frequency, seed, randomConfig.exclusionZone, randomConfig.spacing(), randomConfig.separation(), randomConfig.spreadType()));
 +            }
-+            return structureset;
-+        });
-+    }
++            return Holder.direct(structureset);
++        }).collect(Collectors.toUnmodifiableList());
+     }
 +    // Spigot end
-+
-     private void generatePositions(RandomState randomstate) {
-         Set<Holder<BiomeBase>> set = this.biomeSource.possibleBiomes();
  
--        this.possibleStructureSets().forEach((holder) -> {
--            StructureSet structureset = (StructureSet) holder.value();
-+        // Spigot start
-+        this.possibleStructureSetsSpigot().forEach((holder) -> {
-+            StructureSet structureset = (StructureSet) holder;
-+            // Spigot end
-             boolean flag = false;
-             Iterator iterator = structureset.structures().iterator();
- 
-@@ -164,7 +226,7 @@ public abstract class ChunkGenerator {
+     private static boolean hasBiomesForStructureSet(StructureSet structureset, WorldChunkManager worldchunkmanager) {
+         Stream<Holder<BiomeBase>> stream = structureset.structures().stream().flatMap((structureset_a) -> {
+diff --git a/src/main/java/net/minecraft/world/level/levelgen/ChunkProviderFlat.java b/src/main/java/net/minecraft/world/level/levelgen/ChunkProviderFlat.java
+index 6d6b3abd1..233aaede7 100644
+--- a/src/main/java/net/minecraft/world/level/levelgen/ChunkProviderFlat.java
++++ b/src/main/java/net/minecraft/world/level/levelgen/ChunkProviderFlat.java
+@@ -56,7 +56,7 @@ public class ChunkProviderFlat extends ChunkGenerator {
+             });
          });
+ 
+-        return ChunkGeneratorStructureState.createForFlat(randomstate, i, this.biomeSource, stream);
++        return ChunkGeneratorStructureState.createForFlat(randomstate, i, this.biomeSource, stream, this.conf); // Spigot
      }
  
--    private CompletableFuture<List<ChunkCoordIntPair>> generateRingPositions(Holder<StructureSet> holder, RandomState randomstate, ConcentricRingsStructurePlacement concentricringsstructureplacement) {
-+    private CompletableFuture<List<ChunkCoordIntPair>> generateRingPositions(StructureSet holder, RandomState randomstate, ConcentricRingsStructurePlacement concentricringsstructureplacement) { // Spigot
-         return concentricringsstructureplacement.count() == 0 ? CompletableFuture.completedFuture(List.of()) : CompletableFuture.supplyAsync(SystemUtils.wrapThreadWithTaskName("placement calculation", () -> {
-             Stopwatch stopwatch = Stopwatch.createStarted(SystemUtils.TICKER);
-             List<ChunkCoordIntPair> list = new ArrayList();
-@@ -658,9 +720,11 @@ public abstract class ChunkGenerator {
-         ChunkCoordIntPair chunkcoordintpair = ichunkaccess.getPos();
-         SectionPosition sectionposition = SectionPosition.bottomOf(ichunkaccess);
- 
--        this.possibleStructureSets().forEach((holder) -> {
--            StructurePlacement structureplacement = ((StructureSet) holder.value()).placement();
--            List<StructureSet.a> list = ((StructureSet) holder.value()).structures();
-+        // Spigot start
-+        this.possibleStructureSetsSpigot().forEach((holder) -> {
-+            StructurePlacement structureplacement = ((StructureSet) holder).placement();
-+            List<StructureSet.a> list = ((StructureSet) holder).structures();
-+            // Spigot end
-             Iterator iterator = list.iterator();
- 
-             while (iterator.hasNext()) {
+     @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
-index d58076279..92eb9f055 100644
+index 43515bd64..549a3c615 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftChunk.java
-@@ -221,7 +221,7 @@ public class CraftChunk implements Chunk {
+@@ -222,7 +222,7 @@ public class CraftChunk implements Chunk {
      @Override
      public boolean isSlimeChunk() {
          // 987234911L is deterimined in EntitySlime when seeing if a slime can spawn in a chunk

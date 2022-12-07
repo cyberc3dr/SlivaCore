@@ -1,14 +1,14 @@
-From c46a610f858171a4e4425f6e78c077260d77c090 Mon Sep 17 00:00:00 2001
+From 8ad348ddfea132428f44eef12803284fd37f70f6 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thethinkofdeath@gmail.com>
 Date: Tue, 7 Jan 2014 15:56:26 +0000
 Subject: [PATCH] Allow statistics to be disabled/forced
 
 
 diff --git a/src/main/java/net/minecraft/stats/ServerStatisticManager.java b/src/main/java/net/minecraft/stats/ServerStatisticManager.java
-index 057554a4b..937038a99 100644
+index 06660d415..ce0a5f6c8 100644
 --- a/src/main/java/net/minecraft/stats/ServerStatisticManager.java
 +++ b/src/main/java/net/minecraft/stats/ServerStatisticManager.java
-@@ -47,6 +47,13 @@ public class ServerStatisticManager extends StatisticManager {
+@@ -48,6 +48,13 @@ public class ServerStatisticManager extends StatisticManager {
      public ServerStatisticManager(MinecraftServer minecraftserver, File file) {
          this.server = minecraftserver;
          this.file = file;
@@ -22,7 +22,7 @@ index 057554a4b..937038a99 100644
          if (file.isFile()) {
              try {
                  this.parseLocal(minecraftserver.getFixerUpper(), FileUtils.readFileToString(file));
-@@ -60,6 +67,7 @@ public class ServerStatisticManager extends StatisticManager {
+@@ -61,6 +68,7 @@ public class ServerStatisticManager extends StatisticManager {
      }
  
      public void save() {
@@ -30,7 +30,7 @@ index 057554a4b..937038a99 100644
          try {
              FileUtils.writeStringToFile(this.file, this.toJson());
          } catch (IOException ioexception) {
-@@ -70,6 +78,7 @@ public class ServerStatisticManager extends StatisticManager {
+@@ -71,6 +79,7 @@ public class ServerStatisticManager extends StatisticManager {
  
      @Override
      public void setValue(EntityHuman entityhuman, Statistic<?> statistic, int i) {
@@ -39,14 +39,14 @@ index 057554a4b..937038a99 100644
          this.dirty.add(statistic);
      }
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index c5989e8e9..5e6011331 100644
+index c5989e8e9..0aab647ab 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -10,10 +10,13 @@ import java.util.HashMap;
  import java.util.List;
  import java.util.Map;
  import java.util.logging.Level;
-+import net.minecraft.core.IRegistry;
++import net.minecraft.core.registries.BuiltInRegistries;
 +import net.minecraft.resources.MinecraftKey;
  import net.minecraft.server.MinecraftServer;
  import org.bukkit.Bukkit;
@@ -79,7 +79,7 @@ index c5989e8e9..5e6011331 100644
 +                try
 +                {
 +                    MinecraftKey key = new MinecraftKey( name );
-+                    if ( IRegistry.CUSTOM_STAT.get( key ) == null )
++                    if ( BuiltInRegistries.CUSTOM_STAT.get( key ) == null )
 +                    {
 +                        Bukkit.getLogger().log(Level.WARNING, "Ignoring non existent stats.forced-stats " + name);
 +                        continue;

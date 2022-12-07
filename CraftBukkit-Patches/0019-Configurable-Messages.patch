@@ -1,4 +1,4 @@
-From cd5c1d89158cb4a6d4a18687b72197c5be8fc507 Mon Sep 17 00:00:00 2001
+From 6a1611987de669c73170e433aa55611e3748243a Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Fri, 21 Jun 2013 19:21:58 +1000
 Subject: [PATCH] Configurable Messages
@@ -21,10 +21,10 @@ index ccdb4e80b..8da1aaa0a 100644
  
                      this.connection.send(new PacketLoginOutDisconnect(ichatmutablecomponent));
 diff --git a/src/main/java/net/minecraft/server/players/PlayerList.java b/src/main/java/net/minecraft/server/players/PlayerList.java
-index 38205df73..be97edeab 100644
+index ad9a10827..f93528ccb 100644
 --- a/src/main/java/net/minecraft/server/players/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/players/PlayerList.java
-@@ -585,7 +585,7 @@ public abstract class PlayerList {
+@@ -595,7 +595,7 @@ public abstract class PlayerList {
              event.disallow(PlayerLoginEvent.Result.KICK_BANNED, CraftChatMessage.fromComponent(ichatmutablecomponent));
          } else if (!this.isWhiteListed(gameprofile)) {
              ichatmutablecomponent = IChatBaseComponent.translatable("multiplayer.disconnect.not_whitelisted");
@@ -33,7 +33,7 @@ index 38205df73..be97edeab 100644
          } else if (getIpBans().isBanned(socketaddress) && !getIpBans().get(socketaddress).hasExpired()) {
              IpBanEntry ipbanentry = this.ipBans.get(socketaddress);
  
-@@ -599,7 +599,7 @@ public abstract class PlayerList {
+@@ -609,7 +609,7 @@ public abstract class PlayerList {
          } else {
              // return this.players.size() >= this.maxPlayers && !this.canBypassPlayerLimit(gameprofile) ? IChatBaseComponent.translatable("multiplayer.disconnect.server_full") : null;
              if (this.players.size() >= this.maxPlayers && !this.canBypassPlayerLimit(gameprofile)) {
@@ -43,10 +43,10 @@ index 38205df73..be97edeab 100644
          }
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 96ce8c12e..68dc1de16 100644
+index fb565c282..5330cdd81 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -814,11 +814,11 @@ public final class CraftServer implements Server {
+@@ -828,11 +828,11 @@ public final class CraftServer implements Server {
              return true;
          }
  

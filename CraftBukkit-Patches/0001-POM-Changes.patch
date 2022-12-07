@@ -1,4 +1,4 @@
-From 4970566d2cb715fc73db55f232afa2bf6049bedd Mon Sep 17 00:00:00 2001
+From 612f5c7e08dc27c2dfd083005760d8b5ebf15c1e Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Tue, 2 Jul 2013 13:07:39 +1000
 Subject: [PATCH] POM Changes
@@ -34,7 +34,7 @@ index 63914723e..01319e4f7 100644
          <!-- See http://checkstyle.sourceforge.net/config_imports.html -->
          <module name="AvoidStarImport">
 diff --git a/pom.xml b/pom.xml
-index eb0e934f0..82a2b163a 100644
+index 8810fa769..30e497856 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,13 +1,20 @@
@@ -46,7 +46,7 @@ index eb0e934f0..82a2b163a 100644
 +    <groupId>org.spigotmc</groupId>
 +    <artifactId>spigot</artifactId>
      <packaging>jar</packaging>
-     <version>1.19.2-R0.1-SNAPSHOT</version>
+     <version>1.19.3-R0.1-SNAPSHOT</version>
 -    <name>CraftBukkit</name>
 +    <name>Spigot</name>
      <url>https://www.spigotmc.org/</url>
@@ -72,7 +72,7 @@ index eb0e934f0..82a2b163a 100644
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
-@@ -284,11 +291,26 @@
+@@ -290,11 +297,26 @@
                  <groupId>net.md-5</groupId>
                  <artifactId>scriptus</artifactId>
                  <version>0.4.1</version>
@@ -102,7 +102,7 @@ index eb0e934f0..82a2b163a 100644
                          <phase>initialize</phase>
                          <goals>
                              <goal>describe</goal>
-@@ -321,7 +343,7 @@
+@@ -327,7 +349,7 @@
                          <manifestEntries>
                              <Main-Class>org.bukkit.craftbukkit.Main</Main-Class>
                              <Implementation-Title>CraftBukkit</Implementation-Title>

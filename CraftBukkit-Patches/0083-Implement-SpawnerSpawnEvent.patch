@@ -1,14 +1,14 @@
-From ec295ee7b8cfc1845ad9588c985e22404eca3d56 Mon Sep 17 00:00:00 2001
+From 9cca0da83c7d29e2c1dd63ba64b4ff750fdd4bd3 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Thu, 3 Mar 2016 19:45:46 +1100
 Subject: [PATCH] Implement SpawnerSpawnEvent.
 
 
 diff --git a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
-index de82750c2..69c64e7ac 100644
+index 7f97600a2..db9522e4b 100644
 --- a/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
 +++ b/src/main/java/net/minecraft/world/level/MobSpawnerAbstract.java
-@@ -154,6 +154,18 @@ public abstract class MobSpawnerAbstract {
+@@ -158,6 +158,18 @@ public abstract class MobSpawnerAbstract {
                              }
                              // Spigot End
                          }
@@ -28,7 +28,7 @@ index de82750c2..69c64e7ac 100644
                          if (!worldserver.tryAddFreshEntityWithPassengers(entity, org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason.SPAWNER)) { // CraftBukkit
                              this.delay(worldserver, blockposition);
 diff --git a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
-index 8aabc1ae1..e9b2a8dfa 100644
+index 756e2a174..14e103f2e 100644
 --- a/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 +++ b/src/main/java/org/bukkit/craftbukkit/event/CraftEventFactory.java
 @@ -233,6 +233,8 @@ import org.bukkit.inventory.InventoryView;

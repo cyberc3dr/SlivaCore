@@ -1,4 +1,4 @@
-From a04d36d5fa0145d93e627f4affc3c5774b88f9f9 Mon Sep 17 00:00:00 2001
+From 927c9470e39f9791a94521b2f2a5d6ae981aeb2a Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Sun, 27 Jul 2014 20:46:04 +1000
 Subject: [PATCH] Apply NBTReadLimiter to more things.
@@ -23,7 +23,7 @@ index 392598dce..438b56859 100644
          if (nbtbase instanceof NBTTagCompound) {
 diff --git a/src/main/java/org/spigotmc/LimitStream.java b/src/main/java/org/spigotmc/LimitStream.java
 new file mode 100644
-index 000000000..b0ed301b4
+index 000000000..e74c61ca9
 --- /dev/null
 +++ b/src/main/java/org/spigotmc/LimitStream.java
 @@ -0,0 +1,39 @@
@@ -48,21 +48,21 @@ index 000000000..b0ed301b4
 +    @Override
 +    public int read() throws IOException
 +    {
-+        limit.accountBits( 8 );
++        limit.accountBytes( 1 );
 +        return super.read();
 +    }
 +
 +    @Override
 +    public int read(byte[] b) throws IOException
 +    {
-+        limit.accountBits( b.length * 8 );
++        limit.accountBytes( b.length );
 +        return super.read( b );
 +    }
 +
 +    @Override
 +    public int read(byte[] b, int off, int len) throws IOException
 +    {
-+        limit.accountBits( len * 8 );
++        limit.accountBytes( len );
 +        return super.read( b, off, len );
 +    }
 +}

@@ -1,14 +1,14 @@
-From 369c3c08a538658ddb58aceeaaba5e5d1039fe68 Mon Sep 17 00:00:00 2001
+From 9bf13cb7bf5e561182dbda5ad44c7539b9d47f1a Mon Sep 17 00:00:00 2001
 From: David <dmck2b@gmail.com>
 Date: Mon, 21 Apr 2014 12:43:08 +0100
 Subject: [PATCH] Prevent NoClassDefError crash and notify on crash
 
 
 diff --git a/src/main/java/net/minecraft/world/level/World.java b/src/main/java/net/minecraft/world/level/World.java
-index 60e47cf63..57f63aa83 100644
+index 45aac275e..da0f46e9b 100644
 --- a/src/main/java/net/minecraft/world/level/World.java
 +++ b/src/main/java/net/minecraft/world/level/World.java
-@@ -151,6 +151,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -154,6 +154,7 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
      public final org.spigotmc.SpigotWorldConfig spigotConfig; // Spigot
  
      public final SpigotTimings.WorldTimingsHandler timings; // Spigot
@@ -16,7 +16,7 @@ index 60e47cf63..57f63aa83 100644
  
      public CraftWorld getWorld() {
          return this.world;
-@@ -377,7 +378,13 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -380,7 +381,13 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
                  // CraftBukkit start
                  if (!this.captureBlockStates) { // Don't notify clients or update physics while capturing blockstates
                      // Modularize client and physic updates
@@ -32,7 +32,7 @@ index 60e47cf63..57f63aa83 100644
                  // CraftBukkit end
  
 diff --git a/src/main/java/net/minecraft/world/level/redstone/NeighborUpdater.java b/src/main/java/net/minecraft/world/level/redstone/NeighborUpdater.java
-index 3f22841a7..a7ac5f563 100644
+index b86294e75..0383c21de 100644
 --- a/src/main/java/net/minecraft/world/level/redstone/NeighborUpdater.java
 +++ b/src/main/java/net/minecraft/world/level/redstone/NeighborUpdater.java
 @@ -65,6 +65,10 @@ public interface NeighborUpdater {

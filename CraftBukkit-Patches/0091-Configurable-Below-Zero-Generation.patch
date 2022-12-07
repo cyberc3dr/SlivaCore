@@ -1,4 +1,4 @@
-From cc560a7d5c3697852ac85b66978c3fad6f74bf07 Mon Sep 17 00:00:00 2001
+From 6c4afe8e0d8be278cd6abaa60cae567852dfa4fb Mon Sep 17 00:00:00 2001
 From: DerFrZocker <derrieple@gmail.com>
 Date: Sun, 28 Nov 2021 12:09:29 +1100
 Subject: [PATCH] Configurable Below Zero Generation
@@ -37,7 +37,7 @@ index 002afd4d9..2a3a27999 100644
          return nbttagcompound;
      }
 diff --git a/src/main/java/org/spigotmc/SpigotConfig.java b/src/main/java/org/spigotmc/SpigotConfig.java
-index c47a8b670..aab9684a7 100644
+index a5c61d003..50b6f0219 100644
 --- a/src/main/java/org/spigotmc/SpigotConfig.java
 +++ b/src/main/java/org/spigotmc/SpigotConfig.java
 @@ -398,4 +398,9 @@ public class SpigotConfig
