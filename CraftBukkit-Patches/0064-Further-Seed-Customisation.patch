@@ -1,22 +1,23 @@
-From 9dd12b81a8f0796ded3b3b6dfe681dcad5b4feb2 Mon Sep 17 00:00:00 2001
+From bbbaac04813d12d778b74f388b71e13343fcf44a Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Fri, 4 Jul 2014 13:28:45 +1000
 Subject: [PATCH] Further Seed Customisation
 
 Allow server admins that really want to to customise the seeds used in world generation even further.
 
-diff --git a/src/main/java/net/minecraft/server/level/WorldServer.java b/src/main/java/net/minecraft/server/level/WorldServer.java
-index 646923204..add1ccddb 100644
---- a/src/main/java/net/minecraft/server/level/WorldServer.java
-+++ b/src/main/java/net/minecraft/server/level/WorldServer.java
-@@ -268,6 +268,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
-         if (gen != null) {
-             chunkgenerator = new org.bukkit.craftbukkit.generator.CustomChunkGenerator(this, chunkgenerator, gen);
+diff --git a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
+index 1fb1a2b4a..b5308e302 100644
+--- a/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
++++ b/src/main/java/net/minecraft/server/level/PlayerChunkMap.java
+@@ -210,7 +210,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.e {
+             this.randomState = RandomState.create(GeneratorSettingBase.dummy(), (HolderGetter) iregistrycustom.lookupOrThrow(Registries.NOISE), j);
          }
-+        chunkgenerator.conf = spigotConfig; // Spigot
-         // CraftBukkit end
-         boolean flag2 = minecraftserver.forceSynchronousWrites();
-         DataFixer datafixer = minecraftserver.getFixerUpper();
+ 
+-        this.chunkGeneratorState = chunkgenerator.createState(iregistrycustom.lookupOrThrow(Registries.STRUCTURE_SET), this.randomState, j);
++        this.chunkGeneratorState = chunkgenerator.createState(iregistrycustom.lookupOrThrow(Registries.STRUCTURE_SET), this.randomState, j, worldserver.spigotConfig); // Spigot
+         this.mainThreadExecutor = iasynctaskhandler;
+         ThreadedMailbox<Runnable> threadedmailbox = ThreadedMailbox.create(executor, "worldgen");
+ 
 diff --git a/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java b/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
 index ae541283c..04f377834 100644
 --- a/src/main/java/net/minecraft/world/entity/monster/EntitySlime.java
@@ -31,22 +32,16 @@ index ae541283c..04f377834 100644
              if (randomsource.nextInt(10) == 0 && flag && blockposition.getY() < 40) {
                  return checkMobSpawnRules(entitytypes, generatoraccess, enummobspawn, blockposition, randomsource);
 diff --git a/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java b/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
-index 0422d9e46..141eb4bbd 100644
+index 0422d9e46..a3e8794c3 100644
 --- a/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
 +++ b/src/main/java/net/minecraft/world/level/chunk/ChunkGenerator.java
-@@ -83,6 +83,7 @@ public abstract class ChunkGenerator {
-     protected final WorldChunkManager biomeSource;
-     private final Supplier<List<FeatureSorter.b>> featuresPerStep;
-     public final Function<Holder<BiomeBase>, BiomeSettingsGeneration> generationSettingsGetter;
-+    public org.spigotmc.SpigotWorldConfig conf; // Spigot
+@@ -102,8 +102,8 @@ public abstract class ChunkGenerator {
  
-     public ChunkGenerator(WorldChunkManager worldchunkmanager) {
-         this(worldchunkmanager, (holder) -> {
-@@ -103,7 +104,7 @@ public abstract class ChunkGenerator {
      protected abstract Codec<? extends ChunkGenerator> codec();
  
-     public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> holderlookup, RandomState randomstate, long i) {
+-    public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> holderlookup, RandomState randomstate, long i) {
 -        return ChunkGeneratorStructureState.createForNormal(randomstate, i, this.biomeSource, holderlookup);
++    public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> holderlookup, RandomState randomstate, long i, org.spigotmc.SpigotWorldConfig conf) { // Spigot
 +        return ChunkGeneratorStructureState.createForNormal(randomstate, i, this.biomeSource, holderlookup, conf); // Spigot
      }
  
@@ -154,15 +149,23 @@ index 35f744746..80eacaf7a 100644
      private static boolean hasBiomesForStructureSet(StructureSet structureset, WorldChunkManager worldchunkmanager) {
          Stream<Holder<BiomeBase>> stream = structureset.structures().stream().flatMap((structureset_a) -> {
 diff --git a/src/main/java/net/minecraft/world/level/levelgen/ChunkProviderFlat.java b/src/main/java/net/minecraft/world/level/levelgen/ChunkProviderFlat.java
-index 6d6b3abd1..233aaede7 100644
+index 6d6b3abd1..926848b82 100644
 --- a/src/main/java/net/minecraft/world/level/levelgen/ChunkProviderFlat.java
 +++ b/src/main/java/net/minecraft/world/level/levelgen/ChunkProviderFlat.java
-@@ -56,7 +56,7 @@ public class ChunkProviderFlat extends ChunkGenerator {
+@@ -49,14 +49,14 @@ public class ChunkProviderFlat extends ChunkGenerator {
+     }
+ 
+     @Override
+-    public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> holderlookup, RandomState randomstate, long i) {
++    public ChunkGeneratorStructureState createState(HolderLookup<StructureSet> holderlookup, RandomState randomstate, long i, org.spigotmc.SpigotWorldConfig conf) { // Spigot
+         Stream<Holder<StructureSet>> stream = (Stream) this.settings.structureOverrides().map(HolderSet::stream).orElseGet(() -> {
+             return holderlookup.listElements().map((holder_c) -> {
+                 return holder_c;
              });
          });
  
 -        return ChunkGeneratorStructureState.createForFlat(randomstate, i, this.biomeSource, stream);
-+        return ChunkGeneratorStructureState.createForFlat(randomstate, i, this.biomeSource, stream, this.conf); // Spigot
++        return ChunkGeneratorStructureState.createForFlat(randomstate, i, this.biomeSource, stream, conf); // Spigot
      }
  
      @Override
