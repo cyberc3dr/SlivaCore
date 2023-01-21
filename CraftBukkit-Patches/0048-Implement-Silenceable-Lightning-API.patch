@@ -1,4 +1,4 @@
-From 0229bc804773df7d78144ae7712af198e55a46cb Mon Sep 17 00:00:00 2001
+From f4a16e9fb14aa4096e87ab72588d4d8500ab6747 Mon Sep 17 00:00:00 2001
 From: drXor <mcyoungsota@gmail.com>
 Date: Sun, 23 Feb 2014 16:16:59 -0400
 Subject: [PATCH] Implement Silenceable Lightning API
@@ -26,10 +26,10 @@ index f6affe932..307a1a2b7 100644
                  this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEffects.LIGHTNING_BOLT_THUNDER, SoundCategory.WEATHER, 10000.0F, 0.8F + this.random.nextFloat() * 0.2F, false);
                  this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEffects.LIGHTNING_BOLT_IMPACT, SoundCategory.WEATHER, 2.0F, 0.5F + this.random.nextFloat() * 0.2F, false);
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 285f110b2..d0e76d30c 100644
+index 285f110b2..0ddf09733 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-@@ -1920,6 +1920,26 @@ public class CraftWorld extends CraftRegionAccessor implements World {
+@@ -1920,6 +1920,27 @@ public class CraftWorld extends CraftRegionAccessor implements World {
      // Spigot start
      private final org.bukkit.World.Spigot spigot = new org.bukkit.World.Spigot()
      {
@@ -40,7 +40,7 @@ index 285f110b2..d0e76d30c 100644
 +            EntityLightning lightning = EntityTypes.LIGHTNING_BOLT.create( world );
 +            lightning.moveTo( loc.getX(), loc.getY(), loc.getZ() );
 +            lightning.isSilent = isSilent;
-+            world.strikeLightning( lightning );
++            world.strikeLightning( lightning, LightningStrikeEvent.Cause.CUSTOM );
 +            return (LightningStrike) lightning.getBukkitEntity();
 +        }
 +
@@ -51,6 +51,7 @@ index 285f110b2..d0e76d30c 100644
 +            lightning.moveTo( loc.getX(), loc.getY(), loc.getZ() );
 +            lightning.visualOnly = true;
 +            lightning.isSilent = isSilent;
++            world.strikeLightning( lightning, LightningStrikeEvent.Cause.CUSTOM );
 +            return (LightningStrike) lightning.getBukkitEntity();
 +        }
      };
