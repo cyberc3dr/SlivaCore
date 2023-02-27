@@ -1,4 +1,4 @@
-From aa07d694a82182a7fc86ca7072228cba5cf3a552 Mon Sep 17 00:00:00 2001
+From e39a84e2405d96b42c8b5b00ebf52f2a388c6fe3 Mon Sep 17 00:00:00 2001
 From: Thinkofdeath <thinkofdeath@spigotmc.org>
 Date: Wed, 2 Jul 2014 23:35:51 +0100
 Subject: [PATCH] Better item validation
@@ -58,7 +58,7 @@ index 967d5ba30..82c1487db 100644
          }
      }
 diff --git a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
-index b4389c1a0..aca227cb2 100644
+index 6ba71fb62..87aaa0ec7 100644
 --- a/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
 +++ b/src/main/java/org/bukkit/craftbukkit/inventory/CraftMetaItem.java
 @@ -77,6 +77,10 @@ import org.bukkit.inventory.meta.Repairable;
@@ -72,7 +72,7 @@ index b4389c1a0..aca227cb2 100644
  /**
   * Children must include the following:
   *
-@@ -328,18 +332,18 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
+@@ -329,18 +333,18 @@ class CraftMetaItem implements ItemMeta, Damageable, Repairable, BlockDataMeta {
              NBTTagCompound display = tag.getCompound(DISPLAY.NBT);
  
              if (display.contains(NAME.NBT)) {
