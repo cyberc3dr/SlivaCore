@@ -1,4 +1,4 @@
-From 8798edf79ad5fde44bd92e8ff3df50fa7aa2dfcb Mon Sep 17 00:00:00 2001
+From d102617badeda6516876efc08a8c756670ca0256 Mon Sep 17 00:00:00 2001
 From: md_5 <git@md-5.net>
 Date: Tue, 25 Mar 2014 16:10:01 +1100
 Subject: [PATCH] Async Operation Catching
@@ -122,7 +122,7 @@ index 57ff7fdd0..30bbab347 100644
              world.removeBlockEntity(blockposition);
          }
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 634c9a75c..f580a922b 100644
+index 9aecbbbe9..bd6253f5e 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 @@ -822,6 +822,7 @@ public final class CraftServer implements Server {
@@ -134,7 +134,7 @@ index 634c9a75c..f580a922b 100644
          if (commandMap.dispatch(sender, commandLine)) {
              return true;
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
-index 19242d0f6..8e7e4fd96 100644
+index e2315b7ca..c1f9c82d2 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftWorld.java
 @@ -264,6 +264,7 @@ public class CraftWorld extends CraftRegionAccessor implements World {
@@ -186,10 +186,10 @@ index 19242d0f6..8e7e4fd96 100644
          boolean oldSave = world.noSave;
  
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
-index 6823e6241..7cfe6f175 100644
+index ef0631dac..de528e88d 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftEntity.java
-@@ -553,6 +553,7 @@ public abstract class CraftEntity implements org.bukkit.entity.Entity {
+@@ -554,6 +554,7 @@ public abstract class CraftEntity implements org.bukkit.entity.Entity {
      @Override
      public List<org.bukkit.entity.Entity> getNearbyEntities(double x, double y, double z) {
          Preconditions.checkState(!entity.generation, "Cannot get nearby entities during world generation");
@@ -198,10 +198,10 @@ index 6823e6241..7cfe6f175 100644
          List<Entity> notchEntityList = entity.level.getEntities(entity, entity.getBoundingBox().inflate(x, y, z), Predicates.alwaysTrue());
          List<org.bukkit.entity.Entity> bukkitEntityList = new java.util.ArrayList<org.bukkit.entity.Entity>(notchEntityList.size());
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index ccd66b1ac..1c3003c44 100644
+index c934c5fe3..a8215de47 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -367,6 +367,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -368,6 +368,7 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
  
      @Override
      public void kickPlayer(String message) {

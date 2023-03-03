@@ -1,14 +1,14 @@
-From 4667cd7613d03b3a57c0696f6cce13ca3ad9f174 Mon Sep 17 00:00:00 2001
+From 7b38e2225e3c0dff826479b8c4b2ee7b05dc0d56 Mon Sep 17 00:00:00 2001
 From: DerFlash <bte@freenet.de>
 Date: Tue, 9 Jul 2013 00:11:12 +0200
 Subject: [PATCH] Save ticks lived to nbttag
 
 
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index e3751b64a..0de06abed 100644
+index 945403674..bcd20ed56 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -1802,6 +1802,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -1806,6 +1806,7 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
              if (maxAirTicks != getDefaultMaxAirSupply()) {
                  nbttagcompound.putInt("Bukkit.MaxAirSupply", getMaxAirSupply());
              }
@@ -16,7 +16,7 @@ index e3751b64a..0de06abed 100644
              // CraftBukkit end
              IChatBaseComponent ichatbasecomponent = this.getCustomName();
  
-@@ -1960,6 +1961,11 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -1964,6 +1965,11 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
              }
  
              // CraftBukkit start
@@ -26,8 +26,8 @@ index e3751b64a..0de06abed 100644
 +            }
 +            // Spigot end
              this.persist = !nbttagcompound.contains("Bukkit.persist") || nbttagcompound.getBoolean("Bukkit.persist");
+             this.visibleByDefault = !nbttagcompound.contains("Bukkit.visibleByDefault") || nbttagcompound.getBoolean("Bukkit.visibleByDefault");
              // SPIGOT-6907: re-implement LivingEntity#setMaximumAir()
-             if (nbttagcompound.contains("Bukkit.MaxAirSupply")) {
 -- 
 2.34.1
 

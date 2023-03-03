@@ -1,4 +1,4 @@
-From 4f56d778991659528abf4e254d6ad022ce8d321d Mon Sep 17 00:00:00 2001
+From dfbeac93bad8dacd6e9dadb28c2dba50d5a134cb Mon Sep 17 00:00:00 2001
 From: erocs <github@erocs.org>
 Date: Sun, 8 Sep 2013 12:06:15 -0700
 Subject: [PATCH] Hopper Customisations
@@ -6,10 +6,10 @@ Subject: [PATCH] Hopper Customisations
 Allows editing hopper cooldowns and amount transferred per tick.
 
 diff --git a/src/main/java/net/minecraft/world/level/block/entity/TileEntityHopper.java b/src/main/java/net/minecraft/world/level/block/entity/TileEntityHopper.java
-index 80cbb3f6c..25cc1cca6 100644
+index dbc2da380..42a1f96f2 100644
 --- a/src/main/java/net/minecraft/world/level/block/entity/TileEntityHopper.java
 +++ b/src/main/java/net/minecraft/world/level/block/entity/TileEntityHopper.java
-@@ -140,9 +140,14 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -143,9 +143,14 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
          tileentityhopper.tickedGameTime = world.getGameTime();
          if (!tileentityhopper.isOnCooldown()) {
              tileentityhopper.setCooldown(0);
@@ -25,7 +25,7 @@ index 80cbb3f6c..25cc1cca6 100644
          }
  
      }
-@@ -163,7 +168,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -166,7 +171,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
                  }
  
                  if (flag) {
@@ -34,7 +34,7 @@ index 80cbb3f6c..25cc1cca6 100644
                      setChanged(world, blockposition, iblockdata);
                      return true;
                  }
-@@ -206,7 +211,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -209,7 +214,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
                          // ItemStack itemstack1 = addItem(iinventory, iinventory1, iinventory.removeItem(i, 1), enumdirection);
  
                          // CraftBukkit start - Call event when pushing items into other inventories
@@ -43,7 +43,7 @@ index 80cbb3f6c..25cc1cca6 100644
  
                          Inventory destinationInventory;
                          // Have to special case large chests as they work oddly
-@@ -220,9 +225,10 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -225,9 +230,10 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
                          world.getCraftServer().getPluginManager().callEvent(event);
                          if (event.isCancelled()) {
                              hopper.setItem(i, itemstack);
@@ -55,7 +55,7 @@ index 80cbb3f6c..25cc1cca6 100644
                          ItemStack itemstack1 = addItem(iinventory, iinventory1, CraftItemStack.asNMSCopy(event.getItem()), enumdirection);
                          // CraftBukkit end
  
-@@ -231,6 +237,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -236,6 +242,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
                              return true;
                          }
  
@@ -63,7 +63,7 @@ index 80cbb3f6c..25cc1cca6 100644
                          iinventory.setItem(i, itemstack);
                      }
                  }
-@@ -265,7 +272,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -270,7 +277,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
              EnumDirection enumdirection = EnumDirection.DOWN;
  
              return isEmptyContainer(iinventory, enumdirection) ? false : getSlots(iinventory, enumdirection).anyMatch((i) -> {
@@ -72,7 +72,7 @@ index 80cbb3f6c..25cc1cca6 100644
              });
          } else {
              Iterator iterator = getItemsAtAndAbove(world, ihopper).iterator();
-@@ -284,14 +291,14 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -289,14 +296,14 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
          }
      }
  
@@ -89,7 +89,7 @@ index 80cbb3f6c..25cc1cca6 100644
  
              Inventory sourceInventory;
              // Have to special case large chests as they work oddly
-@@ -308,13 +315,13 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -315,13 +322,13 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
                  iinventory.setItem(i, itemstack1);
  
                  if (ihopper instanceof TileEntityHopper) {
@@ -106,7 +106,7 @@ index 80cbb3f6c..25cc1cca6 100644
              ItemStack itemstack2 = addItem(iinventory, ihopper, CraftItemStack.asNMSCopy(event.getItem()), null);
              // CraftBukkit end
  
-@@ -323,6 +330,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -330,6 +337,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
                  return true;
              }
  
@@ -114,7 +114,7 @@ index 80cbb3f6c..25cc1cca6 100644
              iinventory.setItem(i, itemstack1);
          }
  
-@@ -386,6 +394,11 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -393,6 +401,11 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
              boolean flag1 = iinventory1.isEmpty();
  
              if (itemstack1.isEmpty()) {
@@ -126,7 +126,7 @@ index 80cbb3f6c..25cc1cca6 100644
                  iinventory1.setItem(i, itemstack);
                  itemstack = ItemStack.EMPTY;
                  flag = true;
-@@ -413,7 +426,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -420,7 +433,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
                              }
                          }
  
@@ -135,7 +135,7 @@ index 80cbb3f6c..25cc1cca6 100644
                      }
                  }
  
-@@ -451,6 +464,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
+@@ -482,6 +495,7 @@ public class TileEntityHopper extends TileEntityLootable implements IHopper {
      private static IInventory getContainerAt(World world, double d0, double d1, double d2) {
          Object object = null;
          BlockPosition blockposition = new BlockPosition(d0, d1, d2);

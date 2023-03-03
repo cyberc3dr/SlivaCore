@@ -1,4 +1,4 @@
-From d745c20b8e0e8145ca0848d41d8035f7a7a61251 Mon Sep 17 00:00:00 2001
+From 38df3a95168f30717c2c462134c7ed8e7ba53a9a Mon Sep 17 00:00:00 2001
 From: md_5 <md_5@live.com.au>
 Date: Sun, 1 Dec 2013 18:18:41 +1100
 Subject: [PATCH] BungeeCord Support
@@ -187,10 +187,10 @@ index 069f2ca99..2d16e81aa 100644
  
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 6b6b5b8f8..7670a6dab 100644
+index a8389a422..b31cc26f4 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1981,6 +1981,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -2055,6 +2055,12 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
      private final Player.Spigot spigot = new Player.Spigot()
      {
  

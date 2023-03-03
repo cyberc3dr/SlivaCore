@@ -1,14 +1,14 @@
-From a6cc9d5691ef30e845a3de46d0ae6705f129bcef Mon Sep 17 00:00:00 2001
+From 1d53831c565a64a22dc48cddbb6632492ee002b6 Mon Sep 17 00:00:00 2001
 From: Tux <write@imaginarycode.com>
 Date: Sun, 9 Feb 2014 14:03:03 -0500
 Subject: [PATCH] Add support for fetching hidden players
 
 
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index b7792c527..d3c0a0acb 100644
+index 27c38eb68..2e6811fda 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -2005,6 +2005,22 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -2079,6 +2079,21 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
                  server.getServer().getPlayerList().respawn( getHandle(), false );
              }
          }
@@ -16,11 +16,10 @@ index b7792c527..d3c0a0acb 100644
 +        @Override
 +        public Set<Player> getHiddenPlayers()
 +        {
-+            Set<Player> ret = new HashSet<Player>();
-+            for ( UUID u : hiddenEntities.keySet() )
++            Set<Player> ret = new HashSet<>();
++            for ( Player p : getServer().getOnlinePlayers() )
 +            {
-+                Player p = getServer().getPlayer( u );
-+                if ( p != null )
++                if ( !CraftPlayer.this.canSee(p) )
 +                {
 +                    ret.add( p );
 +                }

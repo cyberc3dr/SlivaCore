@@ -1,4 +1,4 @@
-From 3b57a3443f3fa46e8cc9424a317e373ca12d6a25 Mon Sep 17 00:00:00 2001
+From dcccf53added4d51351f28cb85ff1c48576afaa7 Mon Sep 17 00:00:00 2001
 From: Aikar <aikar@aikar.co>
 Date: Sun, 3 Feb 2013 05:10:21 -0500
 Subject: [PATCH] Entity Activation Range
@@ -35,10 +35,10 @@ index 46e80b4d0..f67a69ae3 100644
          entity.setOldPosAndRot();
          GameProfilerFiller gameprofilerfiller = this.getProfiler();
 diff --git a/src/main/java/net/minecraft/world/entity/Entity.java b/src/main/java/net/minecraft/world/entity/Entity.java
-index 26ab3384c..057032960 100644
+index f9029a84e..e30c28602 100644
 --- a/src/main/java/net/minecraft/world/entity/Entity.java
 +++ b/src/main/java/net/minecraft/world/entity/Entity.java
-@@ -302,6 +302,12 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -303,6 +303,12 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
      public boolean persistentInvisibility = false;
      public BlockPosition lastLavaContact;
      public CustomTimingsHandler tickTimer = org.bukkit.craftbukkit.SpigotTimings.getEntityTimings(this); // Spigot
@@ -51,7 +51,7 @@ index 26ab3384c..057032960 100644
  
      public float getBukkitYaw() {
          return this.yRot;
-@@ -337,6 +343,13 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
+@@ -338,6 +344,13 @@ public abstract class Entity implements INamableTileEntity, EntityAccess, IComma
          this.position = Vec3D.ZERO;
          this.blockPosition = BlockPosition.ZERO;
          this.chunkPosition = ChunkCoordIntPair.ZERO;
