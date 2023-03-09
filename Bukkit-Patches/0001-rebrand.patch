@@ -1,0 +1,30 @@
+From 549d72fcacf68220ce5a153f85b51f5155c17254 Mon Sep 17 00:00:00 2001
+From: Geo3gamer <geo3gamer@gmail.com>
+Date: Thu, 9 Mar 2023 17:16:08 +0300
+Subject: [PATCH] rebrand
+
+
+diff --git a/pom.xml b/pom.xml
+index 3a1ae84b..694e8cea 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -3,13 +3,12 @@
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+ 
+-    <groupId>org.bukkit</groupId>
+-    <artifactId>bukkit</artifactId>
++    <groupId>ru.sliva</groupId>
++    <artifactId>slivacore-api</artifactId>
+     <version>1.19.3-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Bukkit</name>
+-    <url>https://www.spigotmc.org/</url>
++    <name>SlivaCoreAPI</name>
+     <description>A plugin API for Minecraft servers.</description>
+ 
+     <properties>
+-- 
+2.39.2
+

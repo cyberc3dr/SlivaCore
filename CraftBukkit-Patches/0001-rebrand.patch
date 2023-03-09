@@ -1,0 +1,41 @@
+From 0c994ea969bdf59b96a19d00f1b309710323efd4 Mon Sep 17 00:00:00 2001
+From: Geo3gamer <geo3gamer@gmail.com>
+Date: Thu, 9 Mar 2023 17:16:22 +0300
+Subject: [PATCH] rebrand
+
+
+diff --git a/pom.xml b/pom.xml
+index 2bc1445a9..8f378c9ee 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -1,11 +1,11 @@
+ <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+-    <groupId>org.bukkit</groupId>
+-    <artifactId>craftbukkit</artifactId>
++    <groupId>ru.sliva</groupId>
++    <artifactId>slivacore-server</artifactId>
+     <packaging>jar</packaging>
+     <version>1.19.3-R0.1-SNAPSHOT</version>
+-    <name>CraftBukkit</name>
++    <name>SlivaCoreServer</name>
+     <url>https://www.spigotmc.org/</url>
+ 
+     <properties>
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+index d7425cee8..10ffc882f 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+@@ -261,7 +261,7 @@ import org.yaml.snakeyaml.constructor.SafeConstructor;
+ import org.yaml.snakeyaml.error.MarkedYAMLException;
+ 
+ public final class CraftServer implements Server {
+-    private final String serverName = "CraftBukkit";
++    private final String serverName = "SlivaCoreServer";
+     private final String serverVersion;
+     private final String bukkitVersion = Versioning.getBukkitVersion();
+     private final Logger logger = Logger.getLogger("Minecraft");
+-- 
+2.39.2
+

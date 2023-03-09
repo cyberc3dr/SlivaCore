@@ -55,6 +55,8 @@ match action:
     case "applypatches":
         if not exists("Bukkit") or not exists("CraftBukkit"):
             print("Downloading Bukkit and CraftBukkit submodules...")
+            exec("git submodule add -f https://hub.spigotmc.org/stash/scm/spigot/bukkit.git Bukkit")
+            exec("git submodule add -f https://hub.spigotmc.org/stash/scm/spigot/craftbukkit.git CraftBukkit")
             exec("git submodule update --init")
             apply_patches("Bukkit", "SlivaCore-API", "origin/master")
             apply_patches("CraftBukkit", "SlivaCore-Server", "origin/master")
