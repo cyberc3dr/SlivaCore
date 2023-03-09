@@ -33,7 +33,7 @@ manifest.mf
 .idea/
 
 # other stuff
-Spigot-API
-Spigot-Server
+SlivaCore-API
+SlivaCore-Server
 Bukkit
 CraftBukkit

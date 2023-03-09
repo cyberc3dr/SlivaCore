@@ -37,8 +37,10 @@ savePatches() {
     fi
     echo "  Patches saved for $what to $what-Patches/"
 }
+
 if [ "$clean" == "clean" ]; then
     rm -rf *-Patches
 fi
-savePatches Bukkit Spigot-API origin/spigot
-savePatches CraftBukkit Spigot-Server origin/patched
+
+savePatches Bukkit SlivaCore-API origin/master
+savePatches CraftBukkit SlivaCore-Server origin/master

@@ -1,37 +1,37 @@
-Spigot
+SlivaCore
 ======
 
-High performance Minecraft server implementation
+High performance CraftBukkit server fork
 
 
 How To
 -----------
 
-Apply Patches : `./applyPatches.sh`
+Apply Patches : `python3 patcher.py applyPatches`
 
 ### Create patch for server ###
 
-`cd Spigot-Server`
+`cd SlivaCore-Server`
 
-Add your file for commit : `git add <file>`
+Add files for commit : `git add .`
 
 Commit : `git commit -m <msg>`
 
 `cd ..`
 
-Create Patch `./rebuildPatches.sh`
+Create Patch `python3 patcher.py rebuildPatches`
 
 ### Create patch for API ###
 
-`cd Spigot-API`
+`cd SlivaCore-API`
 
-Add your file for commit : `git add <file>`
+Add files for commit : `git add .`
 
 Commit : `git commit -m <msg>`
 
 `cd ..`
 
-Create Patch `./rebuildPatches.sh`
+Create Patch `python3 patcher.py rebuildPatches`
 
 
 
